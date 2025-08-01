@@ -26,30 +26,30 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import ContactForm from "@/components/ContactPage/ContactForm.vue";
-import ContactInfo from "@/components/ContactPage/ContactInfo.vue";
+import { defineComponent } from 'vue'
+import ContactForm from '@/components/ContactPage/ContactForm.vue'
+import ContactInfo from '@/components/ContactPage/ContactInfo.vue'
 
 export default defineComponent({
-  name: "ContactPage",
+  name: 'ContactPage',
   components: {
     ContactForm,
     ContactInfo,
   },
   head() {
     return {
-      title: "Contact - Brockefni",
+      title: 'Contact - Brockefni',
       meta: [
         {
-          hid: "description",
-          name: "description",
+          hid: 'description',
+          name: 'description',
           content:
-            "Get in touch with Seth Brock for web development, design, and consulting services. Available for new projects.",
+            'Get in touch with Seth Brock for web development, design, and consulting services. Available for new projects.',
         },
       ],
-    };
+    }
   },
-});
+})
 </script>
 
 <style scoped>
@@ -64,7 +64,7 @@ export default defineComponent({
     var(--background-color) 0%,
     var(--background-variant) 100%
   );
-  padding: 6rem 0 4rem;
+  padding: 2rem 0 4rem;
   text-align: center;
 }
 

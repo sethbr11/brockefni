@@ -97,10 +97,7 @@
 
       <!-- Cloudflare Turnstile -->
       <div class="form-group turnstile-container">
-        <NuxtTurnstile
-          v-model="turnstileToken"
-          :site-key="$config.public.turnstileSiteKey"
-        />
+        <NuxtTurnstile v-model="turnstileToken" />
       </div>
 
       <!-- Hidden honeypot field for spam protection -->
@@ -146,30 +143,30 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from "vue";
+import { defineComponent, ref, computed } from 'vue'
 
 export default defineComponent({
-  name: "ContactForm",
+  name: 'ContactForm',
   setup() {
     const form = ref({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-      projectType: "",
-      budget: "",
-    });
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+      projectType: '',
+      budget: '',
+    })
 
     const errors = ref({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    })
 
-    const turnstileToken = ref("");
-    const isSubmitting = ref(false);
-    const submitStatus = ref("");
+    const turnstileToken = ref('')
+    const isSubmitting = ref(false)
+    const submitStatus = ref('')
 
     const isFormValid = computed(() => {
       return (
@@ -179,74 +176,74 @@ export default defineComponent({
         form.value.message &&
         !Object.values(errors.value).some((error) => error) &&
         turnstileToken.value
-      );
-    });
+      )
+    })
 
     const validateField = (field: string) => {
       switch (field) {
-        case "name":
+        case 'name':
           errors.value.name =
             form.value.name.length < 2
-              ? "Name must be at least 2 characters"
-              : "";
-          break;
-        case "email":
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              ? 'Name must be at least 2 characters'
+              : ''
+          break
+        case 'email':
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
           errors.value.email = !emailRegex.test(form.value.email)
-            ? "Please enter a valid email address"
-            : "";
-          break;
-        case "subject":
+            ? 'Please enter a valid email address'
+            : ''
+          break
+        case 'subject':
           errors.value.subject =
             form.value.subject.length < 3
-              ? "Subject must be at least 3 characters"
-              : "";
-          break;
-        case "message":
+              ? 'Subject must be at least 3 characters'
+              : ''
+          break
+        case 'message':
           errors.value.message =
             form.value.message.length < 10
-              ? "Message must be at least 10 characters"
-              : "";
-          break;
+              ? 'Message must be at least 10 characters'
+              : ''
+          break
       }
-    };
+    }
 
     const handleSubmit = async () => {
       // Validate all fields
-      Object.keys(errors.value).forEach((field) => validateField(field));
+      Object.keys(errors.value).forEach((field) => validateField(field))
 
       if (!isFormValid.value) {
-        return;
+        return
       }
 
-      isSubmitting.value = true;
-      submitStatus.value = "";
+      isSubmitting.value = true
+      submitStatus.value = ''
 
       try {
         // The form will naturally submit to the action URL
         // This is just for the loading state
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        submitStatus.value = "success";
+        await new Promise((resolve) => setTimeout(resolve, 2000))
+        submitStatus.value = 'success'
 
         // Reset form after successful submission
         setTimeout(() => {
           form.value = {
-            name: "",
-            email: "",
-            subject: "",
-            message: "",
-            projectType: "",
-            budget: "",
-          };
-          turnstileToken.value = "";
-          submitStatus.value = "";
-        }, 3000);
+            name: '',
+            email: '',
+            subject: '',
+            message: '',
+            projectType: '',
+            budget: '',
+          }
+          turnstileToken.value = ''
+          submitStatus.value = ''
+        }, 3000)
       } catch (error) {
-        submitStatus.value = "error";
+        submitStatus.value = 'error'
       } finally {
-        isSubmitting.value = false;
+        isSubmitting.value = false
       }
-    };
+    }
 
     return {
       form,
@@ -257,9 +254,9 @@ export default defineComponent({
       isFormValid,
       validateField,
       handleSubmit,
-    };
+    }
   },
-});
+})
 </script>
 
 <style scoped>
