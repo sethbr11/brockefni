@@ -16,6 +16,13 @@ useHead({
         "Seth Brock offers professional freelance web development, design, and consulting services tailored to your needs. Discover innovative solutions for your projects and explore Seth Brock's portfolio showcasing past work and achievements.",
     },
   ],
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: '/favicon.png',
+    },
+  ],
 })
 </script>
 
