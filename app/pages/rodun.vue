@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <img
-      src="../assets/images/rodun_logo.png"
+      src="@/assets/images/rodunLogo.png"
       height="400px"
       class="rodun-icon"
     />
