@@ -2,7 +2,7 @@
   <div class="header">
     <img
       src="@/assets/images/rodunLogo.png"
-      height="400px"
+      height="350px"
       class="rodun-icon"
     />
     <h4 class="rodun-description">
@@ -33,41 +33,41 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   setup() {
-    const showTooltip = ref(false);
+    const showTooltip = ref(false)
 
     const copyCommand = () => {
-      const copyText = document.getElementById("terminal-code");
+      const copyText = document.getElementById('terminal-code')
       if (copyText?.innerText) {
         navigator.clipboard.writeText(copyText.innerText).then(() => {
-          showTooltip.value = true;
+          showTooltip.value = true
           setTimeout(() => {
-            showTooltip.value = false;
-          }, 2000); // Hide tooltip after 2 seconds
-        });
+            showTooltip.value = false
+          }, 2000) // Hide tooltip after 2 seconds
+        })
       }
-    };
+    }
 
     return {
       copyCommand,
       showTooltip,
-    };
+    }
   },
-});
+})
 </script>
 
 <style scoped>
 .rodun-icon {
-  margin-top: 50px;
+  margin-top: 40px;
   animation: fadeIn 3s forwards;
 }
 
 .rodun-description {
   animation: fadeIn 3s forwards;
-  font-size: 30px;
+  font-size: 23px;
   margin: 30px 25% 0 25%;
   font-weight: lighter;
 }

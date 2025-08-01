@@ -1,11 +1,7 @@
 <template>
   <header>
     <div class="logo">
-      <img
-        src="../../assets/brockefni_logo.png"
-        alt="Brockefni Logo"
-        height="50"
-      />
+      <img src="@/assets/brockefni_logo.png" alt="Brockefni Logo" height="38" />
     </div>
     <nav>
       <ul>
@@ -19,14 +15,14 @@
 </template>
 
 <script lang="ts">
-import DarkModeSwitch from "../DarkModeSwitch.vue";
+import DarkModeSwitch from '@/components/DarkModeSwitch.vue'
 
 export default {
-  name: "DefaultHeader",
+  name: 'DefaultHeader',
   components: {
     DarkModeSwitch,
   },
-};
+}
 </script>
 
 <style scoped>
@@ -38,7 +34,7 @@ nav {
 nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 15px;
   margin: 0;
   padding: 0;
 }

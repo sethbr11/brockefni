@@ -86,7 +86,7 @@ export default defineComponent({
 
 <style scoped>
 .hero {
-  min-height: calc(100vh - 90px);
+  min-height: calc(100vh - 75px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,7 +104,7 @@ export default defineComponent({
 }
 
 .hero.animation-complete {
-  padding-top: 20px;
+  padding-top: 5px;
 }
 
 .hero-content {
@@ -121,7 +121,7 @@ export default defineComponent({
 }
 
 .animated-logo {
-  width: 300px;
+  width: 225px;
   opacity: 0;
   transform: scale(0) rotate(720deg);
   transition: all 2.2s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -137,16 +137,16 @@ export default defineComponent({
 }
 
 .animated-logo.logo-drifted {
-  width: 200px;
+  width: 150px;
   transform: scale(1) rotate(0deg) translateY(-20px);
   transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-size: clamp(1.875rem, 6vw, 3.75rem);
   font-weight: 900;
   line-height: 1.1;
-  margin: 2rem 0;
+  margin: auto;
   color: #d87628;
   position: relative;
   z-index: 10;
@@ -195,7 +195,7 @@ export default defineComponent({
 }
 
 .btn {
-  padding: 1rem 2rem;
+  padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 50px;
   font-weight: 600;
@@ -231,7 +231,7 @@ export default defineComponent({
 
 .scroll-indicator {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
   opacity: 0;
@@ -250,7 +250,7 @@ export default defineComponent({
   content: '';
   position: absolute;
   bottom: 0;
-  left: -3.5px;
+  left: -4px;
   width: 8px;
   height: 8px;
   border-bottom: 2px solid var(--text-color, #333);
@@ -302,7 +302,7 @@ export default defineComponent({
   }
 
   .btn {
-    width: 200px;
+    width: 150px;
   }
 }
 </style>
