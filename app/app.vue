@@ -6,6 +6,19 @@
   </div>
 </template>
 
+<script setup lang="ts">
+useHead({
+  title: 'Brockefni',
+  meta: [
+    {
+      name: 'description',
+      content:
+        "Seth Brock offers professional freelance web development, design, and consulting services tailored to your needs. Discover innovative solutions for your projects and explore Seth Brock's portfolio showcasing past work and achievements.",
+    },
+  ],
+})
+</script>
+
 <style>
 :root {
   --primary-color: #d87628;
