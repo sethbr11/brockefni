@@ -97,14 +97,14 @@
 
       <!-- Cloudflare Turnstile -->
       <div class="form-group turnstile-container">
-        <NuxtTurnstile v-model="turnstileToken" />
+        <NuxtTurnstile v-if="isClient" v-model="turnstileToken" />
       </div>
 
       <!-- Hidden honeypot field for spam protection -->
       <input
         type="hidden"
         name="_redirect"
-        :value="`${$config.public.siteUrl}/contact/thank-you`"
+        :value="`https://brockefni.com/contact/thank-you`"
       />
       <input
         type="hidden"
@@ -148,6 +148,8 @@ import { defineComponent, ref, computed } from 'vue'
 export default defineComponent({
   name: 'ContactForm',
   setup() {
+    const isClient = typeof window !== 'undefined'
+
     const form = ref({
       name: '',
       email: '',
@@ -246,6 +248,7 @@ export default defineComponent({
     }
 
     return {
+      isClient,
       form,
       errors,
       turnstileToken,
