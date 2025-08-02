@@ -25,8 +25,8 @@
               <span class="stat-label">Tools & Frameworks</span>
             </div>
             <div class="stat">
-              <span class="stat-number">3+</span>
-              <span class="stat-label">Years Experience</span>
+              <span class="stat-number">10+</span>
+              <span class="stat-label">AI/Data Tools</span>
             </div>
             <div class="stat">
               <span class="stat-number">100%</span>
@@ -40,11 +40,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: "AboutSection",
-});
+  name: 'AboutSection',
+})
 </script>
 
 <style scoped>

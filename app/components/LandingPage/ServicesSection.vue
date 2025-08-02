@@ -4,11 +4,11 @@
       <h2 class="section-title">What I Do</h2>
       <div class="services-grid">
         <div class="service-card">
-          <div class="service-icon">🎨</div>
-          <h3>UI/UX Design</h3>
+          <div class="service-icon">🧮</div>
+          <h3>Data Analytics & AI</h3>
           <p>
-            Creating intuitive and engaging user experiences with modern design
-            principles
+            Leveraging analytics and AI to extract insights, automate tasks, and
+            drive decisions
           </p>
         </div>
         <div class="service-card">
@@ -40,11 +40,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: "ServicesSection",
-});
+  name: 'ServicesSection',
+})
 </script>
 
 <style scoped>
