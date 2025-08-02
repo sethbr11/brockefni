@@ -13,6 +13,7 @@
           v-model="form.name"
           type="text"
           name="name"
+          autocomplete="name"
           required
           :class="{ error: errors.name }"
           @blur="validateField('name')"
@@ -27,6 +28,7 @@
           v-model="form.email"
           type="email"
           name="email"
+          autocomplete="email"
           required
           :class="{ error: errors.email }"
           @blur="validateField('email')"
@@ -77,8 +79,9 @@
         >
           <option value="">Select a project type</option>
           <option value="web-development">Web Development</option>
-          <option value="mobile-app">Mobile App</option>
-          <option value="ui-ux-design">UI/UX Design</option>
+          <option value="desktop-app">Desktop App</option>
+          <option value="data-analysis">Data Analysis</option>
+          <option value="ai-development">AI & LLM Development</option>
           <option value="consulting">Consulting</option>
           <option value="other">Other</option>
         </select>
@@ -88,10 +91,10 @@
         <label for="budget">Budget Range</label>
         <select id="budget" v-model="form.budget" name="budget">
           <option value="">Select budget range</option>
-          <option value="under-5k">Under $250</option>
-          <option value="5k-10k">$250 - $1,000</option>
-          <option value="10k-25k">$1,000 - $5,000</option>
-          <option value="25k-plus">$5,000+</option>
+          <option value="under-250">Under $250</option>
+          <option value="250-1k">$250 - $1,000</option>
+          <option value="1k-2.5k">$1,000 - $2,500</option>
+          <option value="2.5k-plus">$2,500+</option>
         </select>
       </div>
 
