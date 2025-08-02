@@ -73,7 +73,7 @@ jobs:
       - name: Static HTML export with Nuxt
         run: ${{ steps.detect-package-manager.outputs.manager }} run generate
       - name: Print Nuxt Public Key
-        run: echo "Nuxt public key is ${{ env.NUXT_PUBLIC_TURNSTILE_SITE_KEY }}"
+        run: echo "Nuxt public key is ${{ env.TURNSTILE_SITE_KEY }}"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
