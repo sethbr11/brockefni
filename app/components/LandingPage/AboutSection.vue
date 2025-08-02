@@ -138,6 +138,10 @@ export default defineComponent({
 }
 
 @media (max-width: 768px) {
+  .about-text h2 {
+    text-align: center;
+  }
+
   .about-content {
     grid-template-columns: 1fr;
     text-align: center;

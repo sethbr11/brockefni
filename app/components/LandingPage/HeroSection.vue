@@ -289,7 +289,7 @@ export default defineComponent({
 
 @media (max-width: 768px) {
   .hero {
-    min-height: calc(100vh - 70px);
+    min-height: 105vh;
   }
 
   .hero-title {
