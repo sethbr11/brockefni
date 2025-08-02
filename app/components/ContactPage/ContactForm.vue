@@ -143,12 +143,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue'
+import { defineComponent, ref, computed, onMounted } from 'vue'
 
 export default defineComponent({
   name: 'ContactForm',
   setup() {
-    const isClient = typeof window !== 'undefined'
+    const isClient = ref(false)
+    onMounted(() => {
+      isClient.value = true
+    })
 
     const form = ref({
       name: '',
