@@ -186,9 +186,12 @@ export default defineComponent({
     // Sync Turnstile theme with body class
     const turnstileTheme = ref<'light' | 'dark'>('light')
     const updateTheme = () => {
-      turnstileTheme.value = document.body.classList.contains('darkmode')
-        ? 'dark'
-        : 'light'
+      // Use isClient to ensure this only runs on client
+      if (typeof window !== 'undefined') {
+        turnstileTheme.value = document.body.classList.contains('darkmode')
+          ? 'dark'
+          : 'light'
+      }
     }
 
     onMounted(() => {
