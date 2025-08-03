@@ -100,7 +100,11 @@
 
       <!-- Cloudflare Turnstile -->
       <div class="form-group turnstile-container">
-        <NuxtTurnstile v-model="turnstileToken" />
+        <NuxtTurnstile
+          v-model="turnstileToken"
+          :sitekey="turnstileSiteKey"
+          :theme="turnstileTheme"
+        />
       </div>
 
       <!-- Hidden honeypot field for spam protection -->
@@ -146,7 +150,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted } from 'vue'
+import { defineComponent, ref, computed, onMounted, watch } from 'vue'
 
 export default defineComponent({
   name: 'ContactForm',
@@ -175,6 +179,27 @@ export default defineComponent({
     const turnstileToken = ref('')
     const isSubmitting = ref(false)
     const submitStatus = ref('')
+
+    // Hardcoded Turnstile site key
+    const turnstileSiteKey = '0x4AAAAAABnoIQt8dea20mSk'
+
+    // Sync Turnstile theme with body class
+    const turnstileTheme = ref<'light' | 'dark'>('light')
+    const updateTheme = () => {
+      turnstileTheme.value = document.body.classList.contains('darkmode')
+        ? 'dark'
+        : 'light'
+    }
+
+    onMounted(() => {
+      updateTheme()
+      // Watch for class changes on body
+      const observer = new MutationObserver(updateTheme)
+      observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class'],
+      })
+    })
 
     const isFormValid = computed(() => {
       return (
@@ -261,6 +286,8 @@ export default defineComponent({
       isSubmitting,
       submitStatus,
       isFormValid,
+      turnstileSiteKey,
+      turnstileTheme,
       validateField,
       handleSubmit,
     }
