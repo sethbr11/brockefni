@@ -100,7 +100,7 @@
 
       <!-- Cloudflare Turnstile -->
       <div class="form-group turnstile-container">
-        <NuxtTurnstile v-if="isClient" v-model="turnstileToken" />
+        <NuxtTurnstile v-model="turnstileToken" />
       </div>
 
       <!-- Hidden honeypot field for spam protection -->
