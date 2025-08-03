@@ -15,11 +15,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/eslint', '@nuxt/icon', '@nuxtjs/turnstile'],
   turnstile: {
-    siteKey: process.env.TURNSTILE_SITE_KEY,
-  },
-  runtimeConfig: {
-    turnstile: {
-      secretKey: process.env.TURNSTILE_SECRET_KEY,
-    },
+    siteKey: '0x4AAAAAABnoIQt8dea20mSk', // Eventually, figure out GitHub pages and env variables
   },
 })
