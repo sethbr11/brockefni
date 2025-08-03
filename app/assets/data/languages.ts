@@ -1,105 +1,105 @@
-import javascriptIcon from "@/assets/icons/javascript.png";
-import htmlIcon from "@/assets/icons/html.png";
-import cssIcon from "@/assets/icons/css.png";
-import pythonIcon from "@/assets/icons/python.png";
-import cppIcon from "@/assets/icons/cpp.png";
-import csIcon from "@/assets/icons/cs.png";
-import vueIcon from "@/assets/icons/vue.png";
-import typescriptIcon from "@/assets/icons/typescript.png";
-import swiftIcon from "@/assets/icons/swift.png";
-import markdownIcon from "@/assets/icons/markdown.png";
-import bashIcon from "@/assets/icons/bash.png";
-import dockerIcon from "@/assets/icons/docker.png";
-import pytorchIcon from "@/assets/icons/pytorch.png";
-import reactIcon from "@/assets/icons/react.png";
-import nuxtIcon from "@/assets/icons/nuxt.png";
+import javascriptIcon from '@/assets/icons/javascript.png'
+import htmlIcon from '@/assets/icons/html.png'
+import cssIcon from '@/assets/icons/css.png'
+import pythonIcon from '@/assets/icons/python.png'
+import cppIcon from '@/assets/icons/cpp.png'
+import csIcon from '@/assets/icons/cs.png'
+import vueIcon from '@/assets/icons/vue.png'
+import typescriptIcon from '@/assets/icons/typescript.png'
+import swiftIcon from '@/assets/icons/swift.png'
+import markdownIcon from '@/assets/icons/markdown.png'
+import bashIcon from '@/assets/icons/bash.png'
+import dockerIcon from '@/assets/icons/docker.png'
+import pytorchIcon from '@/assets/icons/pytorch.png'
+import reactIcon from '@/assets/icons/react.png'
+import nuxtIcon from '@/assets/icons/nuxt.png'
 
 export interface Badge {
-  name: string;
-  icon?: string;
-  title?: string;
+  name: string
+  icon?: string
+  title?: string
 }
 
 // Language badge dictionary
 export const languages = {
   javascript: {
-    name: "JavaScript",
+    name: 'JavaScript',
     icon: javascriptIcon,
-    title: "JavaScript",
+    title: 'JavaScript',
   },
   html: {
-    name: "HTML",
+    name: 'HTML',
     icon: htmlIcon,
-    title: "HTML",
+    title: 'HTML',
   },
   css: {
-    name: "CSS",
+    name: 'CSS',
     icon: cssIcon,
-    title: "CSS",
+    title: 'CSS',
   },
   python: {
-    name: "Python",
+    name: 'Python',
     icon: pythonIcon,
-    title: "Python",
+    title: 'Python',
   },
   cpp: {
-    name: "C++",
+    name: 'C++',
     icon: cppIcon,
-    title: "C++",
+    title: 'C++',
   },
   cs: {
-    name: "C#",
+    name: 'C#',
     icon: csIcon,
-    title: "C#",
+    title: 'C#',
   },
   vue: {
-    name: "Vue.js",
+    name: 'Vue.js',
     icon: vueIcon,
-    title: "Vue.js",
+    title: 'Vue.js',
   },
   typescript: {
-    name: "TypeScript",
+    name: 'TypeScript',
     icon: typescriptIcon,
-    title: "TypeScript",
+    title: 'TypeScript',
   },
   swift: {
-    name: "Swift",
+    name: 'Swift',
     icon: swiftIcon,
-    title: "Swift",
+    title: 'Swift',
   },
   markdown: {
-    name: "Markdown",
+    name: 'Markdown',
     icon: markdownIcon,
-    title: "Markdown",
+    title: 'Markdown',
   },
   bash: {
-    name: "Bash",
+    name: 'Bash',
     icon: bashIcon,
-    title: "Bash",
+    title: 'Bash',
   },
   docker: {
-    name: "Docker",
+    name: 'Docker',
     icon: dockerIcon,
-    title: "Docker",
+    title: 'Docker',
   },
   terraform: {
-    name: "Terraform",
+    name: 'Terraform',
     icon: dockerIcon,
-    title: "Terraform",
+    title: 'Terraform',
   },
   pytorch: {
-    name: "PyTorch",
+    name: 'PyTorch',
     icon: pytorchIcon,
-    title: "PyTorch",
+    title: 'PyTorch',
   },
   react: {
-    name: "React",
+    name: 'React',
     icon: reactIcon,
-    title: "React",
+    title: 'React',
   },
   nuxt: {
-    name: "Nuxt",
+    name: 'Nuxt.js',
     icon: nuxtIcon,
-    title: "Nuxt",
+    title: 'Nuxt',
   },
-};
+}
