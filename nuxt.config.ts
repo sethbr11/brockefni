@@ -13,8 +13,10 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint', '@nuxt/icon', '@nuxtjs/turnstile'],
-  turnstile: {
-    siteKey: '0x4AAAAAABnoIQt8dea20mSk', // Eventually, figure out GitHub pages and env variables
+  modules: ['@nuxt/eslint', '@nuxt/icon'],
+  runtimeConfig: {
+    public: {
+      BOTPOISON_PUBLIC_KEY: process.env.BOTPOISON_PUBLIC_KEY || '',
+    },
   },
 })

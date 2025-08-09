@@ -1,11 +1,6 @@
 <template>
   <div class="contact-form-container">
-    <form
-      class="contact-form"
-      @submit.prevent="handleSubmit"
-      action="https://submit-form.com/idvmMbXXx"
-      method="POST"
-    >
+    <form class="contact-form" @submit.prevent="handleSubmit">
       <div class="form-group">
         <label for="name">Full Name *</label>
         <input
@@ -98,15 +93,6 @@
         </select>
       </div>
 
-      <!-- Cloudflare Turnstile -->
-      <div class="form-group turnstile-container">
-        <NuxtTurnstile
-          v-model="turnstileToken"
-          :sitekey="turnstileSiteKey"
-          :theme="turnstileTheme"
-        />
-      </div>
-
       <!-- Hidden honeypot field for spam protection -->
       <input
         type="hidden"
@@ -118,13 +104,14 @@
         name="_email.subject"
         value="New Contact Form Submission"
       />
-      <input
-        type="hidden"
-        name="_redirect"
-        value="https://brockefni.com/contact/thank-you"
-      />
       <div style="position: absolute; left: -5000px">
-        <input type="text" name="honeypot" tabindex="-1" autocomplete="off" />
+        <input
+          type="text"
+          name="_honeypot"
+          v-model="form.honeypot"
+          tabindex="-1"
+          autocomplete="off"
+        />
       </div>
 
       <div class="form-actions">
@@ -150,11 +137,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted, watch } from 'vue'
+import { defineComponent, ref, computed, onMounted } from 'vue'
+import Botpoison from '@botpoison/browser'
+import { useRuntimeConfig } from '#app'
 
 export default defineComponent({
   name: 'ContactForm',
   setup() {
+    const config = useRuntimeConfig()
+    const botpoison = new Botpoison({
+      publicKey: config.public.BOTPOISON_PUBLIC_KEY, // Use runtime config
+    })
+
     const isClient = ref(false)
     onMounted(() => {
       isClient.value = true
@@ -167,6 +161,7 @@ export default defineComponent({
       message: '',
       projectType: '',
       budget: '',
+      honeypot: '', // Add honeypot field to form data
     })
 
     const errors = ref({
@@ -176,33 +171,8 @@ export default defineComponent({
       message: '',
     })
 
-    const turnstileToken = ref('')
     const isSubmitting = ref(false)
     const submitStatus = ref('')
-
-    // Hardcoded Turnstile site key
-    const turnstileSiteKey = '0x4AAAAAABnoIQt8dea20mSk'
-
-    // Sync Turnstile theme with body class
-    const turnstileTheme = ref<'light' | 'dark'>('light')
-    const updateTheme = () => {
-      // Use isClient to ensure this only runs on client
-      if (typeof window !== 'undefined') {
-        turnstileTheme.value = document.body.classList.contains('darkmode')
-          ? 'dark'
-          : 'light'
-      }
-    }
-
-    onMounted(() => {
-      updateTheme()
-      // Watch for class changes on body
-      const observer = new MutationObserver(updateTheme)
-      observer.observe(document.body, {
-        attributes: true,
-        attributeFilter: ['class'],
-      })
-    })
 
     const isFormValid = computed(() => {
       return (
@@ -210,8 +180,7 @@ export default defineComponent({
         form.value.email &&
         form.value.subject &&
         form.value.message &&
-        !Object.values(errors.value).some((error) => error) &&
-        turnstileToken.value
+        !Object.values(errors.value).some((error) => error)
       )
     })
 
@@ -248,6 +217,14 @@ export default defineComponent({
       // Validate all fields
       Object.keys(errors.value).forEach((field) => validateField(field))
 
+      // Check honeypot field
+      if (form.value.honeypot) {
+        console.warn('Spam detected: honeypot field is filled.')
+        // Redirect to the "thank you" page to trick bots
+        window.location.href = 'https://brockefni.com/contact/thank-you'
+        return
+      }
+
       if (!isFormValid.value) {
         return
       }
@@ -256,9 +233,25 @@ export default defineComponent({
       submitStatus.value = ''
 
       try {
-        // The form will naturally submit to the action URL
-        // This is just for the loading state
-        await new Promise((resolve) => setTimeout(resolve, 2000))
+        // Generate Botpoison token
+        const { solution } = await botpoison.challenge()
+
+        // Append the token to the form data
+        const formData = new FormData()
+        formData.append('name', form.value.name)
+        formData.append('email', form.value.email)
+        formData.append('subject', form.value.subject)
+        formData.append('message', form.value.message)
+        formData.append('project-type', form.value.projectType)
+        formData.append('budget', form.value.budget)
+        formData.append('botpoison', solution)
+
+        // Submit the form data
+        await fetch('https://submit-form.com/idvmMbXXx', {
+          method: 'POST',
+          body: formData,
+        })
+
         submitStatus.value = 'success'
 
         // Reset form after successful submission
@@ -270,8 +263,8 @@ export default defineComponent({
             message: '',
             projectType: '',
             budget: '',
+            honeypot: '', // Reset honeypot field
           }
-          turnstileToken.value = ''
           submitStatus.value = ''
         }, 3000)
       } catch (error) {
@@ -285,12 +278,9 @@ export default defineComponent({
       isClient,
       form,
       errors,
-      turnstileToken,
       isSubmitting,
       submitStatus,
       isFormValid,
-      turnstileSiteKey,
-      turnstileTheme,
       validateField,
       handleSubmit,
     }
@@ -352,11 +342,6 @@ export default defineComponent({
 .form-group textarea {
   resize: vertical;
   min-height: 120px;
-}
-
-.turnstile-container {
-  display: flex;
-  justify-content: center;
 }
 
 .form-actions {
