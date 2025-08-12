@@ -37,6 +37,25 @@ import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   setup() {
+    useHead({
+      title: 'Rodun',
+      meta: [
+        {
+          name: 'description',
+          content:
+            'A fast, simple desktop app to help optimize the use of materials by planning cuts based on user-provided specifications.',
+        },
+        {
+          name: 'keywords',
+          content: 'Rodun, material optimization, cutting plans, desktop app',
+        },
+        {
+          name: 'author',
+          content: 'Seth Brock',
+        },
+      ],
+    })
+
     const showTooltip = ref(false)
 
     const copyCommand = () => {

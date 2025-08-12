@@ -8,12 +8,37 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'Brockefni',
+  title: 'Brockefni Portfolio - Digital Projects and Tools',
   meta: [
     {
       name: 'description',
       content:
-        "Seth Brock offers professional freelance web development, design, and consulting services tailored to your needs. Discover innovative solutions for your projects and explore Seth Brock's portfolio showcasing past work and achievements.",
+        "Seth Brock offers freelance web development, design, and consulting services. Explore digital tools, innovative projects, and Seth's portfolio of past work.",
+    },
+    {
+      name: 'author',
+      content: 'Seth Brock',
+    },
+    {
+      property: 'og:title',
+      content: 'Brockefni Portfolio - Digital Projects and Tools',
+    },
+    {
+      property: 'og:description',
+      content:
+        "Explore Seth Brock's portfolio and discover professional web development, design, and consulting services, including digital tools and desktop projects.",
+    },
+    {
+      property: 'og:image',
+      content: 'https://brockefni.com/og_image.png',
+    },
+    {
+      property: 'og:url',
+      content: 'https://brockefni.com',
+    },
+    {
+      property: 'og:type',
+      content: 'website',
     },
   ],
   link: [
@@ -21,6 +46,29 @@ useHead({
       rel: 'icon',
       type: 'image/x-icon',
       href: '/favicon.ico',
+    },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'Brockefni Portfolio',
+        url: 'https://brockefni.com',
+        description:
+          "Seth Brock offers freelance web development, design, and consulting services. Explore digital tools, innovative projects, and Seth's portfolio of past work.",
+        author: {
+          '@type': 'Person',
+          name: 'Seth Brock',
+          url: 'https://brockefni.com',
+        },
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: 'https://brockefni.com/search?q={search_term_string}',
+          'query-input': 'required name=search_term_string',
+        },
+      }),
     },
   ],
 })

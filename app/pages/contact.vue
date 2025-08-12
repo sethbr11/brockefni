@@ -27,8 +27,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+
 import ContactForm from '@/components/ContactPage/ContactForm.vue'
 import ContactInfo from '@/components/ContactPage/ContactInfo.vue'
+import { useHead } from '#app'
 
 export default defineComponent({
   name: 'ContactPage',
@@ -36,18 +38,30 @@ export default defineComponent({
     ContactForm,
     ContactInfo,
   },
-  head() {
-    return {
-      title: 'Contact - Brockefni',
+  setup() {
+    useHead({
+      title: 'Contact',
       meta: [
         {
-          hid: 'description',
           name: 'description',
           content:
             'Get in touch with Seth Brock for web development, design, and consulting services. Available for new projects.',
         },
+        {
+          name: 'author',
+          content: 'Seth Brock',
+        },
+        {
+          name: 'keywords',
+          content:
+            'Contact Seth Brock, web development, design, consulting, freelance projects',
+        },
+        {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1.0',
+        },
       ],
-    }
+    })
   },
 })
 </script>
