@@ -8,6 +8,9 @@
 
 <script setup lang="ts">
 useHead({
+  htmlAttrs: {
+    lang: 'en',
+  },
   title: 'Brockefni Portfolio - Digital Projects and Tools',
   meta: [
     {
@@ -46,6 +49,14 @@ useHead({
       rel: 'icon',
       type: 'image/x-icon',
       href: '/favicon.ico',
+    },
+    {
+      rel: 'apple-touch-icon',
+      href: '/og_image.png',
+    },
+    {
+      rel: 'canonical',
+      href: 'https://brockefni.com',
     },
   ],
   script: [
