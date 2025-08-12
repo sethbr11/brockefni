@@ -10,9 +10,11 @@ import swiftIcon from '@/assets/icons/swift.png'
 import markdownIcon from '@/assets/icons/markdown.png'
 import bashIcon from '@/assets/icons/bash.png'
 import dockerIcon from '@/assets/icons/docker.png'
+import terraformIcon from '@/assets/icons/terraform.png'
 import pytorchIcon from '@/assets/icons/pytorch.png'
 import reactIcon from '@/assets/icons/react.png'
 import nuxtIcon from '@/assets/icons/nuxt.png'
+import zshIcon from '@/assets/icons/zsh.png'
 
 export interface Badge {
   name: string
@@ -21,7 +23,7 @@ export interface Badge {
 }
 
 // Language badge dictionary
-export const languages = {
+export const b = {
   javascript: {
     name: 'JavaScript',
     icon: javascriptIcon,
@@ -84,7 +86,7 @@ export const languages = {
   },
   terraform: {
     name: 'Terraform',
-    icon: dockerIcon,
+    icon: terraformIcon,
     title: 'Terraform',
   },
   pytorch: {
@@ -100,6 +102,11 @@ export const languages = {
   nuxt: {
     name: 'Nuxt.js',
     icon: nuxtIcon,
-    title: 'Nuxt',
+    title: 'Nuxt.js',
+  },
+  zsh: {
+    name: 'Zshell',
+    icon: zshIcon,
+    title: 'Zshell',
   },
 }

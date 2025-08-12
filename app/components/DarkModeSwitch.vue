@@ -5,12 +5,12 @@ Dark mode toggle feature for the site
 -->
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted } from 'vue'
 
 onMounted(async () => {
-  const module = await import("@/assets/scripts/darkmode");
-  module.init?.();
-});
+  const module = await import('@/assets/scripts/darkmode')
+  module.init?.()
+})
 </script>
 
 <template>
@@ -61,7 +61,7 @@ onMounted(async () => {
 #theme-switch:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 16px var(--heavy-shadow);
-  border-color: var(--primary-color);
+  border-color: var(--text-color);
 }
 
 #theme-switch:active {
@@ -70,7 +70,7 @@ onMounted(async () => {
 }
 
 #theme-switch::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
