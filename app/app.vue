@@ -11,7 +11,7 @@ useHead({
   htmlAttrs: {
     lang: 'en',
   },
-  title: 'Brockefni Portfolio - Digital Projects and Tools',
+  title: 'Seth Brock - Creative Development & Design',
   meta: [
     {
       name: 'description',
