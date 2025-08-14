@@ -2,9 +2,9 @@
   <div class="contact-form-container">
     <form
       class="contact-form"
-      :action="formAction"
+      @submit.prevent="handleSubmit"
+      action="https://submit-form.com/idvmMbXXx"
       method="POST"
-      @submit.prevent="validateBeforeSubmit"
     >
       <div class="form-group">
         <label for="name">Full Name *</label>
@@ -112,39 +112,33 @@
         </select>
       </div>
 
-      <!-- Decoy field for spam protection -->
-      <div class="hidden-field">
-        <label for="secondaryEmail">Secondary Email</label>
-        <input
-          type="email"
-          id="secondaryEmail"
-          v-model="form.decoy"
-          name="secondaryEmail"
-        />
+      <input
+        type="hidden"
+        name="_redirect"
+        value="https://brockefni.com/contact?status=success"
+      />
+      <input
+        type="hidden"
+        name="_email.subject"
+        value="New Contact Form Submission"
+      />
+
+      <div style="position: absolute; left: -5000px">
+        <input type="text" name="honeypot" tabindex="-1" autocomplete="off" />
       </div>
 
-      <!-- Timing field -->
-      <input type="hidden" id="form_load_time" v-model="form.loadTime" />
+      <input type="hidden" name="form_load_time" :value="form.loadTime" />
 
       <div class="form-actions">
-        <button
-          type="submit"
-          class="btn btn-primary"
-          :disabled="isSubmitting || !isFormValid"
-          :class="{ submitting: isSubmitting }"
-        >
-          <span v-if="!isSubmitting">Send Message</span>
-          <span v-else>Sending...</span>
+        <button type="submit" class="btn btn-primary" :disabled="!isFormValid">
+          <span>Send Message</span>
         </button>
       </div>
-
-      <div v-if="submitStatus === 'success'" class="success-message">
-        Message sent successfully! I'll get back to you soon.
-      </div>
-      <div v-if="submitStatus === 'error'" class="error-message">
-        Something went wrong. Please try again or email me directly.
-      </div>
     </form>
+
+    <div v-if="submitStatus === 'error'" class="error-message">
+      Something went wrong. Please try again or email me directly.
+    </div>
   </div>
 </template>
 
@@ -153,11 +147,6 @@ import { defineComponent, ref, computed, onMounted } from 'vue'
 
 export default defineComponent({
   name: 'ContactForm',
-  data() {
-    return {
-      formAction: 'https://submit-form.com/idvmMbXXx',
-    }
-  },
   setup() {
     const form = ref({
       name: '',
@@ -179,8 +168,7 @@ export default defineComponent({
       message: '',
     })
 
-    const isSubmitting = ref(false)
-    const submitStatus = ref('')
+    const submitStatus = ref<'idle' | 'success' | 'error'>('idle')
 
     const isFormValid = computed(() => {
       return (
@@ -192,7 +180,7 @@ export default defineComponent({
       )
     })
 
-    const validateField = (field: string) => {
+    const validateField = (field: keyof typeof errors.value) => {
       switch (field) {
         case 'name':
           errors.value.name =
@@ -223,76 +211,47 @@ export default defineComponent({
       }
     }
 
-    const validateBeforeSubmit = async () => {
+    const handleSubmit = async (event: Event) => {
       // Validate all fields
-      Object.keys(errors.value).forEach((field) => validateField(field))
-
-      // Spam detection logic
-      const timeElapsed = Date.now() - parseInt(form.value.loadTime, 10)
-      if (timeElapsed < 3000) {
-        alert('Form submitted too quickly. Please try again.')
-        return
-      }
-      if (form.value.address.trim() !== '') {
-        window.location.href = 'https://brockefni.com/contact/thank-you'
-        return
-      }
-      if (form.value.decoy.trim() !== '') {
-        console.warn('Spam detected: decoy field is filled.')
-        return
-      }
+      Object.keys(errors.value).forEach((field) =>
+        validateField(field as keyof typeof errors.value)
+      )
 
       if (!isFormValid.value) {
         return
       }
 
-      isSubmitting.value = true
-      submitStatus.value = ''
+      // --- Spam detection logic ---
+      const timeElapsed = Date.now() - parseInt(form.value.loadTime, 10)
+      if (timeElapsed < 3000) {
+        alert('Form submitted too quickly. Please try again.')
+        window.location.href = '/contact?status=error'
+        return
+      }
+      if (form.value.address.trim() !== '') {
+        console.warn('Spam detected: honeypot field (address) is filled.')
+        window.location.href = '/contact?status=error'
+        return
+      }
+      if (form.value.decoy.trim() !== '') {
+        console.warn('Spam detected: decoy field is filled.')
+        window.location.href = '/contact?status=error'
+        return
+      }
 
       try {
-        // Prepare form data
-        const formData = new FormData()
-        formData.append('name', form.value.name)
-        formData.append('email', form.value.email)
-        formData.append('subject', form.value.subject)
-        formData.append('message', form.value.message)
-        formData.append('project-type', form.value.projectType)
-        formData.append('budget', form.value.budget)
-
-        // Submit the form data
-        await fetch('https://submit-form.com/idvmMbXXx', {
-          method: 'POST',
-          body: formData,
-        })
-
-        submitStatus.value = 'success'
-
-        // Reset form after successful submission
-        setTimeout(() => {
-          form.value = {
-            name: '',
-            email: '',
-            address: '',
-            subject: '',
-            message: '',
-            projectType: '',
-            budget: '',
-            decoy: '', // Reset decoy field
-            loadTime: Date.now().toString(), // Reset loadTime
-          }
-          submitStatus.value = ''
-        }, 3000)
+        // Programmatically submit the form
+        const formElement = event.target as HTMLFormElement
+        formElement.submit()
       } catch (error) {
-        submitStatus.value = 'error'
-      } finally {
-        isSubmitting.value = false
+        console.error('Form submission error:', error)
+        // Redirect back to the contact page with an error status
+        window.location.href = '/contact?status=error'
       }
     }
 
     onMounted(() => {
       form.value.loadTime = Date.now().toString()
-
-      // Dynamically add tabindex to the honeypot field
       const honeypotField = document.getElementById('address')
       if (honeypotField) {
         honeypotField.setAttribute('tabindex', '-1')
@@ -302,11 +261,10 @@ export default defineComponent({
     return {
       form,
       errors,
-      isSubmitting,
-      submitStatus,
       isFormValid,
       validateField,
-      validateBeforeSubmit,
+      handleSubmit,
+      submitStatus,
     }
   },
 })

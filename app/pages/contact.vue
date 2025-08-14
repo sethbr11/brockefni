@@ -9,9 +9,19 @@
         </p>
       </div>
     </section>
-
     <section class="contact-content">
       <div class="container">
+        <div class="message-section" v-if="status">
+          <p
+            class="message"
+            :class="{
+              'message-success': status === 'success',
+              'message-error': status === 'error',
+            }"
+          >
+            {{ status === 'success' ? successMessage : errorMessage }}
+          </p>
+        </div>
         <div class="contact-grid">
           <div class="contact-info-section">
             <ContactInfo />
@@ -27,6 +37,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { useRoute } from 'vue-router'
 
 import ContactForm from '@/components/ContactPage/ContactForm.vue'
 import ContactInfo from '@/components/ContactPage/ContactInfo.vue'
@@ -39,6 +50,14 @@ export default defineComponent({
     ContactInfo,
   },
   setup() {
+    const route = useRoute()
+    const status = route.query.status
+
+    const successMessage =
+      'Your message has been sent successfully. I will get back to you within 24 hours.'
+    const errorMessage =
+      'Something went wrong. Please try again or email me directly.'
+
     useHead({
       title: 'Contact',
       meta: [
@@ -62,6 +81,12 @@ export default defineComponent({
         },
       ],
     })
+
+    return {
+      status,
+      successMessage,
+      errorMessage,
+    }
   },
 })
 </script>
@@ -107,7 +132,7 @@ export default defineComponent({
 }
 
 .contact-content {
-  padding: 4rem 0 6rem;
+  padding: 2rem 0 6rem;
 }
 
 .contact-grid {
@@ -123,6 +148,26 @@ export default defineComponent({
 
 .contact-form-section {
   order: 2;
+}
+
+.message-section {
+  text-align: center;
+}
+
+.message {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+}
+
+.message-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.message-error {
+  background-color: #f8d7da;
+  color: #721c24;
 }
 
 @media (max-width: 768px) {
