@@ -1,6 +1,11 @@
 <template>
   <div class="contact-form-container">
-    <form class="contact-form" @submit.prevent="handleSubmit">
+    <form
+      class="contact-form"
+      :action="formAction"
+      method="POST"
+      @submit.prevent="validateBeforeSubmit"
+    >
       <div class="form-group">
         <label for="name">Full Name *</label>
         <input
@@ -30,6 +35,20 @@
         />
         <span v-if="errors.email" class="error-message">{{
           errors.email
+        }}</span>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input
+          id="address"
+          v-model="form.address"
+          type="text"
+          name="address"
+          autocomplete="off"
+        />
+        <span v-if="errors.address" class="error-message">{{
+          errors.address
         }}</span>
       </div>
 
@@ -93,26 +112,19 @@
         </select>
       </div>
 
-      <!-- Hidden honeypot field for spam protection -->
-      <input
-        type="hidden"
-        name="_redirect"
-        :value="`https://brockefni.com/contact/thank-you`"
-      />
-      <input
-        type="hidden"
-        name="_email.subject"
-        value="New Contact Form Submission"
-      />
-      <div style="position: absolute; left: -5000px">
+      <!-- Decoy field for spam protection -->
+      <div class="hidden-field">
+        <label for="secondaryEmail">Secondary Email</label>
         <input
-          type="text"
-          name="_honeypot"
-          v-model="form.honeypot"
-          tabindex="-1"
-          autocomplete="off"
+          type="email"
+          id="secondaryEmail"
+          v-model="form.decoy"
+          name="secondaryEmail"
         />
       </div>
+
+      <!-- Timing field -->
+      <input type="hidden" id="form_load_time" v-model="form.loadTime" />
 
       <div class="form-actions">
         <button
@@ -138,22 +150,15 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed, onMounted } from 'vue'
-import Botpoison from '@botpoison/browser'
-import { useRuntimeConfig } from '#app'
 
 export default defineComponent({
   name: 'ContactForm',
+  data() {
+    return {
+      formAction: 'https://submit-form.com/idvmMbXXx',
+    }
+  },
   setup() {
-    const config = useRuntimeConfig()
-    const botpoison = new Botpoison({
-      publicKey: config.public.BOTPOISON_PUBLIC_KEY, // Use runtime config
-    })
-
-    const isClient = ref(false)
-    onMounted(() => {
-      isClient.value = true
-    })
-
     const form = ref({
       name: '',
       email: '',
@@ -161,12 +166,15 @@ export default defineComponent({
       message: '',
       projectType: '',
       budget: '',
-      honeypot: '', // Add honeypot field to form data
+      address: '', // Honeypot field
+      decoy: '', // Decoy field
+      loadTime: '', // Timing field
     })
 
     const errors = ref({
       name: '',
       email: '',
+      address: '', // honeypot
       subject: '',
       message: '',
     })
@@ -198,6 +206,8 @@ export default defineComponent({
             ? 'Please enter a valid email address'
             : ''
           break
+        case 'address': // honeypot
+          break
         case 'subject':
           errors.value.subject =
             form.value.subject.length < 3
@@ -213,15 +223,22 @@ export default defineComponent({
       }
     }
 
-    const handleSubmit = async () => {
+    const validateBeforeSubmit = async () => {
       // Validate all fields
       Object.keys(errors.value).forEach((field) => validateField(field))
 
-      // Check honeypot field
-      if (form.value.honeypot) {
-        console.warn('Spam detected: honeypot field is filled.')
-        // Redirect to the "thank you" page to trick bots
+      // Spam detection logic
+      const timeElapsed = Date.now() - parseInt(form.value.loadTime, 10)
+      if (timeElapsed < 3000) {
+        alert('Form submitted too quickly. Please try again.')
+        return
+      }
+      if (form.value.address.trim() !== '') {
         window.location.href = 'https://brockefni.com/contact/thank-you'
+        return
+      }
+      if (form.value.decoy.trim() !== '') {
+        console.warn('Spam detected: decoy field is filled.')
         return
       }
 
@@ -233,10 +250,7 @@ export default defineComponent({
       submitStatus.value = ''
 
       try {
-        // Generate Botpoison token
-        const { solution } = await botpoison.challenge()
-
-        // Append the token to the form data
+        // Prepare form data
         const formData = new FormData()
         formData.append('name', form.value.name)
         formData.append('email', form.value.email)
@@ -244,7 +258,6 @@ export default defineComponent({
         formData.append('message', form.value.message)
         formData.append('project-type', form.value.projectType)
         formData.append('budget', form.value.budget)
-        formData.append('botpoison', solution)
 
         // Submit the form data
         await fetch('https://submit-form.com/idvmMbXXx', {
@@ -259,11 +272,13 @@ export default defineComponent({
           form.value = {
             name: '',
             email: '',
+            address: '',
             subject: '',
             message: '',
             projectType: '',
             budget: '',
-            honeypot: '', // Reset honeypot field
+            decoy: '', // Reset decoy field
+            loadTime: Date.now().toString(), // Reset loadTime
           }
           submitStatus.value = ''
         }, 3000)
@@ -274,15 +289,24 @@ export default defineComponent({
       }
     }
 
+    onMounted(() => {
+      form.value.loadTime = Date.now().toString()
+
+      // Dynamically add tabindex to the honeypot field
+      const honeypotField = document.getElementById('address')
+      if (honeypotField) {
+        honeypotField.setAttribute('tabindex', '-1')
+      }
+    })
+
     return {
-      isClient,
       form,
       errors,
       isSubmitting,
       submitStatus,
       isFormValid,
       validateField,
-      handleSubmit,
+      validateBeforeSubmit,
     }
   },
 })
@@ -397,6 +421,19 @@ export default defineComponent({
   border-radius: 10px;
   margin-top: 1rem;
   text-align: center;
+}
+
+/* Hide the nth child (honeypot field) */
+.contact-form .form-group:nth-child(3) {
+  position: absolute;
+  left: -5000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.hidden-field {
+  display: none;
 }
 
 @media (max-width: 768px) {
