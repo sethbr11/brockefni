@@ -61,6 +61,19 @@ useHead({
   ],
   script: [
     {
+      async: true,
+      src: 'https://www.googletagmanager.com/gtag/js?id=G-ZKM1D60PQ6',
+    },
+    {
+      innerHTML: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZKM1D60PQ6');
+      `,
+      type: 'text/javascript',
+    },
+    {
       type: 'application/ld+json',
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
