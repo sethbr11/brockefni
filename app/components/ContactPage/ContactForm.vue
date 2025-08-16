@@ -176,6 +176,7 @@ export default defineComponent({
         form.value.email &&
         form.value.subject &&
         form.value.message &&
+				form.value.form_load_time &&
         !Object.values(errors.value).some((error) => error)
       )
     })
