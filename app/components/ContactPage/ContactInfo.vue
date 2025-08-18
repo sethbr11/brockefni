@@ -7,34 +7,34 @@
     </p>
 
     <div class="contact-methods">
-      <div class="contact-method">
+      <a href="mailto:seth@brockefni.com" class="contact-method">
         <div class="contact-icon">📧</div>
         <div class="contact-details">
           <h4>Email</h4>
-          <a href="mailto:seth@brockefni.com">seth@brockefni.com</a>
+          <span>seth@brockefni.com</span>
         </div>
-      </div>
+      </a>
 
-      <div class="contact-method">
+      <a
+        href="https://www.linkedin.com/in/sethbrock11/"
+        target="_blank"
+        rel="noopener"
+        class="contact-method"
+      >
         <div class="contact-icon">💼</div>
         <div class="contact-details">
           <h4>LinkedIn</h4>
-          <a
-            href="https://www.linkedin.com/in/sethbrock11/"
-            target="_blank"
-            rel="noopener"
-            >Connect with me</a
-          >
+          <span>Connect with me</span>
         </div>
-      </div>
+      </a>
 
-      <div class="contact-method">
+      <a href="#contact" class="contact-method">
         <div class="contact-icon">⚡</div>
         <div class="contact-details">
           <h4>Response Time</h4>
           <span>Usually within 24 hours</span>
         </div>
-      </div>
+      </a>
     </div>
 
     <div class="availability">
@@ -48,11 +48,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: "ContactInfo",
-});
+  name: 'ContactInfo',
+})
 </script>
 
 <style scoped>
@@ -91,6 +91,8 @@ export default defineComponent({
   background: var(--background-color);
   border-radius: 15px;
   transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
 }
 
 .contact-method:last-child {

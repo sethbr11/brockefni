@@ -1,5 +1,5 @@
 <template>
-  <div class="contact-form-container">
+  <div class="contact-form-container" id="contact">
     <form
       class="contact-form"
       @submit.prevent="handleSubmit"
@@ -176,7 +176,8 @@ export default defineComponent({
         form.value.email &&
         form.value.subject &&
         form.value.message &&
-				form.value.form_load_time &&
+        form.value.loadTime &&
+        !isNaN(parseInt(form.value.loadTime, 10)) && // Ensure loadTime is a valid number
         !Object.values(errors.value).some((error) => error)
       )
     })
@@ -212,6 +213,14 @@ export default defineComponent({
       }
     }
 
+    onMounted(() => {
+      form.value.loadTime = Date.now().toString() // Ensure loadTime is set when the component is mounted
+      const honeypotField = document.getElementById('address')
+      if (honeypotField) {
+        honeypotField.setAttribute('tabindex', '-1')
+      }
+    })
+
     const handleSubmit = async (event: Event) => {
       // Validate all fields
       Object.keys(errors.value).forEach((field) =>
@@ -223,6 +232,12 @@ export default defineComponent({
       }
 
       // --- Spam detection logic ---
+      if (!form.value.loadTime || isNaN(parseInt(form.value.loadTime, 10))) {
+        console.warn('Spam detected: loadTime is missing or invalid.')
+        window.location.href = '/contact?status=error'
+        return
+      }
+
       const timeElapsed = Date.now() - parseInt(form.value.loadTime, 10)
       if (timeElapsed < 3000) {
         alert('Form submitted too quickly. Please try again.')
@@ -250,14 +265,6 @@ export default defineComponent({
         window.location.href = '/contact?status=error'
       }
     }
-
-    onMounted(() => {
-      form.value.loadTime = Date.now().toString()
-      const honeypotField = document.getElementById('address')
-      if (honeypotField) {
-        honeypotField.setAttribute('tabindex', '-1')
-      }
-    })
 
     return {
       form,
