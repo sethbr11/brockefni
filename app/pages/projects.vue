@@ -1,14 +1,14 @@
 <template>
   <section class="featured">
     <h1>PORTFOLIO PROJECTS</h1>
-    <CardList :cards="cardData" :columns="4" />
+    <CardList :cards="cardData" :columns="4" project-card-mode />
   </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import CardList from '../components/ProjectsPage/CardList.vue'
-import cardData from '../assets/data/cardData'
+import cardData from '../assets/data/projectsCardData'
 import { useHead } from '#app'
 
 export default defineComponent({

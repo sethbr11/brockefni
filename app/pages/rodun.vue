@@ -38,7 +38,7 @@ import { defineComponent, ref } from 'vue'
 export default defineComponent({
   setup() {
     useHead({
-      title: 'Rodun',
+      title: 'Rodun - Optimize Your Cuts',
       meta: [
         {
           name: 'description',

@@ -8,6 +8,7 @@
             alt="Seth Brock"
             class="profile-image"
           />
+          <div class="name-badge">Seth Brock</div>
         </div>
         <div class="about-text">
           <h2 class="section-title">About Me</h2>
@@ -88,12 +89,29 @@ export default defineComponent({
   transform: translateY(0);
 }
 
+.about-image {
+  position: relative;
+  text-align: center;
+}
+
 .about-image img.profile-image {
   width: 300px;
   height: 300px;
   object-fit: cover;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.name-badge {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-color);
+  background: var(--primary-lighter-variant);
+  border-radius: 50px;
+  transition: background 0.3s ease;
 }
 
 .about-text h2 {
@@ -135,6 +153,10 @@ export default defineComponent({
 .stat-label {
   font-size: 0.9rem;
   color: var(--text-color-muted, #666);
+}
+
+.darkmode .name-badge {
+  background: var(--primary-darker-variant);
 }
 
 @media (max-width: 768px) {

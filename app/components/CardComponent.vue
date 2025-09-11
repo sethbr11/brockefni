@@ -5,88 +5,97 @@
       clickable: card.link,
       'badges-expanded':
         badgesExpanded && card.badges && card.badges.length > 2,
+      'project-card-mode': projectCardMode,
     }"
     @click="handleCardClick"
   >
-    <!-- Badges -->
-    <div
-      v-if="showBadges && card.badges && card.badges.length > 0"
-      class="card-badges"
-    >
-      <CardBadge
-        :badges="card.badges"
-        :expanded="badgesExpanded"
-        @toggle-badges="$emit('toggle-badges')"
-      />
-    </div>
-
-    <!-- Card Header -->
-    <div
-      class="card-header"
-      :class="{
-        'header-pushed':
-          badgesExpanded && card.badges && card.badges.length > 2,
-      }"
-    >
-      <h3 class="card-title">{{ card.title }}</h3>
-    </div>
-
-    <!-- Card Body -->
-    <div class="card-body">
-      <p v-if="card.description" class="card-description">
-        {{ card.description }}
-      </p>
-      <slot name="body"></slot>
-    </div>
-
-    <!-- Card Footer -->
-    <div class="card-footer">
-      <!-- Main Link -->
-      <a
-        v-if="card.link && card.link.text"
-        :href="card.link.url"
-        class="card-link"
-        :target="card.link.external ? '_blank' : '_self'"
-        @click.stop
-      >
-        {{ card.link.text }}
-        <svg
-          class="external-icon"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-          />
-        </svg>
-      </a>
-
-      <!-- Actions -->
+    <!-- Project Card Mode - Structured Content -->
+    <template v-if="projectCardMode">
+      <!-- Badges -->
       <div
-        v-if="card.actions && card.actions.length > 0"
-        class="actions-container"
+        v-if="showBadges && card.badges && card.badges.length > 0"
+        class="card-badges"
       >
-        <div class="actions">
-          <button
-            v-for="(action, actionIndex) in card.actions"
-            :key="actionIndex"
-            class="action-button"
-            :style="{ backgroundColor: action.color || '#6366f1' }"
-            @click.stop="handleActionClick(action)"
-          >
-            <span v-if="action.icon" class="action-icon">
-              <img :src="action.icon" :alt="action.text" />
-            </span>
-            <span class="action-text">{{ action.text }}</span>
-          </button>
-        </div>
+        <CardBadge
+          :badges="card.badges"
+          :expanded="badgesExpanded"
+          @toggle-badges="$emit('toggle-badges')"
+        />
       </div>
-      <slot name="footer"></slot>
-    </div>
+
+      <!-- Card Header -->
+      <div
+        class="card-header"
+        :class="{
+          'header-pushed':
+            badgesExpanded && card.badges && card.badges.length > 2,
+        }"
+      >
+        <h3 class="card-title">{{ card.title }}</h3>
+      </div>
+
+      <!-- Card Body -->
+      <div class="card-body">
+        <p v-if="card.description" class="card-description">
+          {{ card.description }}
+        </p>
+        <slot name="body"></slot>
+      </div>
+
+      <!-- Card Footer -->
+      <div class="card-footer">
+        <!-- Main Link -->
+        <a
+          v-if="card.link && card.link.text"
+          :href="card.link.url"
+          class="card-link"
+          :target="card.link.external ? '_blank' : '_self'"
+          @click.stop
+        >
+          {{ card.link.text }}
+          <svg
+            class="external-icon"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+            />
+          </svg>
+        </a>
+
+        <!-- Actions -->
+        <div
+          v-if="card.actions && card.actions.length > 0"
+          class="actions-container"
+        >
+          <div class="actions">
+            <button
+              v-for="(action, actionIndex) in card.actions"
+              :key="actionIndex"
+              class="action-button"
+              :style="{ backgroundColor: action.color || '#6366f1' }"
+              @click.stop="handleActionClick(action)"
+            >
+              <span v-if="action.icon" class="action-icon">
+                <img :src="action.icon" :alt="action.text" />
+              </span>
+              <span class="action-text">{{ action.text }}</span>
+            </button>
+          </div>
+        </div>
+        <slot name="footer"></slot>
+      </div>
+    </template>
+
+    <!-- Standard Mode - Custom Content -->
+    <template v-else>
+      <slot></slot>
+    </template>
   </div>
 </template>
 
@@ -101,9 +110,10 @@ export default {
   props: {
     card: {
       type: Object,
-      required: true,
+      required: false,
+      default: () => ({}),
       validator: (card) => {
-        return card.title && typeof card.title === 'string'
+        return !card.title || typeof card.title === 'string'
       },
     },
     badgesExpanded: {
@@ -113,6 +123,10 @@ export default {
     showBadges: {
       type: Boolean,
       default: true,
+    },
+    projectCardMode: {
+      type: Boolean,
+      default: false,
     },
   },
   emits: ['toggle-badges', 'action-click'],
@@ -176,9 +190,15 @@ export default {
   cursor: pointer;
 }
 
-.card.clickable:hover {
-  box-shadow: 0 4px 16px var(--heavy-shadow);
-  transform: translateY(-2px);
+.card.clickable:hover,
+.card:hover {
+  box-shadow: 0 8px 25px var(--heavy-shadow);
+  transform: translateY(-4px);
+}
+
+.card.project-card-mode {
+  /* Project card mode uses structured layout */
+  padding: 0;
 }
 
 .card-header {

@@ -103,6 +103,7 @@ useHead({
   --primary-color: #d87628;
   --primary-variant: #bf6922;
   --primary-darker-variant: #ad5e1d;
+  --primary-lighter-variant: #f2a05e;
   --secondary-color: #2c3e50;
   --secondary-variant: #23303e;
   --secondary-lighter-variant: #294563;

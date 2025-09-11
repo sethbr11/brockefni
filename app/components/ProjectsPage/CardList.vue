@@ -9,6 +9,7 @@
         :show-badges="true"
         @toggle-badges="toggleBadges(index)"
         @action-click="handleActionClick"
+        project-card-mode
       />
     </div>
   </div>

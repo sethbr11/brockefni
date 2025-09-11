@@ -62,9 +62,7 @@ const cardData: CardData[] = [
     description:
       'A Google Chrome extension for enhancing the functionality and user experience of LCR (Leader and Clerk Resources) for The Church of Jesus Christ of Latter-day Saints. Fixing bugs and adding quality-of-life features.',
     badges: [b.html, b.javascript, b.css],
-    link: createLink(
-      'https://chromewebstore.google.com/detail/lcr-tools/camjilfjkjmgcpmnheoeoomfndedpmbn'
-    ),
+    link: createLink('/lcr', 'Product Page', false),
     actions: [
       createAction(
         'Store',
@@ -72,7 +70,6 @@ const cardData: CardData[] = [
         chromeWebStoreIcon,
         'https://chromewebstore.google.com/detail/lcr-tools/camjilfjkjmgcpmnheoeoomfndedpmbn'
       ),
-      defaultActions.github('https://github.com/sethbr11/lcr-tools'),
       defaultActions.youtube(
         'https://www.youtube.com/playlist?list=PL2PIa0u5jTtY6uQYHQRhOdwP2yTdmyNUS',
         'Tutorials'
