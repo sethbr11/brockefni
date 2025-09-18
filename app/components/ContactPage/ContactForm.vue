@@ -125,6 +125,14 @@
 
       <div style="position: absolute; left: -5000px">
         <input type="text" name="honeypot" tabindex="-1" autocomplete="off" />
+        <!-- New decoy field actually present in the DOM -->
+        <input
+          type="text"
+          name="decoy"
+          v-model="form.decoy"
+          tabindex="-1"
+          autocomplete="off"
+        />
       </div>
 
       <input type="hidden" name="form_load_time" :value="form.loadTime" />
@@ -176,8 +184,7 @@ export default defineComponent({
         form.value.email &&
         form.value.subject &&
         form.value.message &&
-        form.value.loadTime &&
-        !isNaN(parseInt(form.value.loadTime, 10)) && // Ensure loadTime is a valid number
+        // loadTime validation moved to anti-bot checks below
         !Object.values(errors.value).some((error) => error)
       )
     })
@@ -222,16 +229,7 @@ export default defineComponent({
     })
 
     const handleSubmit = async (event: Event) => {
-      // Validate all fields
-      Object.keys(errors.value).forEach((field) =>
-        validateField(field as keyof typeof errors.value)
-      )
-
-      if (!isFormValid.value) {
-        return
-      }
-
-      // --- Spam detection logic ---
+      // Anti-bot checks first so we redirect on failure instead of silently returning
       if (!form.value.loadTime || isNaN(parseInt(form.value.loadTime, 10))) {
         console.warn('Spam detected: loadTime is missing or invalid.')
         window.location.href = '/contact?status=error'
@@ -240,28 +238,39 @@ export default defineComponent({
 
       const timeElapsed = Date.now() - parseInt(form.value.loadTime, 10)
       if (timeElapsed < 3000) {
-        alert('Form submitted too quickly. Please try again.')
+        console.warn('Spam detected: submitted too quickly.')
         window.location.href = '/contact?status=error'
         return
       }
+
       if (form.value.address.trim() !== '') {
         console.warn('Spam detected: honeypot field (address) is filled.')
         window.location.href = '/contact?status=error'
         return
       }
+
       if (form.value.decoy.trim() !== '') {
         console.warn('Spam detected: decoy field is filled.')
         window.location.href = '/contact?status=error'
         return
       }
 
+      // Validate user-facing fields next
+      Object.keys(errors.value).forEach((field) =>
+        validateField(field as keyof typeof errors.value)
+      )
+
+      if (!isFormValid.value) {
+        // Show validation errors, but do not submit or redirect
+        return
+      }
+
       try {
-        // Programmatically submit the form
+        // Programmatically submit (native form post) only after passing checks
         const formElement = event.target as HTMLFormElement
         formElement.submit()
       } catch (error) {
         console.error('Form submission error:', error)
-        // Redirect back to the contact page with an error status
         window.location.href = '/contact?status=error'
       }
     }
