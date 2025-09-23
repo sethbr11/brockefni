@@ -1,9 +1,16 @@
 <template>
   <div class="contact-form-container" id="contact">
+    <!-- Toast Notification -->
+    <ToastNotification
+      :visible="showToast"
+      message="Contact form is temporarily disabled. Please email me directly at seth@brockefni.com"
+      @close="closeToast"
+    />
+
     <form
       class="contact-form"
       @submit.prevent="handleSubmit"
-      action="https://submit-form.com/idvmMbXXx"
+      action=""
       method="POST"
     >
       <div class="form-group">
@@ -151,10 +158,17 @@
 </template>
 
 <script lang="ts">
+// Form action is https://submit-form.com/idvmMbXXx
+// taken out of the code for now since bot protection hasn't been successful
+
 import { defineComponent, ref, computed, onMounted } from 'vue'
+import ToastNotification from '~/components/ToastNotification.vue'
 
 export default defineComponent({
   name: 'ContactForm',
+  components: {
+    ToastNotification,
+  },
   setup() {
     const form = ref({
       name: '',
@@ -177,6 +191,7 @@ export default defineComponent({
     })
 
     const submitStatus = ref<'idle' | 'success' | 'error'>('idle')
+    const showToast = ref(false)
 
     const isFormValid = computed(() => {
       return (
@@ -228,7 +243,22 @@ export default defineComponent({
       }
     })
 
+    const closeToast = () => {
+      showToast.value = false
+    }
+
     const handleSubmit = async (event: Event) => {
+      // Show toast notification instead of processing form
+      showToast.value = true
+
+      // Auto-hide toast after 8 seconds
+      setTimeout(() => {
+        showToast.value = false
+      }, 8000)
+
+      return // Exit early, don't process the form
+
+      // All the existing anti-bot and form processing code remains but won't execute
       // Anti-bot checks first so we redirect on failure instead of silently returning
       if (!form.value.loadTime || isNaN(parseInt(form.value.loadTime, 10))) {
         console.warn('Spam detected: loadTime is missing or invalid.')
@@ -282,6 +312,8 @@ export default defineComponent({
       validateField,
       handleSubmit,
       submitStatus,
+      showToast,
+      closeToast,
     }
   },
 })
@@ -409,12 +441,5 @@ export default defineComponent({
 
 .hidden-field {
   display: none;
-}
-
-@media (max-width: 768px) {
-  .contact-form {
-    padding: 2rem 1.5rem;
-    margin: 0 1rem;
-  }
 }
 </style>
