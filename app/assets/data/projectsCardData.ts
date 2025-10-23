@@ -183,6 +183,14 @@ const cardData: CardData[] = [
       ),
     ],
   },
+  {
+    title: 'Talum',
+    description:
+      'In reference to the Icelandic word tölum (variation of "speak"). The iOS app is designed to help people learn Icelandic, since it is not covered well in most langauge learning apps already. This app was made for a school project and is here to showcase ability. It will most likely never be completed.',
+    badges: [b.swift],
+    link: createLink('https://github.com/sethbr11/Talum'),
+    actions: [defaultActions.github('https://github.com/sethbr11/Talum')],
+  },
 ]
 
 export default cardData
