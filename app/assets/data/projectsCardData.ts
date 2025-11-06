@@ -5,6 +5,8 @@ import githubIcon from '@/assets/icons/github.png'
 import youtubeIcon from '@/assets/icons/youtube.png'
 import downloadIcon from '@/assets/icons/download.png'
 import colabIcon from '@/assets/icons/colab.png'
+import huggingfaceIcon from '@/assets/icons/huggingface.svg'
+import pytorchIcon from '@/assets/icons/pytorch.png'
 
 export interface CardData {
   title: string
@@ -61,7 +63,7 @@ const cardData: CardData[] = [
     title: 'LCR Tools',
     description:
       'A Google Chrome extension for enhancing the functionality and user experience of LCR (Leader and Clerk Resources) for The Church of Jesus Christ of Latter-day Saints. Fixing bugs and adding quality-of-life features.',
-    badges: [b.html, b.javascript, b.css],
+    badges: [b.html, b.javascript, b.css, b.nodejs],
     link: createLink('/lcr', 'Product Page', false),
     actions: [
       createAction(
@@ -70,6 +72,7 @@ const cardData: CardData[] = [
         chromeWebStoreIcon,
         'https://chromewebstore.google.com/detail/lcr-tools/camjilfjkjmgcpmnheoeoomfndedpmbn'
       ),
+      defaultActions.github('https://github.com/sethbr11/lcr-tools'),
       defaultActions.youtube(
         'https://www.youtube.com/playlist?list=PL2PIa0u5jTtY6uQYHQRhOdwP2yTdmyNUS',
         'Tutorials'
@@ -83,6 +86,7 @@ const cardData: CardData[] = [
     badges: [b.cpp, b.bash],
     link: createLink('/rodun', 'Info and Installation', false),
     actions: [
+      defaultActions.github('https://github.com/sethbr11/Rodun'),
       createAction(
         'Download (MacOS)',
         '#3d8f42',
@@ -103,7 +107,7 @@ const cardData: CardData[] = [
     title: 'Intro to Data Wrangling',
     description:
       'A brief course intended to introduce non-programmers to the Python programming language and data wrangling. Also, a demonstration of network optimization, PDF creation in Python, and a simple Monte Carlo simulation.',
-    badges: [b.python],
+    badges: [b.python, b.jupyter],
     link: createLink('https://github.com/sethbr11/IntroToDataWrangling'),
     actions: [
       defaultActions.github('https://github.com/sethbr11/IntroToDataWrangling'),
@@ -136,7 +140,7 @@ const cardData: CardData[] = [
     actions: [defaultActions.github('https://github.com/sethbr11/brockefni')],
   },
   {
-    title: 'Transformer',
+    title: 'Translation Transformer',
     description:
       'A transformer made in PyTorch to handle langauge translation. This project was for a BYU IS Masters-level class I took and was meant to be more educational than practical.',
     badges: [b.python, b.pytorch],
@@ -186,10 +190,60 @@ const cardData: CardData[] = [
   {
     title: 'Talum',
     description:
-      'In reference to the Icelandic word tölum (variation of "speak"). The iOS app is designed to help people learn Icelandic, since it is not covered well in most langauge learning apps already. This app was made for a school project and is here to showcase ability. It will most likely never be completed.',
+      'Named after the Icelandic word tölum ("speak"), Talum is an iOS app designed to help people learn Icelandic. Created as a school project to showcase app development ability, it is primarily a demonstration and may never be completed.',
     badges: [b.swift],
     link: createLink('https://github.com/sethbr11/Talum'),
     actions: [defaultActions.github('https://github.com/sethbr11/Talum')],
+  },
+  {
+    title: 'T5 Bible Styling',
+    description:
+      'A pre-trained Text-to-Text Transfer Transformer (T5) fine-tuned for the specific task of converting normal text into KJV-style English. This project was for a BYU IS Masters-level class I took and was meant to be more educational than practical.',
+    badges: [b.python, b.pytorch, b.huggingface, b.jupyter],
+    link: createLink('https://github.com/sethbr11/t5-bible-styling'),
+    actions: [
+      defaultActions.github('https://github.com/sethbr11/t5-bible-styling'),
+      createAction(
+        'Model',
+        '#FF9D00',
+        huggingfaceIcon,
+        'https://huggingface.co/docs/transformers/en/model_doc/t5'
+      ),
+    ],
+  },
+  {
+    title: 'Vision Transformer',
+    description:
+      'A project to learn building transformers for image classification. The model was improved from 10% (random) accuracy to over 80%. This was created for a BYU IS Masters-level class as an educational exercise.',
+    badges: [b.python, b.pytorch],
+    link: createLink('https://github.com/sethbr11/PyTorch-ImgClassification'),
+    actions: [
+      defaultActions.github(
+        'https://github.com/sethbr11/PyTorch-ImgClassification'
+      ),
+      createAction(
+        'Model',
+        '#434343ff',
+        pytorchIcon,
+        'https://docs.pytorch.org/vision/main/models/vision_transformer.html'
+      ),
+    ],
+  },
+  {
+    title: 'Diffusion Model',
+    description:
+      "An educational BYU IS project exploring diffusion models and Stable Diffusion. Includes a from‑scratch U‑Net and experiments with Hugging Face's UNet2DModel and VAE-based latent pipelines for text-to-image generation.",
+    badges: [b.python, b.pytorch, b.huggingface, b.jupyter],
+    link: createLink('https://github.com/sethbr11/DiffusionModel'),
+    actions: [
+      defaultActions.github('https://github.com/sethbr11/DiffusionModel'),
+      createAction(
+        'Model',
+        '#FF9D00',
+        huggingfaceIcon,
+        'https://huggingface.co/docs/diffusers/en/api/models/unet2d'
+      ),
+    ],
   },
 ]
 
