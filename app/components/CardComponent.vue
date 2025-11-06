@@ -214,7 +214,7 @@ export default {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-color);
-  margin: 0;
+  margin: 1em 0 0 0;
   line-height: 1.4;
 }
 
