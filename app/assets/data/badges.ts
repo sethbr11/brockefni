@@ -15,6 +15,9 @@ import pytorchIcon from '@/assets/icons/pytorch.png'
 import reactIcon from '@/assets/icons/react.png'
 import nuxtIcon from '@/assets/icons/nuxt.png'
 import zshIcon from '@/assets/icons/zsh.png'
+import nodejsIcon from '@/assets/icons/nodejs.svg'
+import huggingfaceIcon from '@/assets/icons/huggingface.svg'
+import jupyternotebookIcon from '@/assets/icons/jupyter.png'
 
 export interface Badge {
   name: string
@@ -108,5 +111,20 @@ export const b = {
     name: 'Zshell',
     icon: zshIcon,
     title: 'Zshell',
+  },
+  nodejs: {
+    name: 'Node.js',
+    icon: nodejsIcon,
+    title: 'Node.js',
+  },
+  huggingface: {
+    name: 'Hugging Face',
+    icon: huggingfaceIcon,
+    title: 'Hugging Face',
+  },
+  jupyter: {
+    name: 'Jupyter Notebook',
+    icon: jupyternotebookIcon,
+    title: 'Jupyter Notebook',
   },
 }
