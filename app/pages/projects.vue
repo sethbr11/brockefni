@@ -189,17 +189,6 @@ export default defineComponent({
       updateURL()
     }
 
-    // Watch search query and update URL
-    const searchTimeout = ref<NodeJS.Timeout | null>(null)
-    const handleSearchChange = () => {
-      if (searchTimeout.value) {
-        clearTimeout(searchTimeout.value)
-      }
-      searchTimeout.value = setTimeout(() => {
-        updateURL()
-      }, 500)
-    }
-
     return {
       selectedBadges,
       searchQuery,

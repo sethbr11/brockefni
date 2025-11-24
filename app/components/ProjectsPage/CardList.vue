@@ -8,7 +8,6 @@
         :badges-expanded="expandedBadges[index]"
         :show-badges="true"
         @toggle-badges="toggleBadges(index)"
-        @action-click="handleActionClick"
         project-card-mode
       />
     </div>
@@ -47,24 +46,9 @@ export default {
       expandedBadges[cardIndex] = !expandedBadges[cardIndex]
     }
 
-    const handleActionClick = (action) => {
-      if (action.link) {
-        if (action.link.startsWith('http')) {
-          window.open(action.link, '_blank')
-        } else {
-          window.location.href = action.link
-        }
-      }
-
-      if (action.callback && typeof action.callback === 'function') {
-        action.callback()
-      }
-    }
-
     return {
       expandedBadges,
       toggleBadges,
-      handleActionClick,
     }
   },
 }

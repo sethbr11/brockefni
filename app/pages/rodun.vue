@@ -15,6 +15,15 @@
     >
       <div class="download-rodun">Download v1.0.0 (MacOS Only)</div>
     </a>
+    <a
+      href="https://github.com/sethbr11/Rodun"
+      target="_blank"
+      style="text-decoration: none"
+    >
+      <div class="github-button">
+        <img :src="githubIcon" height="20px" class="github-icon" />
+      </div>
+    </a>
     <br />
     <div class="terminal-code">
       <code id="terminal-code">
@@ -34,6 +43,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import githubIcon from '@/assets/icons/github.png'
 
 export default defineComponent({
   setup() {
@@ -73,6 +83,7 @@ export default defineComponent({
     return {
       copyCommand,
       showTooltip,
+      githubIcon,
     }
   },
 })
@@ -101,6 +112,21 @@ export default defineComponent({
   padding: 15px 32px;
   display: inline-block;
   margin: 25px 0 0 0;
+}
+
+.github-button {
+  animation: fadeIn 3s forwards;
+  background-color: #c06eff;
+  align-items: center;
+  text-align: center;
+  border: none;
+  padding: 15px 20px;
+  display: inline-block;
+  margin: 25px 0 0 20px;
+  cursor: pointer;
+  vertical-align: top;
+  height: 52px;
+  box-sizing: border-box;
 }
 
 .terminal-code {
@@ -142,8 +168,13 @@ export default defineComponent({
 
 /** Dark mode styles */
 .darkmode {
-  .copy-img {
+  .copy-img,
+  .github-icon {
     filter: invert(1);
+  }
+
+  .github-button {
+    background-color: #6e40c9;
   }
 }
 

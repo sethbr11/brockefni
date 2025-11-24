@@ -28,6 +28,7 @@
         <a
           href="https://chromewebstore.google.com/detail/lcr-tools/camjilfjkjmgcpmnheoeoomfndedpmbn"
           target="_blank"
+          rel="noopener noreferrer"
           class="chrome-store-button"
         >
           <img
@@ -36,6 +37,19 @@
             class="chrome-icon"
           />
           Add to Chrome
+        </a>
+        <a
+          href="https://github.com/sethbr11/lcr-tools"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="github-button"
+        >
+          <img
+            src="@/assets/icons/github.png"
+            alt="GitHub Repository"
+            class="github-icon"
+          />
+          View on GitHub
         </a>
       </div>
 
@@ -209,15 +223,18 @@ export default defineComponent({
 }
 
 .github-button {
-  background: var(--background-variant);
-  color: var(--text-color);
-  border: 2px solid var(--outline-color);
+  background: #6e40c9;
+  color: #ffffff !important;
+  border: 2px solid #6e40c9;
+  box-shadow: 0 4px 16px rgba(110, 64, 201, 0.45);
 }
 
 .github-button:hover {
-  background: var(--outline-color);
+  background: #804ae6;
+  border-color: #804ae6;
+  color: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px var(--heavy-shadow);
+  box-shadow: 0 8px 25px rgba(128, 74, 230, 0.55);
 }
 
 .chrome-icon,
@@ -225,6 +242,10 @@ export default defineComponent({
   width: 24px;
   height: 24px;
   object-fit: contain;
+}
+
+.github-icon {
+  filter: brightness(0) invert(1);
 }
 
 .hero-stats {
