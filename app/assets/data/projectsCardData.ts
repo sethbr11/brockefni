@@ -191,9 +191,17 @@ const cardData: CardData[] = [
     title: 'Talum',
     description:
       'Named after the Icelandic word tölum ("speak"), Talum is an iOS app designed to help people learn Icelandic. Created as a school project to showcase app development ability, it is primarily a demonstration and may never be completed.',
-    badges: [b.swift],
+    badges: [b.swift, b.swiftui],
     link: createLink('https://github.com/sethbr11/Talum'),
     actions: [defaultActions.github('https://github.com/sethbr11/Talum')],
+  },
+  {
+    title: 'UpSkrift',
+    description:
+      'Inspired by the Icelandic word uppskrift ("recipe"), Upskrift is a SwiftUI recipe management application for iOS that allows users to organize, filter, and manage their favorite recipes (preloaded with Icelandic recipes).',
+    badges: [b.swift, b.swiftui],
+    link: createLink('https://github.com/sethbr11/UpSkrift'),
+    actions: [defaultActions.github('https://github.com/sethbr11/UpSkrift')],
   },
   {
     title: 'T5 Bible Styling',

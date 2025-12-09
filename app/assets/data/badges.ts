@@ -7,6 +7,7 @@ import csIcon from '@/assets/icons/cs.png'
 import vueIcon from '@/assets/icons/vue.png'
 import typescriptIcon from '@/assets/icons/typescript.png'
 import swiftIcon from '@/assets/icons/swift.png'
+import swiftUIIcon from '@/assets/icons/swiftui.png'
 import markdownIcon from '@/assets/icons/markdown.png'
 import bashIcon from '@/assets/icons/bash.png'
 import dockerIcon from '@/assets/icons/docker.png'
@@ -71,6 +72,11 @@ export const b = {
     name: 'Swift',
     icon: swiftIcon,
     title: 'Swift',
+  },
+  swiftui: {
+    name: 'SwiftUI',
+    icon: swiftUIIcon,
+    title: 'SwiftUI',
   },
   markdown: {
     name: 'Markdown',
