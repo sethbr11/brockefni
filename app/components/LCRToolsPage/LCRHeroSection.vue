@@ -59,7 +59,7 @@
           <span class="stat-label">Rating</span>
         </div>
         <div class="stat">
-          <span class="stat-number">15+</span>
+          <span class="stat-number">50+</span>
           <span class="stat-label">Users</span>
         </div>
         <div class="stat">
