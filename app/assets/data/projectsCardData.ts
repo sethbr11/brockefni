@@ -7,6 +7,7 @@ import downloadIcon from '@/assets/icons/download.png'
 import colabIcon from '@/assets/icons/colab.png'
 import huggingfaceIcon from '@/assets/icons/huggingface.svg'
 import pytorchIcon from '@/assets/icons/pytorch.png'
+import nodejsIcon from '@/assets/icons/nodejs.svg'
 
 export interface CardData {
   title: string
@@ -80,6 +81,85 @@ const cardData: CardData[] = [
     ],
   },
   {
+    title: 'Phishing Demo',
+    description:
+      'A local, Python-based phishing simulation environment for academic demonstrations. Developed as part of a Capstone project for presenting cybersecurity concepts to 5th graders. Due to the potentially sensitive nature of the project (in respect to cybersecurity), I cannot make the project public. Please email if you are interested in using it!',
+    badges: [b.python, b.bash],
+    link: createLink(
+      "mailto:seth@brockefni.com?subject=Interest%20in%20Email%20Phishing%20Academic%20Example&body=Hi%20Seth!%0A%0AI'm%20interested%20in%20learning%20more%20about%20you%20email%20phishing%20demo%20for%20the%20purpose%20of%20%5BINSERT%20REASON%20HERE%5D.%0A%0AFrom%2C%0A%5BYOUR%20NAME%20HERE%5D",
+      'Email Me',
+      true
+    ),
+  },
+  {
+    title: 'UptimeRobot SDK',
+    description:
+      'A community-maintained TypeScript/Node.js client for the Uptime Robot REST API v3. Full coverage, ESM only, and built for modern environments.',
+    badges: [b.typescript, b.nodejs],
+    link: createLink('/uptimerobot', 'Suite Page', false),
+    actions: [
+      defaultActions.github('https://github.com/sethbr11/uptime-robot-v3'),
+      createAction(
+        'NPM',
+        '#cb3837',
+        nodejsIcon,
+        'https://www.npmjs.com/package/uptime-robot-v3'
+      ),
+    ],
+  },
+  {
+    title: 'UptimeRobot REPL',
+    description:
+      'An interactive Node.js REPL for exploring and testing the Uptime Robot API. Exposes the SDK as a global service for rapid prototyping.',
+    badges: [b.typescript, b.nodejs],
+    link: createLink('/uptimerobot', 'Suite Page', false),
+    actions: [
+      defaultActions.github('https://github.com/sethbr11/uptime-robot-v3-repl'),
+      createAction(
+        'NPM',
+        '#cb3837',
+        nodejsIcon,
+        'https://www.npmjs.com/package/uptime-robot-v3-repl'
+      ),
+    ],
+  },
+  {
+    title: 'Backstage UptimeRobot',
+    description:
+      'The frontend component of the UptimeRobot Backstage plugin. Displays monitor health, uptime trends, and response times on catalog entities.',
+    badges: [b.typescript, b.react],
+    link: createLink('/uptimerobot', 'Suite Page', false),
+    actions: [
+      defaultActions.github(
+        'https://github.com/sethbr11/uptimerobot-backstage-plugin'
+      ),
+      createAction(
+        'NPM',
+        '#cb3837',
+        nodejsIcon,
+        'https://www.npmjs.com/package/@sethbr11/plugin-uptimerobot'
+      ),
+    ],
+  },
+  {
+    title: 'Backstage UR Backend',
+    description:
+      'The backend component for the Backstage plugin. Handles secure API integration, data caching, and permission framework support.',
+    badges: [b.typescript, b.nodejs],
+    link: createLink('/uptimerobot', 'Suite Page', false),
+    actions: [
+      defaultActions.github(
+        'https://github.com/sethbr11/uptimerobot-backend-backstage-plugin'
+      ),
+      createAction(
+        'NPM',
+        '#cb3837',
+        nodejsIcon,
+        'https://www.npmjs.com/package/@sethbr11/plugin-uptimerobot-backend'
+      ),
+    ],
+  },
+  {
     title: 'Rodun',
     description:
       'A fast, simple desktop app to help optimize the use of materials by planning cuts based on user-provided specifications. Features clean PDF exports. This app was commissioned and is now free to use.',
@@ -94,17 +174,6 @@ const cardData: CardData[] = [
         'https://pub-ec1ffa573fea49e58c444331188ff39c.r2.dev/Rodun-v.1.0.0-Installer-MacOS.dmg'
       ),
     ],
-  },
-  {
-    title: 'Phishing Demo',
-    description:
-      'A local, Python-based phishing simulation environment for academic demonstrations. Developed as part of a Capstone project for presenting cybersecurity concepts to 5th graders. Due to the potentially sensitive nature of the project (in respect to cybersecurity), I cannot make the project public. Please email if you are interested in using it!',
-    badges: [b.python, b.bash],
-    link: createLink(
-      "mailto:seth@brockefni.com?subject=Interest%20in%20Email%20Phishing%20Academic%20Example&body=Hi%20Seth!%0A%0AI'm%20interested%20in%20learning%20more%20about%20you%20email%20phishing%20demo%20for%20the%20purpose%20of%20%5BINSERT%20REASON%20HERE%5D.%0A%0AFrom%2C%0A%5BYOUR%20NAME%20HERE%5D",
-      'Email Me',
-      true
-    ),
   },
   {
     title: 'Z-Skelheim',
