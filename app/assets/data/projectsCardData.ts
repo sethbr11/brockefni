@@ -8,6 +8,7 @@ import colabIcon from '@/assets/icons/colab.png'
 import huggingfaceIcon from '@/assets/icons/huggingface.svg'
 import pytorchIcon from '@/assets/icons/pytorch.png'
 import nodejsIcon from '@/assets/icons/nodejs.svg'
+import pencilIcon from '@/assets/icons/pencil.png'
 
 export interface CardData {
   title: string
@@ -83,13 +84,17 @@ const cardData: CardData[] = [
   {
     title: 'Phishing Demo',
     description:
-      'A local, Python-based phishing simulation environment for academic demonstrations. Developed as part of a Capstone project for presenting cybersecurity concepts to 5th graders. Due to the potentially sensitive nature of the project (in respect to cybersecurity), I cannot make the project public. Please email if you are interested in using it!',
+      'A local, Python-based phishing simulation environment for academic demonstrations. Developed as part of a Capstone project for presenting cybersecurity concepts to 5th graders. Experience the interactive simulation to see how it works!',
     badges: [b.python, b.bash],
-    link: createLink(
-      "mailto:seth@brockefni.com?subject=Interest%20in%20Email%20Phishing%20Academic%20Example&body=Hi%20Seth!%0A%0AI'm%20interested%20in%20learning%20more%20about%20you%20email%20phishing%20demo%20for%20the%20purpose%20of%20%5BINSERT%20REASON%20HERE%5D.%0A%0AFrom%2C%0A%5BYOUR%20NAME%20HERE%5D",
-      'Email Me',
-      true
-    ),
+    link: createLink('/phishing-demo', 'Interactive Demo', false),
+    actions: [
+      createAction(
+        'Email Me',
+        '#ff3b3b',
+        pencilIcon,
+        "mailto:seth@brockefni.com?subject=Interest%20in%20Email%20Phishing%20Academic%20Example&body=Hi%20Seth!%0A%0AI'm%20interested%20in%20learning%20more%20about%20you%20email%20phishing%20demo%20for%20the%20purpose%20of%20%5BINSERT%20REASON%20HERE%5D.%0A%0AFrom%2C%0A%5BYOUR%20NAME%20HERE%5D"
+      )
+    ],
   },
   {
     title: 'UptimeRobot SDK',
