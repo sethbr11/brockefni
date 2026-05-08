@@ -22,16 +22,22 @@ export default defineComponent({
   setup() {
     useHead({
       title: 'LCR Tools - Chrome Extension for LDS Leaders',
+      link: [
+        {
+          rel: 'canonical',
+          href: 'https://brockefni.com/lcr',
+        },
+      ],
       meta: [
         {
           name: 'description',
           content:
-            'Enhance your LCR experience with powerful tools for clerks, secretaries, and leaders. Export data, process attendance, manage member information, and more with this free Chrome extension.',
+            'Enhance your LCR experience with powerful tools for clerks, secretaries, and leaders. Free Chrome extension for attendance, data export, and member management.',
         },
         {
           name: 'keywords',
           content:
-            'LCR Tools, Chrome Extension, LDS, Church of Jesus Christ, Clerk, Secretary, Leader Resources, Attendance, Data Export',
+            'LCR Tools, Chrome Extension, LDS Leaders, Church of Jesus Christ, Clerk Resources, LDS Clerk Tools, LDS Secretary Tools, Attendance CSV, LDS Data Export',
         },
         {
           name: 'author',
@@ -39,12 +45,20 @@ export default defineComponent({
         },
         {
           property: 'og:title',
-          content: 'LCR Tools - Chrome Extension for LDS Leaders',
+          content: 'LCR Tools - Powerful Extension for LDS Leaders',
         },
         {
           property: 'og:description',
           content:
-            'Enhance your LCR experience with powerful tools for clerks, secretaries, and leaders. Export data, process attendance, manage member information, and more.',
+            'Enhance your LCR experience with powerful tools for clerks, secretaries, and leaders. Export data, process attendance, and manage member information with ease.',
+        },
+        {
+          property: 'og:image',
+          content: 'https://brockefni.com/_nuxt/lcrToolsThumbnail.jpg',
+        },
+        {
+          property: 'og:url',
+          content: 'https://brockefni.com/lcr',
         },
         {
           property: 'og:type',
@@ -61,7 +75,30 @@ export default defineComponent({
         {
           name: 'twitter:description',
           content:
-            'Enhance your LCR experience with powerful tools for clerks, secretaries, and leaders.',
+            'Essential browser tools for LDS clerks and secretaries. Free and open source.',
+        },
+      ],
+      script: [
+        {
+          type: 'application/ld+json',
+          children: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareApplication',
+            name: 'LCR Tools',
+            description: 'A Chrome extension to enhance the Leader and Clerk Resources (LCR) experience.',
+            applicationCategory: 'BrowserApplication',
+            operatingSystem: 'Windows, macOS, ChromeOS',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD',
+            },
+            author: {
+              '@type': 'Person',
+              name: 'Seth Brock',
+              url: 'https://brockefni.com',
+            },
+          }),
         },
       ],
     })
