@@ -1,190 +1,83 @@
 <template>
-  <div class="header">
-    <img
-      src="@/assets/images/rodunLogo.png"
-      height="350px"
-      class="rodun-icon"
-    />
-    <h4 class="rodun-description">
-      A fast, simple desktop app to help optimize the use of materials by
-      planning cuts based on user-provided specifications.
-    </h4>
-    <a
-      href="https://pub-ec1ffa573fea49e58c444331188ff39c.r2.dev/Rodun-v.1.0.0-Installer-MacOS.dmg"
-      style="text-decoration: none"
-    >
-      <div class="download-rodun">Download v1.0.0 (MacOS Only)</div>
-    </a>
-    <a
-      href="https://github.com/sethbr11/Rodun"
-      target="_blank"
-      style="text-decoration: none"
-    >
-      <div class="github-button">
-        <img :src="githubIcon" height="20px" class="github-icon" />
-      </div>
-    </a>
-    <br />
-    <div class="terminal-code">
-      <code id="terminal-code">
-        sudo xattr -r -d com.apple.quarantine /Applications/Rodun.app
-      </code>
-      <div class="copy-container">
-        <img
-          src="@/assets/icons/copy.png"
-          class="copy-img"
-          @click="copyCommand"
-        />
-        <span v-if="showTooltip" class="tooltip">Copied!</span>
-      </div>
-    </div>
+  <div class="rodun-page">
+    <InteractivePlanner />
+    <DesktopSection />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import githubIcon from '@/assets/icons/github.png'
+import { defineComponent } from 'vue'
+import { useHead } from '#app'
+import InteractivePlanner from '@/components/RodunPage/InteractivePlanner/index.vue'
+import DesktopSection from '@/components/RodunPage/DesktopSection.vue'
 
 export default defineComponent({
+  name: 'RodunPage',
+  components: {
+    InteractivePlanner,
+    DesktopSection,
+  },
   setup() {
     useHead({
-      title: 'Rodun - Optimize Your Cuts',
+      title: 'Rodun - 1D Cutting Stock Optimizer & Solver',
       meta: [
         {
           name: 'description',
           content:
-            'A fast, simple desktop app to help optimize the use of materials by planning cuts based on user-provided specifications.',
+            'Rodun is a professional, high-performance 1D cutting stock solver and linear nesting optimizer. Minimize raw material scrap, calculate cut layouts, and export workshop-ready PDF blueprints.',
         },
         {
           name: 'keywords',
-          content: 'Rodun, material optimization, cutting plans, desktop app',
+          content:
+            '1D cutting stock, linear cutting optimizer, cut list calculator, bin packing algorithm, lumber cut solver, metal bar nesting, scrap minimizer, woodworking cut planner, rodun, röðun, seth brock',
+        },
+        // Open Graph
+        {
+          property: 'og:title',
+          content: 'Rodun - Professional 1D Linear Cut Optimizer',
         },
         {
-          name: 'author',
-          content: 'Seth Brock',
+          property: 'og:description',
+          content:
+            'Maximize yield and minimize scrap with Rodun, a responsive 1D cutting stock solver. Includes raw material grids, required part layouts, and vector PDF blueprints.',
+        },
+        {
+          property: 'og:type',
+          content: 'website',
+        },
+        {
+          property: 'og:url',
+          content: 'https://brockefni.com/rodun',
+        },
+        // Twitter
+        {
+          name: 'twitter:card',
+          content: 'summary_large_image',
+        },
+        {
+          name: 'twitter:title',
+          content: 'Rodun - 1D Cutting Stock Optimizer',
+        },
+        {
+          name: 'twitter:description',
+          content:
+            'Minimize workshop scrap. Try the browser version or download the native C++ desktop application.',
+        },
+      ],
+      link: [
+        {
+          rel: 'canonical',
+          href: 'https://brockefni.com/rodun',
         },
       ],
     })
-
-    const showTooltip = ref(false)
-
-    const copyCommand = () => {
-      const copyText = document.getElementById('terminal-code')
-      if (copyText?.innerText) {
-        navigator.clipboard.writeText(copyText.innerText).then(() => {
-          showTooltip.value = true
-          setTimeout(() => {
-            showTooltip.value = false
-          }, 2000) // Hide tooltip after 2 seconds
-        })
-      }
-    }
-
-    return {
-      copyCommand,
-      showTooltip,
-      githubIcon,
-    }
   },
 })
 </script>
 
 <style scoped>
-.rodun-icon {
-  margin-top: 40px;
-  animation: fadeIn 3s forwards;
-}
-
-.rodun-description {
-  animation: fadeIn 3s forwards;
-  font-size: 23px;
-  margin: 30px 25% 0 25%;
-  font-weight: lighter;
-}
-
-.download-rodun {
-  animation: fadeIn 3s forwards;
-  color: white;
-  background-color: #1a1b1c;
-  align-items: center;
-  text-align: center;
-  border: none;
-  padding: 15px 32px;
-  display: inline-block;
-  margin: 25px 0 0 0;
-}
-
-.github-button {
-  animation: fadeIn 3s forwards;
-  background-color: #c06eff;
-  align-items: center;
-  text-align: center;
-  border: none;
-  padding: 15px 20px;
-  display: inline-block;
-  margin: 25px 0 0 20px;
-  cursor: pointer;
-  vertical-align: top;
-  height: 52px;
-  box-sizing: border-box;
-}
-
-.terminal-code {
-  animation: fadeIn 3s forwards;
-  color: var(--text-color);
-  align-items: center;
-  text-align: center;
-  border: none;
-  padding: 15px 32px;
-  display: inline-block;
-  margin: 15px 0 0 0;
-}
-
-.copy-container {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-
-.copy-img {
-  height: 15px;
-  align-items: center;
-  cursor: pointer;
-}
-
-.tooltip {
-  position: absolute;
-  top: -35px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #333;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 12px;
-  white-space: nowrap;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-/** Dark mode styles */
-.darkmode {
-  .copy-img,
-  .github-icon {
-    filter: invert(1);
-  }
-
-  .github-button {
-    background-color: #6e40c9;
-  }
-}
-
-/** Animation styles */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+.rodun-page {
+  background: var(--background-color);
+  min-height: 100vh;
 }
 </style>
