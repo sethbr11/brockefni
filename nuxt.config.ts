@@ -11,6 +11,11 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
     },
   },
+  vite: {
+    optimizeDeps: {
+      include: ['@vue/devtools-core', '@vue/devtools-kit'],
+    },
+  },
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: ['@nuxt/eslint', '@nuxt/icon'],
