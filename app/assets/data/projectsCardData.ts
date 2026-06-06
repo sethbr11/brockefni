@@ -97,72 +97,11 @@ const cardData: CardData[] = [
     ],
   },
   {
-    title: 'UptimeRobot SDK',
+    title: 'UptimeRobot Suite',
     description:
-      'A community-maintained TypeScript/Node.js client for the Uptime Robot REST API v3. Full coverage, ESM only, and built for modern environments.',
-    badges: [b.typescript, b.nodejs],
+      'A comprehensive ecosystem of open-source tools and integrations for UptimeRobot. Includes a community-maintained TypeScript/Node.js SDK, an interactive command-line REPL, and a full-featured Backstage plugin spanning both frontend and backend components.',
+    badges: [b.nodejs, b.typescript, b.react],
     link: createLink('/uptimerobot', 'Suite Page', false),
-    actions: [
-      defaultActions.github('https://github.com/sethbr11/uptime-robot-v3'),
-      createAction(
-        'NPM',
-        '#cb3837',
-        nodejsIcon,
-        'https://www.npmjs.com/package/uptime-robot-v3'
-      ),
-    ],
-  },
-  {
-    title: 'UptimeRobot REPL',
-    description:
-      'An interactive Node.js REPL for exploring and testing the Uptime Robot API. Exposes the SDK as a global service for rapid prototyping.',
-    badges: [b.typescript, b.nodejs],
-    link: createLink('/uptimerobot', 'Suite Page', false),
-    actions: [
-      defaultActions.github('https://github.com/sethbr11/uptime-robot-v3-repl'),
-      createAction(
-        'NPM',
-        '#cb3837',
-        nodejsIcon,
-        'https://www.npmjs.com/package/uptime-robot-v3-repl'
-      ),
-    ],
-  },
-  {
-    title: 'Backstage UptimeRobot',
-    description:
-      'The frontend component of the UptimeRobot Backstage plugin. Displays monitor health, uptime trends, and response times on catalog entities.',
-    badges: [b.typescript, b.react],
-    link: createLink('/uptimerobot', 'Suite Page', false),
-    actions: [
-      defaultActions.github(
-        'https://github.com/sethbr11/uptimerobot-backstage-plugin'
-      ),
-      createAction(
-        'NPM',
-        '#cb3837',
-        nodejsIcon,
-        'https://www.npmjs.com/package/@sethbr11/plugin-uptimerobot'
-      ),
-    ],
-  },
-  {
-    title: 'Backstage UR Backend',
-    description:
-      'The backend component for the Backstage plugin. Handles secure API integration, data caching, and permission framework support.',
-    badges: [b.typescript, b.nodejs],
-    link: createLink('/uptimerobot', 'Suite Page', false),
-    actions: [
-      defaultActions.github(
-        'https://github.com/sethbr11/uptimerobot-backend-backstage-plugin'
-      ),
-      createAction(
-        'NPM',
-        '#cb3837',
-        nodejsIcon,
-        'https://www.npmjs.com/package/@sethbr11/plugin-uptimerobot-backend'
-      ),
-    ],
   },
   {
     title: 'Rodun',
@@ -178,6 +117,16 @@ const cardData: CardData[] = [
         downloadIcon,
         'https://pub-ec1ffa573fea49e58c444331188ff39c.r2.dev/Rodun-v.1.0.0-Installer-MacOS.dmg'
       ),
+    ],
+  },
+  {
+    title: 'Personal Time Tracker',
+    description:
+      'A simple time clock application that keeps track of time spent for any kind of project through a clean, interactive user interface. It connects to a Google Sheet via a secure Express backend for persistent storage and can be easily containerized and deployed using Docker.',
+    badges: [b.javascript, b.react, b.docker],
+    link: createLink('https://github.com/sethbr11/Personal-Time-Tracker'),
+    actions: [
+      defaultActions.github('https://github.com/sethbr11/Personal-Time-Tracker'),
     ],
   },
   {
