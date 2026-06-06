@@ -2,7 +2,9 @@
   <div class="install-block" @click="copyCommand">
     <div class="block-header">
       <span class="label">INSTALL</span>
-      <div class="copy-hint" :class="{ copied }">{{ copied ? 'Copied!' : 'Click to copy' }}</div>
+      <div class="copy-hint" :class="{ copied }">
+        {{ copied ? 'Copied!' : 'Click to copy' }}
+      </div>
     </div>
     <div class="block-body">
       <code class="command">{{ command }}</code>
@@ -52,6 +54,7 @@ export default defineComponent({
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: left;
+  container-type: inline-size;
 }
 
 .install-block:hover {
@@ -100,10 +103,11 @@ export default defineComponent({
 
 .command {
   font-family: 'Fira Code', monospace;
-  font-size: 0.9rem;
+  font-size: clamp(0.65rem, 3.2cqi, 0.9rem);
   color: #3bd671;
-  white-space: nowrap;
-  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-x: hidden;
 }
 
 .copy-icon img {
@@ -114,11 +118,5 @@ export default defineComponent({
 
 .install-block:hover .copy-icon img {
   filter: invert(1) opacity(1) sepia(1) saturate(5) hue-rotate(90deg);
-}
-
-@media (max-width: 768px) {
-  .install-block {
-    display: none;
-  }
 }
 </style>

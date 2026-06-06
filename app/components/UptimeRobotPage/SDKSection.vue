@@ -1,5 +1,9 @@
 <template>
-  <section ref="section" class="sdk-section" :class="{ 'is-visible': isVisible }">
+  <section
+    ref="section"
+    class="sdk-section"
+    :class="{ 'is-visible': isVisible }"
+  >
     <div class="content-wrapper">
       <div class="visual-content">
         <div class="code-window">
@@ -25,7 +29,9 @@
         <h2 class="section-title">The Foundation</h2>
         <h3 class="product-name">uptime-robot-v3</h3>
         <p class="description">
-          A community-maintained TypeScript/Node.js client for the Uptime Robot REST API v3. Built with type safety and modern JavaScript patterns in mind.
+          A community-maintained TypeScript/Node.js client for the Uptime Robot
+          REST API v3. Built with type safety and modern JavaScript patterns in
+          mind.
         </p>
         <ul class="features-list">
           <li>Full coverage of the API v3 surface</li>
@@ -34,10 +40,20 @@
           <li>Comprehensive JSDoc documentation</li>
         </ul>
         <div class="actions">
-          <a href="https://github.com/sethbr11/uptime-robot-v3" target="_blank" class="btn btn-primary">View on GitHub</a>
-          <a href="https://www.npmjs.com/package/uptime-robot-v3" target="_blank" class="btn btn-secondary">NPM</a>
+          <a
+            href="https://github.com/sethbr11/uptime-robot-v3"
+            target="_blank"
+            class="btn btn-primary"
+            >View on GitHub</a
+          >
+          <a
+            href="https://www.npmjs.com/package/uptime-robot-v3"
+            target="_blank"
+            class="btn btn-secondary"
+            >NPM</a
+          >
         </div>
-        
+
         <div class="install-wrapper">
           <InstallBlock command="npm install uptime-robot-v3" />
         </div>
@@ -59,8 +75,9 @@ export default defineComponent({
 
     onMounted(() => {
       const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
+        (entries) => {
+          const entry = entries[0]
+          if (entry && entry.isIntersecting) {
             isVisible.value = true
             observer.unobserve(entry.target)
           }
@@ -224,9 +241,15 @@ export default defineComponent({
   border-radius: 50%;
 }
 
-.red { background: #ff5f56; }
-.yellow { background: #ffbd2e; }
-.green { background: #27c93f; }
+.red {
+  background: #ff5f56;
+}
+.yellow {
+  background: #ffbd2e;
+}
+.green {
+  background: #27c93f;
+}
 
 .file-name {
   color: #999;
@@ -244,9 +267,15 @@ export default defineComponent({
   text-align: left;
 }
 
-.keyword { color: #569cd6; }
-.string { color: #ce9178; }
-.comment { color: #6a9955; }
+.keyword {
+  color: #569cd6;
+}
+.string {
+  color: #ce9178;
+}
+.comment {
+  color: #6a9955;
+}
 
 @media (max-width: 992px) {
   .sdk-section {

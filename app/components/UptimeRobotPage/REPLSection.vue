@@ -1,11 +1,16 @@
 <template>
-  <section ref="section" class="repl-section" :class="{ 'is-visible': isVisible }">
+  <section
+    ref="section"
+    class="repl-section"
+    :class="{ 'is-visible': isVisible }"
+  >
     <div class="content-container">
       <div class="header">
         <h2 class="section-title">Developer Experience</h2>
         <h3 class="product-name">uptime-robot-v3-repl</h3>
         <p class="description">
-          An interactive Node.js REPL for exploring and testing the Uptime Robot API. No more writing scripts just to check an endpoint.
+          An interactive Node.js REPL for exploring and testing the Uptime Robot
+          API. No more writing scripts just to check an endpoint.
         </p>
       </div>
 
@@ -16,35 +21,54 @@
           </div>
           <div class="terminal-body">
             <!-- Initial state: REPL already started -->
-            <div class="line"><span class="prompt">$</span> UPTIMEROBOT_API_KEY=your_key npx uptime-robot-v3-repl</div>
-            
+            <div class="line">
+              <span class="prompt">$</span> UPTIMEROBOT_API_KEY=your_key npx
+              uptime-robot-v3-repl
+            </div>
+
             <div class="ascii-art">
-<pre>
+              <pre>
 ██╗   ██╗██████╗ ████████╗██╗███╗   ███╗███████╗██████╗  ██████╗ ██████╗  ██████╗ ████████╗
 ██║   ██║██╔══██╗╚══██╔══╝██║████╗ ████║██╔════╝██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗╚══██╔══╝
 ██║   ██║██████╔╝   ██║   ██║██╔████╔██║█████╗  ██████╔╝██║   ██║██████╔╝██║   ██║   ██║   
 ██║   ██║██╔═══╝    ██║   ██║██║╚██╔╝██║██╔══╝  ██╔══██╗██║   ██║██╔══██╗██║   ██║   ██║   
 ╚██████╔╝██║        ██║   ██║██║ ╚═╝ ██║███████╗██║  ██║╚██████╔╝██████╔╝╚██████╔╝   ██║   
  ╚═════╝ ╚═╝        ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝    ╚═╝   
-</pre>
+</pre
+              >
             </div>
-            
+
             <div class="terminal-static-output">
-              <div class="line info">💡 UptimeRobot service (API v3) available as "service"</div>
-              <div class="line info">💡 Type <span class="cmd">help()</span> for resource & method index; <span class="cmd">help("list")</span> to search methods</div>
-              <div class="line info">💡 Type <span class="cmd">.exit</span> or press Ctrl+D to exit</div>
-              <div class="line divider">───────────────────────────────────</div>
+              <div class="line info">
+                💡 UptimeRobot service (API v3) available as "service"
+              </div>
+              <div class="line info">
+                💡 Type <span class="cmd">help()</span> for resource & method
+                index; <span class="cmd">help("list")</span> to search methods
+              </div>
+              <div class="line info">
+                💡 Type <span class="cmd">.exit</span> or press Ctrl+D to exit
+              </div>
+              <div class="line divider">
+                ───────────────────────────────────
+              </div>
             </div>
 
             <!-- Typing state: The command -->
             <div class="line">
-              <span class="prompt">uptime></span> {{ displayCommand }}<span v-if="typing" class="cursor">_</span>
+              <span class="prompt">uptime></span> {{ displayCommand
+              }}<span v-if="typing" class="cursor">_</span>
             </div>
 
             <!-- Result state: The output -->
             <div v-if="showResult" class="terminal-result">
-              <div class="line output">[ { id: 12345, friendlyName: 'Brockefni', status: 2 } ]</div>
-              <div class="line"><span class="prompt">uptime></span> <span class="cursor">_</span></div>
+              <div class="line output">
+                [ { id: 12345, friendlyName: 'Brockefni', status: 2 } ]
+              </div>
+              <div class="line">
+                <span class="prompt">uptime></span>
+                <span class="cursor">_</span>
+              </div>
             </div>
           </div>
         </div>
@@ -66,7 +90,12 @@
       </div>
 
       <div class="actions">
-        <a href="https://github.com/sethbr11/uptime-robot-v3-repl" target="_blank" class="btn btn-primary">View on GitHub</a>
+        <a
+          href="https://github.com/sethbr11/uptime-robot-v3-repl"
+          target="_blank"
+          class="btn btn-primary"
+          >View on GitHub</a
+        >
       </div>
 
       <div class="install-wrapper">
@@ -89,7 +118,7 @@ export default defineComponent({
     const typing = ref(false)
     const displayCommand = ref('')
     const showResult = ref(false)
-    
+
     const fullCommand = 'await service.monitors.list({ limit: 1 })'
 
     const typeCommand = () => {
@@ -110,8 +139,9 @@ export default defineComponent({
 
     onMounted(() => {
       const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
+        (entries) => {
+          const entry = entries[0]
+          if (entry && entry.isIntersecting) {
             isVisible.value = true
             // Start typing only when user sees the section
             setTimeout(typeCommand, 800)
@@ -131,7 +161,7 @@ export default defineComponent({
       section,
       displayCommand,
       typing,
-      showResult
+      showResult,
     }
   },
 })
@@ -227,13 +257,14 @@ export default defineComponent({
   font-size: 0.75rem;
   color: #e0e0e0;
   min-height: 280px;
+  container-type: inline-size;
 }
 
 .ascii-art {
   color: #3bd671;
   line-height: 1.1;
   margin: 0.75rem 0;
-  overflow-x: auto;
+  overflow: hidden;
 }
 
 .terminal-result {
@@ -241,21 +272,43 @@ export default defineComponent({
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .ascii-art pre {
   margin: 0;
   font-family: inherit;
+  font-size: clamp(3px, 1.72cqi, 11px);
+  overflow: hidden;
 }
 
-.line { margin-bottom: 0.4rem; }
-.prompt { color: #3bd671; font-weight: bold; margin-right: 0.5rem; }
-.info { color: #8be9fd; }
-.divider { color: #444; }
-.cmd { color: #f1fa8c; }
-.output { color: #8be9fd; }
+.line {
+  margin-bottom: 0.4rem;
+}
+.prompt {
+  color: #3bd671;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+.info {
+  color: #8be9fd;
+}
+.divider {
+  color: #444;
+}
+.cmd {
+  color: #f1fa8c;
+}
+.output {
+  color: #8be9fd;
+}
 
 .cursor {
   display: inline-block;
@@ -267,7 +320,9 @@ export default defineComponent({
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
 
 .features-grid {
@@ -345,9 +400,7 @@ export default defineComponent({
     font-size: 0.6rem;
   }
 
-  .ascii-art pre {
-    font-size: 0.3rem;
-  }
+  /* Font size handled by container query clamp */
 
   .features-grid {
     grid-template-columns: 1fr;

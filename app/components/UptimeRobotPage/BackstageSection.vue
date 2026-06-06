@@ -1,9 +1,17 @@
 <template>
-  <section ref="section" class="backstage-section" :class="{ 'is-visible': isVisible }">
+  <section
+    ref="section"
+    class="backstage-section"
+    :class="{ 'is-visible': isVisible }"
+  >
     <div class="content-wrapper">
       <div class="visual-content">
         <div class="image-frame">
-          <img src="@/assets/images/uptimerobot-backstage-preview.png" alt="Backstage UptimeRobot Plugin Preview" class="preview-img" />
+          <img
+            src="@/assets/images/uptimerobot-backstage-preview.png"
+            alt="Backstage UptimeRobot Plugin Preview"
+            class="preview-img"
+          />
           <div class="caption">UptimeRobot Entity Card in Backstage</div>
         </div>
       </div>
@@ -11,34 +19,61 @@
         <h2 class="section-title gradient-text">Enterprise Integration</h2>
         <h3 class="product-name">Backstage Plugins</h3>
         <div class="backstage-branding">
-          <img src="@/assets/icons/backstage.svg" alt="Backstage Logo" class="backstage-logo" />
+          <img
+            src="@/assets/icons/backstage.svg"
+            alt="Backstage Logo"
+            class="backstage-logo"
+          />
           <span class="plus-sign">+</span>
           <span class="ur-dot pulse"></span>
         </div>
         <p class="description">
-          Seamlessly integrate UptimeRobot monitor health into your Backstage <strong>Internal Developer Portal (IDP)</strong>. Provides developers with instant visibility into their service's uptime directly where they work.
+          Seamlessly integrate UptimeRobot monitor health into your Backstage
+          <strong>Internal Developer Portal (IDP)</strong>. Provides developers
+          with instant visibility into their service's uptime directly where
+          they work.
         </p>
-        
+
         <div class="plugin-split">
           <div class="plugin-info">
             <h4>Frontend Plugin</h4>
-            <p>Visual cards, progressive loading, and interactive uptime/response-time graphs.</p>
+            <p>
+              Visual cards, progressive loading, and interactive
+              uptime/response-time graphs.
+            </p>
             <div class="install-wrapper">
-              <InstallBlock command="yarn --cwd packages/app add @sethbr11/plugin-uptimerobot" />
+              <InstallBlock
+                command="yarn --cwd packages/app add @sethbr11/plugin-uptimerobot"
+              />
             </div>
           </div>
           <div class="plugin-info">
             <h4>Backend Plugin</h4>
-            <p>Secure API handling, database caching, and enterprise-grade permission integration.</p>
+            <p>
+              Secure API handling, database caching, and enterprise-grade
+              permission integration.
+            </p>
             <div class="install-wrapper">
-              <InstallBlock command="yarn --cwd packages/backend add @sethbr11/plugin-uptimerobot-backend" />
+              <InstallBlock
+                command="yarn --cwd packages/backend add @sethbr11/plugin-uptimerobot-backend"
+              />
             </div>
           </div>
         </div>
 
         <div class="actions">
-          <a href="https://github.com/sethbr11/uptimerobot-backstage-plugin" target="_blank" class="btn btn-secondary">Frontend Repo</a>
-          <a href="https://github.com/sethbr11/uptimerobot-backend-backstage-plugin" target="_blank" class="btn btn-secondary">Backend Repo</a>
+          <a
+            href="https://github.com/sethbr11/uptimerobot-backstage-plugin"
+            target="_blank"
+            class="btn btn-secondary"
+            >Frontend Repo</a
+          >
+          <a
+            href="https://github.com/sethbr11/uptimerobot-backend-backstage-plugin"
+            target="_blank"
+            class="btn btn-secondary"
+            >Backend Repo</a
+          >
         </div>
       </div>
     </div>
@@ -58,8 +93,9 @@ export default defineComponent({
 
     onMounted(() => {
       const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
+        (entries) => {
+          const entry = entries[0]
+          if (entry && entry.isIntersecting) {
             isVisible.value = true
             observer.unobserve(entry.target)
           }
@@ -176,9 +212,18 @@ export default defineComponent({
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 214, 113, 0.7); }
-  70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(59, 214, 113, 0); }
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 214, 113, 0); }
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(59, 214, 113, 0.7);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 10px rgba(59, 214, 113, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(59, 214, 113, 0);
+  }
 }
 
 .gradient-text {
