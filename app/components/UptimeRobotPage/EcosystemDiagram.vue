@@ -1,10 +1,15 @@
 <template>
-  <section ref="section" class="ecosystem-section" :class="{ 'is-visible': isVisible }">
+  <section
+    ref="section"
+    class="ecosystem-section"
+    :class="{ 'is-visible': isVisible }"
+  >
     <div class="content-container">
       <h2 class="section-title">The Architecture</h2>
       <h3 class="product-name">Integrated Ecosystem</h3>
       <p class="description">
-        One core engine, infinite possibilities. See how the suite connects from the low-level SDK to enterprise-grade developer portals.
+        One core engine, infinite possibilities. See how the suite connects from
+        the low-level SDK to enterprise-grade developer portals.
       </p>
 
       <div class="diagram-container">
@@ -57,8 +62,9 @@ export default defineComponent({
 
     onMounted(() => {
       const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
+        (entries) => {
+          const entry = entries[0]
+          if (entry && entry.isIntersecting) {
             isVisible.value = true
             observer.unobserve(entry.target)
           }
@@ -165,8 +171,14 @@ export default defineComponent({
   font-size: 0.9rem;
 }
 
-.node-icon.green { background: #3bd671; color: #1a1b1c; }
-.node-icon.teal { background: #7df3e1; color: #1a1b1c; }
+.node-icon.green {
+  background: #3bd671;
+  color: #1a1b1c;
+}
+.node-icon.teal {
+  background: #7df3e1;
+  color: #1a1b1c;
+}
 
 .lines {
   height: 60px;
@@ -182,7 +194,12 @@ export default defineComponent({
 }
 
 @media (max-width: 768px) {
-  .product-name { font-size: 2rem; }
-  .node { padding: 0.75rem 1rem; font-size: 0.9rem; }
+  .product-name {
+    font-size: 2rem;
+  }
+  .node {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
 }
 </style>
