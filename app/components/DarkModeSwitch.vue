@@ -5,16 +5,22 @@ Dark mode toggle feature for the site
 -->
 
 <script setup>
-import { onMounted } from 'vue'
+import { useState } from '#app'
 
-onMounted(async () => {
-  const module = await import('@/assets/scripts/darkmode')
-  module.init?.()
-})
+const isDark = useState('isDark', () => false)
+
+const toggleDarkMode = () => {
+  isDark.value = !isDark.value
+  localStorage.setItem('darkmode', isDark.value ? 'active' : 'inactive')
+}
 </script>
 
 <template>
-  <button id="theme-switch">
+  <button
+    id="theme-switch"
+    @click="toggleDarkMode"
+    aria-label="Toggle dark mode"
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       height="20px"

@@ -7,9 +7,25 @@
 </template>
 
 <script setup lang="ts">
+import { computed, onMounted } from 'vue'
+
+const isDark = useState('isDark', () => false)
+
+onMounted(() => {
+  const stored = localStorage.getItem('darkmode')
+  if (stored === 'active') {
+    isDark.value = true
+  } else if (stored === 'inactive') {
+    isDark.value = false
+  } else {
+    isDark.value = window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
+})
+
 useHead({
   htmlAttrs: {
     lang: 'en',
+    class: computed(() => (isDark.value ? 'darkmode' : '')),
   },
   title: 'Seth Brock - Creative Development & Design',
   meta: [
@@ -60,6 +76,18 @@ useHead({
     },
   ],
   script: [
+    {
+      innerHTML: `
+        (function() {
+          var stored = localStorage.getItem('darkmode');
+          var isDark = stored === 'active' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (isDark) {
+            document.documentElement.classList.add('darkmode');
+          }
+        })();
+      `,
+      type: 'text/javascript',
+    },
     {
       async: true,
       src: 'https://www.googletagmanager.com/gtag/js?id=G-ZKM1D60PQ6',
