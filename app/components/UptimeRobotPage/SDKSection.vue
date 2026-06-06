@@ -26,12 +26,13 @@
         </div>
       </div>
       <div class="text-content">
-        <h2 class="section-title">The Foundation</h2>
+        <h2 class="section-title">UptimeRobot SDK</h2>
         <h3 class="product-name">uptime-robot-v3</h3>
         <p class="description">
-          A community-maintained TypeScript/Node.js client for the Uptime Robot
-          REST API v3. Built with type safety and modern JavaScript patterns in
-          mind.
+          A community-maintained, high-performance
+          <strong>UptimeRobot SDK</strong> and TypeScript/Node.js client library
+          for the Uptime Robot REST API v3. Designed for strict type safety and
+          modern asynchronous development.
         </p>
         <ul class="features-list">
           <li>Full coverage of the API v3 surface</li>

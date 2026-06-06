@@ -28,7 +28,7 @@ export default defineComponent({
   },
   setup() {
     useHead({
-      title: 'UptimeRobot Suite - Open Source Monitoring Tools',
+      title: 'UptimeRobot SDK, CLI, & Backstage Plugins - UptimeRobot Suite',
       link: [
         {
           rel: 'canonical',
@@ -39,12 +39,12 @@ export default defineComponent({
         {
           name: 'description',
           content:
-            'Explore the UptimeRobot Suite: A powerful TypeScript SDK, interactive REPL, and enterprise Backstage IDP plugins for seamless monitoring integration.',
+            'The complete open-source UptimeRobot Suite: featuring the uptime-robot-v3 TypeScript SDK, interactive command-line REPL (CLI), and Spotify Backstage frontend & backend plugins.',
         },
         {
           name: 'keywords',
           content:
-            'UptimeRobot, SDK, TypeScript, Node.js, REPL, Backstage, Backstage Plugin, Internal Developer Portal, IDP, Open Source, Monitoring, API v3',
+            'uptimerobot sdk, uptimerobot cli, uptimerobot backstage, uptimerobot backstage plugin, uptime-robot-v3, uptime-robot-v3-repl, @sethbr11/plugin-uptimerobot, @sethbr11/plugin-uptimerobot-backend, UptimeRobot, TypeScript SDK, command-line interface, Spotify Backstage, developer portal, IDP, open source monitoring, API v3 client',
         },
         {
           name: 'author',
@@ -52,12 +52,13 @@ export default defineComponent({
         },
         {
           property: 'og:title',
-          content: 'UptimeRobot Suite - Open Source Monitoring Tools',
+          content:
+            'UptimeRobot SDK, CLI, & Backstage Plugins - UptimeRobot Suite',
         },
         {
           property: 'og:description',
           content:
-            'A complete ecosystem of open-source tools for UptimeRobot, including a TypeScript SDK, interactive REPL, and Backstage enterprise integrations.',
+            'A comprehensive collection of open-source developer tools for UptimeRobot, including a TypeScript SDK (uptime-robot-v3), interactive CLI REPL, and production-ready Backstage plugins.',
         },
         {
           property: 'og:image',
@@ -77,11 +78,13 @@ export default defineComponent({
         },
         {
           name: 'twitter:title',
-          content: 'UptimeRobot Suite - Monitoring Ecosystem',
+          content:
+            'UptimeRobot SDK, CLI, & Backstage Plugins - UptimeRobot Suite',
         },
         {
           name: 'twitter:description',
-          content: 'Open-source tools designed to extend and integrate the UptimeRobot API.',
+          content:
+            'Open-source UptimeRobot tools: TypeScript SDK, command-line REPL (CLI), and Spotify Backstage plugins.',
         },
       ],
       script: [
@@ -91,7 +94,8 @@ export default defineComponent({
             '@context': 'https://schema.org',
             '@type': 'SoftwareApplication',
             name: 'UptimeRobot Suite',
-            description: 'A collection of open-source tools for interacting with and integrating UptimeRobot.',
+            description:
+              'A comprehensive collection of open-source developer tools, SDKs, CLIs, and plugins for interacting with and integrating UptimeRobot.',
             applicationCategory: 'DeveloperApplication',
             operatingSystem: 'Node.js, Browser',
             author: {
@@ -103,12 +107,30 @@ export default defineComponent({
               {
                 '@type': 'SoftwareApplication',
                 name: 'uptime-robot-v3',
-                description: 'TypeScript SDK for UptimeRobot API v3',
+                alternateName: 'UptimeRobot SDK',
+                description:
+                  'TypeScript SDK and client library for UptimeRobot API v3',
               },
               {
                 '@type': 'SoftwareApplication',
-                name: 'uptimerobot-backstage-plugin',
-                description: 'Backstage IDP integration for UptimeRobot',
+                name: 'uptime-robot-v3-repl',
+                alternateName: 'UptimeRobot CLI / REPL',
+                description:
+                  'Interactive command-line interface (CLI) and REPL tool for UptimeRobot API v3',
+              },
+              {
+                '@type': 'SoftwareApplication',
+                name: '@sethbr11/plugin-uptimerobot',
+                alternateName: 'UptimeRobot Backstage Frontend Plugin',
+                description:
+                  'Spotify Backstage frontend integration for UptimeRobot',
+              },
+              {
+                '@type': 'SoftwareApplication',
+                name: '@sethbr11/plugin-uptimerobot-backend',
+                alternateName: 'UptimeRobot Backstage Backend Plugin',
+                description:
+                  'Spotify Backstage backend integration for UptimeRobot',
               },
             ],
           }),
@@ -131,7 +153,9 @@ export default defineComponent({
 }
 
 /* Force parents to not add extra height on this page */
-:deep(html), :deep(body), :deep(#__nuxt) {
+:deep(html),
+:deep(body),
+:deep(#__nuxt) {
   height: auto !important;
   min-height: auto !important;
   overflow-x: hidden;

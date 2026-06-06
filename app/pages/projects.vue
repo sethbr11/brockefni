@@ -63,12 +63,12 @@ export default defineComponent({
     const router = useRouter()
 
     useHead({
-      title: 'Projects',
+      title: 'Portfolio & Open Source Projects | Brockefni',
       meta: [
         {
           name: 'description',
           content:
-            'Explore Seth Brock’s portfolio of web development and design projects. Discover innovative solutions and creative designs tailored to meet diverse needs.',
+            'Explore the portfolio of web development, design, and open-source projects by Seth Brock on Brockefni. Discover custom desktop apps, Chrome extensions, and developer tooling.',
         },
         {
           name: 'author',
@@ -77,7 +77,7 @@ export default defineComponent({
         {
           name: 'keywords',
           content:
-            'Seth Brock projects, web development portfolio, design portfolio, creative solutions',
+            'brockefni projects, seth brock portfolio, web development portfolio, open source developer tools, software projects, chrome extensions, custom web applications',
         },
         {
           name: 'viewport',

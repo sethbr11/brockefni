@@ -77,26 +77,6 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'LCRHeroSection',
   setup() {
-    useHead({
-      title: 'LCR Tools - Chrome Extension',
-      meta: [
-        {
-          name: 'description',
-          content:
-            'Enhance your LCR experience with powerful tools for clerks, secretaries, and leaders. Export data, process attendance, manage member information, and more.',
-        },
-        {
-          name: 'keywords',
-          content:
-            'LCR Tools, Chrome Extension, LDS, Church, Clerk, Secretary, Leader Resources',
-        },
-        {
-          name: 'author',
-          content: 'Seth Brock',
-        },
-      ],
-    })
-
     return {}
   },
 })

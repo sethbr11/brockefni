@@ -7,21 +7,33 @@
       <div class="circle circle-4"></div>
     </div>
     <div ref="container" class="hero-container">
-      <div class="branding">
-        <span class="suite-label">The UptimeRobot Suite</span>
-      </div>
       <h1 class="hero-title">
-        Monitor with <span class="highlight">Precision.</span>
+        <span class="suite-label">The UptimeRobot Suite</span>
+        <span class="main-title"
+          >Monitor with <span class="highlight">Precision.</span></span
+        >
       </h1>
       <p class="hero-subtitle">
-        A complete ecosystem of open-source tools designed to extend, interact, and integrate with the UptimeRobot API. Built for developers, by developers.
+        A complete ecosystem of open-source developer tools: a powerful
+        <strong>UptimeRobot SDK</strong>, interactive
+        <strong>UptimeRobot CLI</strong> REPL, and production-ready
+        <strong>UptimeRobot Backstage plugin</strong>.
       </p>
     </div>
     <div class="hero-scroll-indicator">
       <div v-if="!isMobile" class="mouse"></div>
       <div v-else class="hand-swipe">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 19V5M12 5L7 10M12 5L17 10" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            d="M12 19V5M12 5L7 10M12 5L17 10"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
       </div>
       <span>{{ isMobile ? 'Swipe Up' : 'Scroll to Explore' }}</span>
@@ -47,7 +59,7 @@ export default defineComponent({
       setTimeout(() => {
         isVisible.value = true
       }, 100)
-      
+
       checkMobile()
       window.addEventListener('resize', checkMobile)
     })
@@ -111,15 +123,51 @@ export default defineComponent({
   bottom: 0;
 }
 
-.circle-1 { width: 200px; height: 200px; border-width: 30px; border-radius: 200px 200px 0 0; }
-.circle-2 { width: 400px; height: 400px; border-width: 40px; border-radius: 400px 400px 0 0; }
-.circle-3 { width: 600px; height: 600px; border-width: 50px; border-radius: 600px 600px 0 0; }
-.circle-4 { width: 800px; height: 800px; border-width: 60px; border-radius: 800px 800px 0 0; }
+.circle-1 {
+  width: 200px;
+  height: 200px;
+  border-width: 30px;
+  border-radius: 200px 200px 0 0;
+}
+.circle-2 {
+  width: 400px;
+  height: 400px;
+  border-width: 40px;
+  border-radius: 400px 400px 0 0;
+}
+.circle-3 {
+  width: 600px;
+  height: 600px;
+  border-width: 50px;
+  border-radius: 600px 600px 0 0;
+}
+.circle-4 {
+  width: 800px;
+  height: 800px;
+  border-width: 60px;
+  border-radius: 800px 800px 0 0;
+}
 
-.is-visible .circle-1 { opacity: 1; transform: scale(1); transition-delay: 0.2s; }
-.is-visible .circle-2 { opacity: 0.8; transform: scale(1); transition-delay: 0.4s; }
-.is-visible .circle-3 { opacity: 0.6; transform: scale(1); transition-delay: 0.6s; }
-.is-visible .circle-4 { opacity: 0.4; transform: scale(1); transition-delay: 0.8s; }
+.is-visible .circle-1 {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.2s;
+}
+.is-visible .circle-2 {
+  opacity: 0.8;
+  transform: scale(1);
+  transition-delay: 0.4s;
+}
+.is-visible .circle-3 {
+  opacity: 0.6;
+  transform: scale(1);
+  transition-delay: 0.6s;
+}
+.is-visible .circle-4 {
+  opacity: 0.4;
+  transform: scale(1);
+  transition-delay: 0.8s;
+}
 
 .hero-container {
   max-width: 1000px;
@@ -137,13 +185,17 @@ export default defineComponent({
 }
 
 .suite-label {
-  display: inline-block;
+  display: block;
   font-size: 1rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: #3bd671;
   margin-bottom: 0.5rem; /* Reduced space from main title */
+}
+
+.main-title {
+  display: block;
 }
 
 .hero-title {
@@ -213,14 +265,28 @@ export default defineComponent({
 }
 
 @keyframes scrollMouse {
-  0% { transform: translate(-50%, 0); opacity: 1; }
-  100% { transform: translate(-50%, 15px); opacity: 0; }
+  0% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 15px);
+    opacity: 0;
+  }
 }
 
 @keyframes swipeUp {
-  0% { transform: translateY(10px); opacity: 0; }
-  50% { opacity: 1; }
-  100% { transform: translateY(-10px); opacity: 0; }
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
 }
 
 @media (max-width: 768px) {
@@ -258,10 +324,26 @@ export default defineComponent({
     bottom: 0; /* Anchor to the absolute bottom */
   }
 
-  .circle-1 { width: 120px; height: 120px; border-width: 12px; }
-  .circle-2 { width: 240px; height: 240px; border-width: 18px; }
-  .circle-3 { width: 360px; height: 360px; border-width: 24px; }
-  .circle-4 { width: 480px; height: 480px; border-width: 30px; }
+  .circle-1 {
+    width: 120px;
+    height: 120px;
+    border-width: 12px;
+  }
+  .circle-2 {
+    width: 240px;
+    height: 240px;
+    border-width: 18px;
+  }
+  .circle-3 {
+    width: 360px;
+    height: 360px;
+    border-width: 24px;
+  }
+  .circle-4 {
+    width: 480px;
+    height: 480px;
+    border-width: 30px;
+  }
 
   .hero-scroll-indicator {
     bottom: 1.5rem;

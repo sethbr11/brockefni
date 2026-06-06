@@ -11,15 +11,17 @@
     </div>
 
     <div ref="container" class="hero-container">
-      <div class="branding">
-        <span class="demo-label">The Phishing Demo</span>
-      </div>
       <h1 class="hero-title">
-        The Art of the <span class="highlight" data-text="Hook.">Hook.</span>
+        <span class="demo-label">Interactive Phishing Demo</span>
+        <span class="main-title"
+          >The Art of the
+          <span class="highlight" data-text="Hook.">Hook.</span></span
+        >
       </h1>
       <p class="hero-subtitle">
-        A hands-on, interactive simulation designed to teach students about
-        social engineering, digital security, and the mechanics of a breach.
+        A hands-on, interactive <strong>phishing simulation</strong> on
+        Brockefni designed to teach students about social engineering, digital
+        security, and the mechanics of a breach.
       </p>
     </div>
 
@@ -170,7 +172,7 @@ export default defineComponent({
 }
 
 .demo-label {
-  display: inline-block;
+  display: block;
   font-size: 1rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -178,6 +180,10 @@ export default defineComponent({
   color: #ff3b55;
   margin-bottom: 1rem;
   animation: flicker 3s infinite;
+}
+
+.main-title {
+  display: block;
 }
 
 @keyframes flicker {

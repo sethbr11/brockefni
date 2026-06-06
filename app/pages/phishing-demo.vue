@@ -25,7 +25,7 @@ export default defineComponent({
   },
   setup() {
     useHead({
-      title: 'Phishing Demo - Interactive Cybersecurity Education',
+      title: 'Phishing Demo - Interactive Cybersecurity Simulation | Brockefni',
       link: [
         {
           rel: 'canonical',
@@ -36,12 +36,12 @@ export default defineComponent({
         {
           name: 'description',
           content:
-            'Explore an interactive phishing simulation designed for cybersecurity education. See how a mock TikTok email can be used to demonstrate security concepts to students.',
+            'Explore the interactive Phishing Demo by Brockefni. A hands-on cybersecurity simulation designed to teach social engineering awareness and credential security concepts.',
         },
         {
           name: 'keywords',
           content:
-            'Phishing, Cybersecurity, TikTok, Education, STEM, Cybersecurity Demo, Phishing Simulation, Security Awareness',
+            'phishing demo brockefni, phishing simulator, cybersecurity education, social engineering demo, TikTok phishing simulation, credential harvesting demo, security awareness training, STEM cybersecurity',
         },
         {
           name: 'author',
@@ -49,12 +49,13 @@ export default defineComponent({
         },
         {
           property: 'og:title',
-          content: 'Phishing Demo - Interactive Cybersecurity Education',
+          content:
+            'Phishing Demo - Interactive Cybersecurity Simulation | Brockefni',
         },
         {
           property: 'og:description',
           content:
-            'A highly interactive phishing simulation used to teach 5th graders about cybersecurity. Experience the demo from email to credential capture.',
+            'Experience the interactive phishing simulation on Brockefni. Designed to teach digital safety and social engineering mechanics through a realistic email mockup.',
         },
         {
           property: 'og:image',
@@ -74,11 +75,13 @@ export default defineComponent({
         },
         {
           name: 'twitter:title',
-          content: 'Phishing Demo - Interactive Education',
+          content:
+            'Phishing Demo - Interactive Cybersecurity Simulation | Brockefni',
         },
         {
           name: 'twitter:description',
-          content: 'An interactive demo illustrating the mechanics of a phishing attack for educational purposes.',
+          content:
+            'Interactive educational demo illustrating the mechanics of a phishing attack on Brockefni.',
         },
       ],
       script: [
@@ -88,7 +91,8 @@ export default defineComponent({
             '@context': 'https://schema.org',
             '@type': 'LearningResource',
             name: 'Phishing Demo Simulation',
-            description: 'An interactive phishing simulation designed to teach cybersecurity concepts.',
+            description:
+              'An interactive phishing simulation designed to teach cybersecurity concepts.',
             author: {
               '@type': 'Person',
               name: 'Seth Brock',
@@ -117,7 +121,9 @@ export default defineComponent({
 }
 
 /* Force parents to not add extra height on this page */
-:deep(html), :deep(body), :deep(#__nuxt) {
+:deep(html),
+:deep(body),
+:deep(#__nuxt) {
   height: auto !important;
   min-height: auto !important;
   overflow-x: hidden;

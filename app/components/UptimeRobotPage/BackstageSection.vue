@@ -16,8 +16,10 @@
         </div>
       </div>
       <div class="text-content">
-        <h2 class="section-title gradient-text">Enterprise Integration</h2>
-        <h3 class="product-name">Backstage Plugins</h3>
+        <h2 class="section-title gradient-text">
+          UptimeRobot Backstage Plugins
+        </h2>
+        <h3 class="product-name">Enterprise Integration</h3>
         <div class="backstage-branding">
           <img
             src="@/assets/icons/backstage.svg"
@@ -28,10 +30,11 @@
           <span class="ur-dot pulse"></span>
         </div>
         <p class="description">
-          Seamlessly integrate UptimeRobot monitor health into your Backstage
-          <strong>Internal Developer Portal (IDP)</strong>. Provides developers
-          with instant visibility into their service's uptime directly where
-          they work.
+          Seamlessly integrate monitor health into your portal with the
+          open-source <strong>UptimeRobot Backstage plugin</strong> (supporting
+          frontend and backend integrations). Provides developers with instant
+          visibility into service uptime directly inside the Spotify Backstage
+          Internal Developer Portal (IDP).
         </p>
 
         <div class="plugin-split">

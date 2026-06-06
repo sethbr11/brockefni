@@ -6,11 +6,13 @@
   >
     <div class="content-container">
       <div class="header">
-        <h2 class="section-title">Developer Experience</h2>
+        <h2 class="section-title">UptimeRobot CLI & REPL</h2>
         <h3 class="product-name">uptime-robot-v3-repl</h3>
         <p class="description">
-          An interactive Node.js REPL for exploring and testing the Uptime Robot
-          API. No more writing scripts just to check an endpoint.
+          An interactive, command-line <strong>UptimeRobot CLI</strong> and
+          Node.js REPL tool for exploring, testing, and debugging the Uptime
+          Robot API directly from your terminal. No more writing scripts just to
+          check an endpoint.
         </p>
       </div>
 
