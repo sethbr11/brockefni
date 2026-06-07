@@ -20,6 +20,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/eslint', '@nuxt/icon'],
   icon: {
+    mode: 'svg',
     clientBundle: {
       scan: true,
       sizeLimitKb: 512,
