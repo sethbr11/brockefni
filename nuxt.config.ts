@@ -21,9 +21,9 @@ export default defineNuxtConfig({
   modules: ['@nuxt/eslint', '@nuxt/icon'],
   icon: {
     mode: 'svg',
-    clientBundle: {
-      scan: true,
-      sizeLimitKb: 512,
+    provider: 'server',
+    serverBundle: {
+      collections: ['lucide'],
     },
   },
   runtimeConfig: {
