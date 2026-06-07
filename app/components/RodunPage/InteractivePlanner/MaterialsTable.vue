@@ -158,7 +158,7 @@
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue'
-import type { Dimension, MaterialType } from './types'
+import type { Dimension, MaterialType } from './scripts/types'
 
 export default defineComponent({
   name: 'MaterialsTable',

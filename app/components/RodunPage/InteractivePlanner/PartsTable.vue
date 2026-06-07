@@ -104,7 +104,7 @@
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue'
-import type { Part, Dimension } from './types'
+import type { Part, Dimension } from './scripts/types'
 
 export default defineComponent({
   name: 'PartsTable',

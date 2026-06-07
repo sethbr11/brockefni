@@ -93,7 +93,7 @@ const cardData: CardData[] = [
         '#ff3b3b',
         pencilIcon,
         "mailto:seth@brockefni.com?subject=Interest%20in%20Email%20Phishing%20Academic%20Example&body=Hi%20Seth!%0A%0AI'm%20interested%20in%20learning%20more%20about%20you%20email%20phishing%20demo%20for%20the%20purpose%20of%20%5BINSERT%20REASON%20HERE%5D.%0A%0AFrom%2C%0A%5BYOUR%20NAME%20HERE%5D"
-      )
+      ),
     ],
   },
   {
@@ -126,7 +126,9 @@ const cardData: CardData[] = [
     badges: [b.javascript, b.react, b.docker],
     link: createLink('https://github.com/sethbr11/Personal-Time-Tracker'),
     actions: [
-      defaultActions.github('https://github.com/sethbr11/Personal-Time-Tracker'),
+      defaultActions.github(
+        'https://github.com/sethbr11/Personal-Time-Tracker'
+      ),
     ],
   },
   {

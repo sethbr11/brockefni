@@ -159,7 +159,7 @@
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue'
-import type { DimensionGroup, MaterialType } from './types'
+import type { DimensionGroup, MaterialType } from './scripts/types'
 
 export default defineComponent({
   name: 'VisualizerPanel',

@@ -142,15 +142,15 @@ import type {
   MaterialType,
   DimensionGroup,
   CutSegment,
-} from './types'
+} from './scripts/types.js'
 import {
   getPartColorByIndex,
   adjustColorBrightness,
   isColorDark,
   parseImperialLength,
-} from './utils'
-import { solve1DCuttingStock } from './solver'
-import { exportActiveLayoutsToPDF } from './pdfExporter'
+} from './scripts/utils.js'
+import { solve1DCuttingStock } from './scripts/solver.js'
+import { exportActiveLayoutsToPDF } from './scripts/pdfExporter.js'
 
 export default defineComponent({
   name: 'InteractivePlanner',
