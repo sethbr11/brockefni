@@ -5,119 +5,113 @@
       Education
     </h2>
     <div class="edu-timeline">
-      <!-- BYU Masters (Clickable to open Coursework Modal) -->
-      <div
-        id="byu-education"
-        class="edu-card glass-panel clickable-card"
-        :class="{ 'highlighted-edu': isAcademicSkillHovered }"
-        @click="$emit('show-coursework')"
-      >
-        <div class="education-header">
-          <div class="edu-title-group">
-            <h3 class="degree">
-              Master of Information Systems Management (MISM)
-            </h3>
-            <span class="school"
-              >Brigham Young University - Marriott School of Business</span
-            >
+      <template v-for="(edu, idx) in education" :key="idx">
+        <NuxtLink
+          v-if="edu.link"
+          :to="edu.link"
+          :id="edu.id"
+          class="edu-card glass-panel clickable-card"
+          :class="{
+            'highlighted-edu': isSkillInEdu(edu, hoveredSkill),
+          }"
+        >
+          <div class="education-header">
+            <div class="edu-title-group">
+              <h3 class="degree">
+                {{ edu.degree }}
+              </h3>
+              <span class="school">{{ edu.school }}</span>
+            </div>
+            <div class="edu-meta-group">
+              <span class="dates">{{ edu.dates }}</span>
+              <span class="location">
+                <Icon name="lucide:map-pin" class="loc-icon" />
+                {{ edu.location }}
+              </span>
+            </div>
           </div>
-          <div class="edu-meta-group">
-            <span class="dates">Aug 2020 – Apr 2021, Aug 2023 – Apr 2026 </span>
-            <span class="location">
-              <Icon name="lucide:map-pin" class="loc-icon" /> Provo, UT
-            </span>
+          <div class="edu-details">
+            <div class="gpa-badge" v-if="edu.gpa">
+              <span class="gpa-num">{{ edu.gpa }}</span>
+              <span class="gpa-label">{{ edu.gpaLabel || 'GPA' }}</span>
+            </div>
+            <ul class="edu-bullets" v-if="edu.bullets && edu.bullets.length">
+              <li v-for="(bullet, bIdx) in edu.bullets" :key="bIdx">
+                {{ bullet }}
+              </li>
+            </ul>
           </div>
-        </div>
-        <div class="edu-details">
-          <div class="gpa-badge">
-            <span class="gpa-num">3.86</span>
-            <span class="gpa-label">MISM GPA</span>
+          <div class="edu-click-indicator">
+            <Icon name="lucide:arrow-right" class="indicator-icon" />
+            {{ edu.linkText || 'Click to view details' }}
           </div>
-          <ul class="edu-bullets">
-            <li>
-              Integrated Program (simultaneous completion of Bachelor's and
-              Master's degrees).
-            </li>
-            <li>Web Development Emphasis, STEM-Certified Technical Program.</li>
-            <li>
-              Leave of absence taken for voluntary LDS mission service (2021 -
-              2023).
-            </li>
-            <li>
-              Brigham Young academic scholarship recipient (2020, 2023, 2024).
-            </li>
-            <li>Active Member — Association for Information Systems.</li>
-          </ul>
-        </div>
-        <div class="edu-click-indicator">
-          <Icon name="lucide:info" class="indicator-icon" /> Click to view
-          specialized MISM coursework
-        </div>
-      </div>
+        </NuxtLink>
 
-      <!-- UVU Associates -->
-      <div class="edu-card glass-panel">
-        <div class="education-header">
-          <div class="edu-title-group">
-            <h3 class="degree">Associate of Science in University Studies</h3>
-            <span class="school">Utah Valley University</span>
+        <div
+          v-else
+          :id="edu.id"
+          class="edu-card glass-panel"
+          :class="{
+            'highlighted-edu': isSkillInEdu(edu, hoveredSkill),
+          }"
+        >
+          <div class="education-header">
+            <div class="edu-title-group">
+              <h3 class="degree">
+                {{ edu.degree }}
+              </h3>
+              <span class="school">{{ edu.school }}</span>
+            </div>
+            <div class="edu-meta-group">
+              <span class="dates">{{ edu.dates }}</span>
+              <span class="location">
+                <Icon name="lucide:map-pin" class="loc-icon" />
+                {{ edu.location }}
+              </span>
+            </div>
           </div>
-          <div class="edu-meta-group">
-            <span class="dates">2018 – 2020</span>
-            <span class="location">
-              <Icon name="lucide:map-pin" class="loc-icon" /> Orem, UT
-            </span>
+          <div class="edu-details">
+            <div class="gpa-badge" v-if="edu.gpa">
+              <span class="gpa-num">{{ edu.gpa }}</span>
+              <span class="gpa-label">{{ edu.gpaLabel || 'GPA' }}</span>
+            </div>
+            <ul class="edu-bullets" v-if="edu.bullets && edu.bullets.length">
+              <li v-for="(bullet, bIdx) in edu.bullets" :key="bIdx">
+                {{ bullet }}
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="edu-details">
-          <div class="gpa-badge">
-            <span class="gpa-num">3.90</span>
-            <span class="gpa-label">GPA</span>
-          </div>
-          <p class="edu-description-text">
-            Completed through Timpview's concurrent enrollment and distance
-            learning programs, as well as AP exam scores.
-          </p>
-        </div>
-      </div>
+      </template>
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent } from 'vue'
 import type { PropType } from 'vue'
+import type { Education } from '../../assets/data/resumeData'
 
 export default defineComponent({
   name: 'ResumeEducation',
   props: {
+    education: {
+      type: Array as PropType<Education[]>,
+      required: true,
+    },
     hoveredSkill: {
       type: String as PropType<string | null>,
       default: null,
     },
   },
-  emits: ['show-coursework'],
-  setup(props) {
-    const isAcademicSkillHovered = computed(() => {
-      const academicSkills = [
-        'Terraform',
-        'Swift',
-        'C++',
-        'C#',
-        'R',
-        'NoSQL',
-        'DBT',
-        'Prefect',
-        'MCPs',
-        'Scrum',
-      ]
-      return props.hoveredSkill
-        ? academicSkills.includes(props.hoveredSkill)
-        : false
-    })
+  setup() {
+    const isSkillInEdu = (edu: Education, skill: string | null): boolean => {
+      if (!skill) return false
+      return edu.skills.includes(skill)
+    }
 
     return {
-      isAcademicSkillHovered,
+      isSkillInEdu,
     }
   },
 })
@@ -166,6 +160,9 @@ export default defineComponent({
 .edu-card {
   padding: 1.5rem;
   text-align: left;
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .clickable-card {

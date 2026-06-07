@@ -15,9 +15,18 @@ export interface Job {
   kpis?: KPI[]
 }
 
-export interface Course {
-  name: string
-  description: string
+export interface Education {
+  id: string
+  degree: string
+  school: string
+  dates: string
+  location: string
+  gpa?: string
+  gpaLabel?: string
+  bullets: string[]
+  skills: string[]
+  link?: string
+  linkText?: string
 }
 
 export interface Interest {
@@ -200,6 +209,70 @@ export const jobs: Job[] = [
   },
 ]
 
+export const education: Education[] = [
+  {
+    id: 'uvu-english-education',
+    degree: 'Bachelor of Arts in English (Literature Emphasis)',
+    school: 'Utah Valley University',
+    dates: 'Jun 2026 – Present',
+    location: 'Orem, UT',
+    gpa: '--',
+    gpaLabel: 'GPA',
+    bullets: [
+      'Enrolled to begin studies in June 2026, focused on English literature, literary analysis, and writing.',
+      'Exploring intersections of technology, humanities, and technical/literary writing.',
+    ],
+    skills: [],
+    link: '/uvu',
+    linkText: 'Click to view UVU detail page',
+  },
+  {
+    id: 'byu-education',
+    degree: 'Master of Information Systems Management (MISM)',
+    school: 'Brigham Young University - Marriott School of Business',
+    dates: 'Aug 2020 – Apr 2021, Aug 2023 – Apr 2026',
+    location: 'Provo, UT',
+    gpa: '3.86',
+    gpaLabel: 'MISM GPA',
+    bullets: [
+      "Integrated Program (simultaneous completion of Bachelor's and Master's degrees).",
+      'Web Development Emphasis, STEM-Certified Technical Program.',
+      'Leave of absence taken for voluntary LDS mission service (2021 - 2023).',
+      'Brigham Young academic scholarship recipient (2020, 2023, 2024).',
+      'Active Member — Association for Information Systems.',
+    ],
+    skills: [
+      'Terraform',
+      'Swift',
+      'C++',
+      'C#',
+      'R',
+      'NoSQL',
+      'DBT',
+      'Prefect',
+      'MCPs',
+      'Scrum',
+    ],
+    link: '/byu',
+    linkText: 'Click to view BYU detail page',
+  },
+  {
+    id: 'uvu-education',
+    degree: 'Associate of Science in University Studies',
+    school: 'Utah Valley University',
+    dates: '2018 – 2020',
+    location: 'Orem, UT',
+    gpa: '3.90',
+    gpaLabel: 'GPA',
+    bullets: [
+      "Completed through Timpview's concurrent enrollment and distance learning programs, as well as AP exam scores.",
+    ],
+    skills: [],
+    link: '/uvu',
+    linkText: 'Click to view UVU detail page',
+  },
+]
+
 export const skillCategories: Record<string, string[]> = {
   'Programming Languages': [
     'HTML/CSS',
@@ -266,54 +339,6 @@ export const skillCategories: Record<string, string[]> = {
     'Scrum',
   ],
 }
-
-export const courses: Course[] = [
-  {
-    name: 'Machine Learning & Predictive Analytics',
-    description:
-      'Supervised and unsupervised learning models, data classification, regression, and model evaluation using Python (IS 415 / IS 455).',
-  },
-  {
-    name: 'Data Science for Organizations (IS 555)',
-    description:
-      'Full data science process including exploratory data analysis, data wrangling, machine learning, and predictive modeling using R.',
-  },
-  {
-    name: 'Enterprise Application Development',
-    description:
-      'Scalable full-stack software development, REST APIs, and microservice architectures (IS 413).',
-  },
-  {
-    name: 'Advanced Database Systems (IS 566)',
-    description:
-      'Enterprise data manipulation and handling using Python mainly in conjunction with NoSQL databases, DBT, Prefect, and Model Context Protocol (MCP) integrations.',
-  },
-  {
-    name: 'Enterprise Infrastructure',
-    description:
-      'Cloud topologies, network routing, virtualization, and systems administration (IS 531).',
-  },
-  {
-    name: 'Information Security Management',
-    description:
-      'Cryptographic systems, risk assessments, secure network design, and security controls (IS 560 / IS 414).',
-  },
-  {
-    name: 'Digital Forensics & Security Controls',
-    description:
-      'Digital forensics investigations, network packet analysis, and enterprise compliance audits (IS 565).',
-  },
-  {
-    name: 'Mobile Platform Development',
-    description:
-      'Design, engineering, and deployment of native and cross-platform mobile systems (IS 543).',
-  },
-  {
-    name: 'Project Management & Systems Design (IS 401 / IS 551 / IS 581)',
-    description:
-      'Agile project management, Scrum methodology, Figma prototyping, systems design, pricing models, marketing strategies, and software startup launches.',
-  },
-]
 
 export const interests: Interest[] = [
   { name: 'Soccer', emoji: '⚽' },

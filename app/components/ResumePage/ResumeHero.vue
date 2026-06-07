@@ -1,6 +1,14 @@
 <template>
   <section class="resume-hero">
     <div class="hero-content">
+      <div class="profile-image-container">
+        <img
+          src="~/assets/images/SethBrockLight.jpeg"
+          alt="Seth Brock"
+          class="profile-image"
+        />
+      </div>
+
       <div class="title-area">
         <span class="subtitle">PORTFOLIO RESUME</span>
         <h1 class="name-title">Seth Brock</h1>
@@ -53,6 +61,29 @@ export default defineComponent({
 .hero-content {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--page-accent);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.profile-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px var(--page-accent-glow);
 }
 
 .subtitle {

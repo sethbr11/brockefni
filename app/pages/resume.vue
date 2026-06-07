@@ -46,8 +46,8 @@
 
           <!-- Education -->
           <ResumeEducation
+            :education="education"
             :hovered-skill="hoveredSkill"
-            @show-coursework="showCourseworkModal = true"
           />
 
           <!-- Achievements & Hobbies -->
@@ -69,13 +69,6 @@
         />
       </div>
     </main>
-
-    <!-- Specialized Coursework Modal -->
-    <ResumeCourseworkModal
-      :show="showCourseworkModal"
-      :courses="courses"
-      @close="showCourseworkModal = false"
-    />
   </div>
 </template>
 
@@ -88,14 +81,13 @@ import ResumeHero from '../components/ResumePage/ResumeHero.vue'
 import ResumeJobCard from '../components/ResumePage/ResumeJobCard.vue'
 import ResumeEducation from '../components/ResumePage/ResumeEducation.vue'
 import ResumeSkillsSidebar from '../components/ResumePage/ResumeSkillsSidebar.vue'
-import ResumeCourseworkModal from '../components/ResumePage/ResumeCourseworkModal.vue'
 import ResumeAchievements from '../components/ResumePage/ResumeAchievements.vue'
 
 // Import data
 import {
   jobs,
   skillCategories,
-  courses,
+  education,
   interests,
 } from '../assets/data/resumeData.js'
 
@@ -106,7 +98,6 @@ export default defineComponent({
     ResumeJobCard,
     ResumeEducation,
     ResumeSkillsSidebar,
-    ResumeCourseworkModal,
     ResumeAchievements,
   },
   setup() {
@@ -176,7 +167,6 @@ export default defineComponent({
     const expandedJob = ref<number | null>(null)
     const hoveredSkill = ref<string | null>(null)
     const activeNote = ref<string | null>(null)
-    const showCourseworkModal = ref(false)
 
     const handleScroll = () => {
       const docHeight =
@@ -186,7 +176,6 @@ export default defineComponent({
       }
     }
 
-    // Direct user to the first element mentioning a skill
     const handleSkillClick = (skill: string) => {
       const jobIdx = jobs.findIndex((job) => job.skills.includes(skill))
       if (jobIdx !== -1) {
@@ -197,24 +186,11 @@ export default defineComponent({
           expandedJob.value = jobIdx // Automatically expand!
         }
       } else {
-        // Academic exclusive skills -> Scroll to Education card & open modal
-        const academicSkills = [
-          'Terraform',
-          'Swift',
-          'C++',
-          'C#',
-          'R',
-          'NoSQL',
-          'DBT',
-          'Prefect',
-          'MCPs',
-          'Scrum',
-        ]
-        if (academicSkills.includes(skill)) {
-          const element = document.getElementById('byu-education')
+        const edu = education.find((e) => e.skills.includes(skill))
+        if (edu) {
+          const element = document.getElementById(edu.id)
           if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'center' })
-            showCourseworkModal.value = true
           }
         }
       }
@@ -247,10 +223,9 @@ export default defineComponent({
       expandedJob,
       hoveredSkill,
       activeNote,
-      showCourseworkModal,
       jobs,
       skillCategories,
-      courses,
+      education,
       interests,
       handleSkillClick,
       toggleJobExpand,

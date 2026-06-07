@@ -67,9 +67,21 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://brockefni.com/startup-article</loc>
-    <lastmod>2026-06-06T00:00:00.000Z</lastmod>
+    <loc>https://brockefni.com/byu</loc>
+    <image:image>
+      <image:loc>https://brockefni.com/_nuxt/tanner-building.png</image:loc>
+    </image:image>
+    <lastmod>2026-06-07T00:00:00.000Z</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://brockefni.com/uvu</loc>
+    <image:image>
+      <image:loc>https://brockefni.com/_nuxt/clark-building.png</image:loc>
+    </image:image>
+    <lastmod>2026-06-07T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
