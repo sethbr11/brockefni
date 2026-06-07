@@ -14,7 +14,7 @@
       <div class="container hero-content-wrapper">
         <!-- Back Link -->
         <NuxtLink to="/resume" class="back-link glass-panel">
-          <Icon name="lucide:arrow-left" class="icon" /> Back to Resume
+          <ArrowLeftIcon class="icon" /> Back to Resume
         </NuxtLink>
 
         <!-- School Info Card -->
@@ -36,14 +36,13 @@
             </h1>
             <div class="academic-meta">
               <span class="meta-item">
-                <Icon name="lucide:calendar" class="meta-icon" /> 2018 – 2020,
-                2026 – Present
+                <CalendarIcon class="meta-icon" /> 2018 – 2020, 2026 – Present
               </span>
               <span class="meta-item">
-                <Icon name="lucide:map-pin" class="meta-icon" /> Orem, UT
+                <MapPinIcon class="meta-icon" /> Orem, UT
               </span>
               <span class="meta-item gpa-pill">
-                <Icon name="lucide:award" class="meta-icon" /> GPA: 3.90
+                <AwardIcon class="meta-icon" /> GPA: 3.90
               </span>
             </div>
           </div>
@@ -57,8 +56,8 @@
       <section class="overview-section glass-panel">
         <div class="program-badge current-badge">Current Program</div>
         <h2 class="section-title">
-          <Icon name="lucide:book-open" class="section-icon" /> Bachelor of Arts
-          in English (Literature)
+          <BookOpenIcon class="section-icon" /> Bachelor of Arts in English
+          (Literature)
         </h2>
         <p class="overview-text">
           Beginning in June 2026, I am returning to Utah Valley University to
@@ -95,7 +94,7 @@
               <div class="header-action">
                 <span class="status-indicator">{{ sem.status }}</span>
                 <button class="expand-btn">
-                  <Icon name="lucide:chevron-down" class="chevron-icon" />
+                  <ChevronDownIcon class="chevron-icon" />
                 </button>
               </div>
             </div>
@@ -109,8 +108,7 @@
                 <!-- Coursework -->
                 <div class="detail-column courses-col">
                   <h4>
-                    <Icon name="lucide:book-marked" class="sub-icon" /> Planned
-                    Coursework
+                    <BookMarkedIcon class="sub-icon" /> Planned Coursework
                   </h4>
                   <ul class="courses-list">
                     <li v-for="(course, cIdx) in sem.courses" :key="cIdx">
@@ -122,10 +120,7 @@
 
                 <!-- Description -->
                 <div class="detail-column desc-col">
-                  <h4>
-                    <Icon name="lucide:sparkles" class="sub-icon" /> Semester
-                    Focus
-                  </h4>
+                  <h4><SparklesIcon class="sub-icon" /> Semester Focus</h4>
                   <p class="description">{{ sem.description }}</p>
                 </div>
               </div>
@@ -138,8 +133,8 @@
       <section class="overview-section glass-panel">
         <div class="program-badge past-badge">Completed Program</div>
         <h2 class="section-title">
-          <Icon name="lucide:graduation-cap" class="section-icon" /> Associate
-          of Science in University Studies
+          <GraduationCapIcon class="section-icon" /> Associate of Science in
+          University Studies
         </h2>
         <p class="overview-text">
           Completed in 2020 with a cumulative GPA of 3.90, this associate degree
@@ -166,7 +161,7 @@
               </div>
               <div class="header-action">
                 <button class="expand-btn">
-                  <Icon name="lucide:chevron-down" class="chevron-icon" />
+                  <ChevronDownIcon class="chevron-icon" />
                 </button>
               </div>
             </div>
@@ -180,8 +175,8 @@
                 <!-- Coursework -->
                 <div class="detail-column courses-col">
                   <h4>
-                    <Icon name="lucide:book-marked" class="sub-icon" /> Core
-                    Credits &amp; Courses
+                    <BookMarkedIcon class="sub-icon" /> Core Credits &amp;
+                    Courses
                   </h4>
                   <ul class="courses-list">
                     <li v-for="(course, cIdx) in sem.courses" :key="cIdx">
@@ -193,10 +188,7 @@
 
                 <!-- Description -->
                 <div class="detail-column desc-col">
-                  <h4>
-                    <Icon name="lucide:sparkles" class="sub-icon" /> Chapter
-                    Description
-                  </h4>
+                  <h4><SparklesIcon class="sub-icon" /> Chapter Description</h4>
                   <p class="description">{{ sem.description }}</p>
                 </div>
               </div>
@@ -209,6 +201,18 @@
 </template>
 
 <script lang="ts">
+import {
+  ArrowLeftIcon,
+  CalendarIcon,
+  MapPinIcon,
+  AwardIcon,
+  BookOpenIcon,
+  ChevronDownIcon,
+  BookMarkedIcon,
+  SparklesIcon,
+  GraduationCapIcon,
+} from 'lucide-vue-next'
+
 import { defineComponent, ref } from 'vue'
 import { useHead } from '#app'
 
@@ -226,6 +230,17 @@ interface Semester {
 }
 
 export default defineComponent({
+  components: {
+    ArrowLeftIcon,
+    CalendarIcon,
+    MapPinIcon,
+    AwardIcon,
+    BookOpenIcon,
+    ChevronDownIcon,
+    BookMarkedIcon,
+    SparklesIcon,
+    GraduationCapIcon,
+  },
   name: 'UvuExperiencePage',
   setup() {
     useHead({

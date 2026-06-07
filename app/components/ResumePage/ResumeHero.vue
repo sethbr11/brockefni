@@ -17,21 +17,21 @@
 
       <div class="contact-quick">
         <a href="mailto:seth@brockefni.com" class="contact-link">
-          <Icon name="lucide:mail" class="icon" /> seth@brockefni.com
+          <MailIcon class="icon" /> seth@brockefni.com
         </a>
         <a
           href="https://linkedin.com/in/sethbrock11"
           target="_blank"
           class="contact-link"
         >
-          <Icon name="lucide:linkedin" class="icon" />
+          <LinkedinIcon class="icon" />
           linkedin.com/in/sethbrock11
         </a>
       </div>
 
       <div class="view-controls">
         <a href="/resume.pdf" target="_blank" download class="download-pdf-btn">
-          <Icon name="lucide:download" class="icon" /> Download PDF Resume
+          <DownloadIcon class="icon" /> Download PDF Resume
         </a>
       </div>
     </div>
@@ -39,9 +39,12 @@
 </template>
 
 <script lang="ts">
+import { MailIcon, LinkedinIcon, DownloadIcon } from 'lucide-vue-next'
+
 import { defineComponent } from 'vue'
 
 export default defineComponent({
+  components: { MailIcon, LinkedinIcon, DownloadIcon },
   name: 'ResumeHero',
 })
 </script>

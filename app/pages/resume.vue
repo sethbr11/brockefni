@@ -26,8 +26,8 @@
           <!-- Work Experience -->
           <section class="resume-section">
             <h2 class="section-title">
-              <Icon name="lucide:briefcase" class="section-icon" /> Work &amp;
-              Volunteer Experience
+              <BriefcaseIcon class="section-icon" /> Work &amp; Volunteer
+              Experience
             </h2>
             <div class="timeline">
               <ResumeJobCard
@@ -73,6 +73,8 @@
 </template>
 
 <script lang="ts">
+import { BriefcaseIcon } from 'lucide-vue-next'
+
 import { defineComponent, ref, onMounted, onUnmounted } from 'vue'
 import { useHead } from '#app'
 
@@ -94,6 +96,7 @@ import {
 export default defineComponent({
   name: 'ResumePage',
   components: {
+    BriefcaseIcon,
     ResumeHero,
     ResumeJobCard,
     ResumeEducation,

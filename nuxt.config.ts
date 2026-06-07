@@ -18,14 +18,7 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint', '@nuxt/icon'],
-  icon: {
-    mode: 'svg',
-    provider: 'server',
-    serverBundle: {
-      collections: ['lucide'],
-    },
-  },
+  modules: ['@nuxt/eslint'],
   runtimeConfig: {
     public: {
       BOTPOISON_PUBLIC_KEY: process.env.BOTPOISON_PUBLIC_KEY || '',

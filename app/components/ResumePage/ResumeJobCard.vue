@@ -20,12 +20,11 @@
         <div class="job-date-loc">
           <span class="date">{{ job.dates }}</span>
           <span class="location">
-            <Icon name="lucide:map-pin" class="loc-icon" />
+            <MapPinIcon class="loc-icon" />
             {{ job.location }}
           </span>
         </div>
-        <Icon
-          name="lucide:chevron-down"
+        <ChevronDownIcon
           class="expand-chevron"
           :class="{ rotated: isExpanded }"
         />
@@ -71,12 +70,8 @@
               </g>
             </svg>
             <!-- Default Icon for others -->
-            <Icon
-              v-else-if="kpi.type === 'github'"
-              name="lucide:github"
-              class="kpi-icon"
-            />
-            <Icon v-else name="lucide:external-link" class="kpi-icon" />
+            <GithubIcon v-else-if="kpi.type === 'github'" class="kpi-icon" />
+            <ExternalLinkIcon v-else class="kpi-icon" />
           </div>
           <div class="kpi-text-column">
             <span class="kpi-value">{{ kpi.value }}</span>
@@ -115,11 +110,19 @@
 </template>
 
 <script lang="ts">
+import {
+  MapPinIcon,
+  ChevronDownIcon,
+  ExternalLinkIcon,
+  GithubIcon,
+} from 'lucide-vue-next'
+
 import { defineComponent, computed } from 'vue'
 import type { PropType } from 'vue'
 import type { Job } from '../../assets/data/resumeData'
 
 export default defineComponent({
+  components: { MapPinIcon, ChevronDownIcon, ExternalLinkIcon, GithubIcon },
   name: 'ResumeJobCard',
   props: {
     job: {

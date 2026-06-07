@@ -1,8 +1,7 @@
 <template>
   <section class="resume-section">
     <h2 class="section-title">
-      <Icon name="lucide:award" class="section-icon" /> Achievements &amp;
-      Interests
+      <AwardIcon class="section-icon" /> Achievements &amp; Interests
     </h2>
     <div class="achievements-layout glass-panel">
       <div class="credentials-row">
@@ -136,6 +135,8 @@
 </template>
 
 <script lang="ts">
+import { AwardIcon } from 'lucide-vue-next'
+
 import { defineComponent, computed } from 'vue'
 import type { PropType } from 'vue'
 import type { Interest } from '../../assets/data/resumeData'
@@ -144,6 +145,7 @@ import type { Interest } from '../../assets/data/resumeData'
 import bsaPng from '@/assets/icons/bsa.png'
 
 export default defineComponent({
+  components: { AwardIcon },
   name: 'ResumeAchievements',
   props: {
     interests: {

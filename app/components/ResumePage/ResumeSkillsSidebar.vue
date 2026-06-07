@@ -2,7 +2,7 @@
   <aside class="sidebar-column">
     <div class="skills-card glass-panel sticky-sidebar">
       <h2 class="section-title">
-        <Icon name="lucide:code-2" class="section-icon" /> Skills Directory
+        <Code2Icon class="section-icon" /> Skills Directory
       </h2>
       <p class="skills-tip">Click a skill pill to locate it in the timeline.</p>
 
@@ -34,11 +34,14 @@
 </template>
 
 <script lang="ts">
+import { Code2Icon } from 'lucide-vue-next'
+
 import { defineComponent } from 'vue'
 import type { PropType } from 'vue'
 import type { Job } from '../../assets/data/resumeData'
 
 export default defineComponent({
+  components: { Code2Icon },
   name: 'ResumeSkillsSidebar',
   props: {
     skillCategories: {

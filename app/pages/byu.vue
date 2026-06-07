@@ -14,7 +14,7 @@
       <div class="container hero-content-wrapper">
         <!-- Back Link -->
         <NuxtLink to="/resume" class="back-link glass-panel">
-          <Icon name="lucide:arrow-left" class="icon" /> Back to Resume
+          <ArrowLeftIcon class="icon" /> Back to Resume
         </NuxtLink>
 
         <!-- School Info Card -->
@@ -34,14 +34,13 @@
             </h1>
             <div class="academic-meta">
               <span class="meta-item">
-                <Icon name="lucide:calendar" class="meta-icon" /> 2020 – 2021,
-                2023 – 2026
+                <CalendarIcon class="meta-icon" /> 2020 – 2021, 2023 – 2026
               </span>
               <span class="meta-item">
-                <Icon name="lucide:map-pin" class="meta-icon" /> Provo, UT
+                <MapPinIcon class="meta-icon" /> Provo, UT
               </span>
               <span class="meta-item gpa-pill">
-                <Icon name="lucide:award" class="meta-icon" /> MISM GPA: 3.86
+                <AwardIcon class="meta-icon" /> MISM GPA: 3.86
               </span>
             </div>
           </div>
@@ -54,8 +53,7 @@
       <!-- Program Overview -->
       <section class="overview-section glass-panel">
         <h2 class="section-title">
-          <Icon name="lucide:graduation-cap" class="section-icon" /> Program
-          Overview
+          <GraduationCapIcon class="section-icon" /> Program Overview
         </h2>
         <p class="overview-text">
           The BYU Master of Information Systems Management (MISM) is a
@@ -68,7 +66,7 @@
         </p>
         <div class="achievements-grid">
           <div class="achievement-card">
-            <Icon name="lucide:bookmark" class="ach-icon" />
+            <BookmarkIcon class="ach-icon" />
             <h3>Academic Scholarships</h3>
             <p>
               Received BYU Marriott School academic scholarships in 2020, 2023,
@@ -76,7 +74,7 @@
             </p>
           </div>
           <div class="achievement-card">
-            <Icon name="lucide:cpu" class="ach-icon" />
+            <CpuIcon class="ach-icon" />
             <h3>Web &amp; DevOps Focus</h3>
             <p>
               Specialized in cloud automation, serverless architecture, and
@@ -84,7 +82,7 @@
             </p>
           </div>
           <div class="achievement-card">
-            <Icon name="lucide:book-open" class="ach-icon" />
+            <BookOpenIcon class="ach-icon" />
             <h3>Graduate TA &amp; RA</h3>
             <p>
               Tutored junior cores and constructed specialized data wrangling
@@ -97,7 +95,7 @@
       <!-- Semester Timeline -->
       <section class="timeline-section">
         <h2 class="section-title">
-          <Icon name="lucide:calendar-range" class="section-icon" />
+          <CalendarRangeIcon class="section-icon" />
           Semester-by-Semester Breakdown
         </h2>
         <p class="section-subtitle">
@@ -123,7 +121,7 @@
                   >{{ sem.credits }} Credits</span
                 >
                 <button class="expand-btn">
-                  <Icon name="lucide:chevron-down" class="chevron-icon" />
+                  <ChevronDownIcon class="chevron-icon" />
                 </button>
               </div>
             </div>
@@ -134,8 +132,7 @@
                 <!-- Coursework -->
                 <div class="detail-column courses-col">
                   <h4>
-                    <Icon name="lucide:book-marked" class="sub-icon" /> Featured
-                    Coursework
+                    <BookMarkedIcon class="sub-icon" /> Featured Coursework
                   </h4>
                   <ul class="courses-list">
                     <li v-for="(course, cIdx) in sem.courses" :key="cIdx">
@@ -148,8 +145,8 @@
                 <!-- Details / Experience -->
                 <div class="detail-column desc-col">
                   <h4>
-                    <Icon name="lucide:sparkles" class="sub-icon" /> Academic
-                    Focus &amp; Experience
+                    <SparklesIcon class="sub-icon" /> Academic Focus &amp;
+                    Experience
                   </h4>
                   <p class="description">{{ sem.description }}</p>
 
@@ -165,7 +162,7 @@
                       :key="pIdx"
                     >
                       <h6 class="project-title">
-                        <Icon name="lucide:git-fork" class="proj-icon" />
+                        <GitForkIcon class="proj-icon" />
                         {{ proj.name }}
                       </h6>
                       <p class="project-desc">{{ proj.description }}</p>
@@ -175,8 +172,7 @@
                         class="project-link"
                         @click.stop
                       >
-                        <Icon name="lucide:link" class="link-icon" /> View
-                        Product Page
+                        <LinkIcon class="link-icon" /> View Product Page
                       </NuxtLink>
                       <a
                         v-else-if="proj.url"
@@ -185,7 +181,7 @@
                         class="project-link"
                         @click.stop
                       >
-                        <Icon name="lucide:external-link" class="link-icon" />
+                        <ExternalLinkIcon class="link-icon" />
                         View Project Source
                       </a>
                     </div>
@@ -200,8 +196,7 @@
       <!-- Religion Coursework Section -->
       <section class="religion-section glass-panel">
         <h2 class="section-title">
-          <Icon name="lucide:book" class="section-icon" /> Religious Education
-          Core
+          <BookIcon class="section-icon" /> Religious Education Core
         </h2>
         <p class="overview-text">
           Completed as part of the core graduation requirements at BYU,
@@ -215,7 +210,7 @@
             class="rel-course-card"
           >
             <div class="rel-icon-container">
-              <Icon name="lucide:book-open" class="rel-icon" />
+              <BookOpenIcon class="rel-icon" />
             </div>
             <div class="rel-course-details">
               <span class="rel-code">{{ rel.code }}</span>
@@ -229,6 +224,25 @@
 </template>
 
 <script lang="ts">
+import {
+  ArrowLeftIcon,
+  CalendarIcon,
+  MapPinIcon,
+  AwardIcon,
+  GraduationCapIcon,
+  BookmarkIcon,
+  CpuIcon,
+  BookOpenIcon,
+  CalendarRangeIcon,
+  ChevronDownIcon,
+  BookMarkedIcon,
+  SparklesIcon,
+  GitForkIcon,
+  LinkIcon,
+  ExternalLinkIcon,
+  BookIcon,
+} from 'lucide-vue-next'
+
 import { defineComponent, ref } from 'vue'
 import { useHead } from '#app'
 
@@ -254,6 +268,24 @@ interface Semester {
 }
 
 export default defineComponent({
+  components: {
+    ArrowLeftIcon,
+    CalendarIcon,
+    MapPinIcon,
+    AwardIcon,
+    GraduationCapIcon,
+    BookmarkIcon,
+    CpuIcon,
+    BookOpenIcon,
+    CalendarRangeIcon,
+    ChevronDownIcon,
+    BookMarkedIcon,
+    SparklesIcon,
+    GitForkIcon,
+    LinkIcon,
+    ExternalLinkIcon,
+    BookIcon,
+  },
   name: 'ByuExperiencePage',
   setup() {
     useHead({

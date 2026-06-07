@@ -1,7 +1,7 @@
 <template>
   <section class="resume-section edu-section">
     <h2 class="section-title">
-      <Icon name="lucide:graduation-cap" class="section-icon" />
+      <GraduationCapIcon class="section-icon" />
       Education
     </h2>
     <div class="edu-timeline">
@@ -25,7 +25,7 @@
             <div class="edu-meta-group">
               <span class="dates">{{ edu.dates }}</span>
               <span class="location">
-                <Icon name="lucide:map-pin" class="loc-icon" />
+                <MapPinIcon class="loc-icon" />
                 {{ edu.location }}
               </span>
             </div>
@@ -42,7 +42,7 @@
             </ul>
           </div>
           <div class="edu-click-indicator">
-            <Icon name="lucide:arrow-right" class="indicator-icon" />
+            <ArrowRightIcon class="indicator-icon" />
             {{ edu.linkText || 'Click to view details' }}
           </div>
         </NuxtLink>
@@ -65,7 +65,7 @@
             <div class="edu-meta-group">
               <span class="dates">{{ edu.dates }}</span>
               <span class="location">
-                <Icon name="lucide:map-pin" class="loc-icon" />
+                <MapPinIcon class="loc-icon" />
                 {{ edu.location }}
               </span>
             </div>
@@ -88,11 +88,14 @@
 </template>
 
 <script lang="ts">
+import { GraduationCapIcon, MapPinIcon, ArrowRightIcon } from 'lucide-vue-next'
+
 import { defineComponent } from 'vue'
 import type { PropType } from 'vue'
 import type { Education } from '../../assets/data/resumeData'
 
 export default defineComponent({
+  components: { GraduationCapIcon, MapPinIcon, ArrowRightIcon },
   name: 'ResumeEducation',
   props: {
     education: {
