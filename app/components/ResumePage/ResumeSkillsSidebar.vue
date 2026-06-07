@@ -38,7 +38,7 @@ import { Code2Icon } from 'lucide-vue-next'
 
 import { defineComponent } from 'vue'
 import type { PropType } from 'vue'
-import type { Job } from '../../assets/data/resumeData'
+import type { Job, Education } from '../../assets/data/resumeData'
 
 export default defineComponent({
   components: { Code2Icon },
@@ -60,6 +60,14 @@ export default defineComponent({
       type: Array as PropType<Job[]>,
       required: true,
     },
+    activeEdu: {
+      type: Number as PropType<number | null>,
+      default: null,
+    },
+    education: {
+      type: Array as PropType<Education[]>,
+      required: true,
+    },
   },
   emits: ['update-hovered-skill', 'skill-click'],
   setup(props) {
@@ -67,7 +75,11 @@ export default defineComponent({
       if (props.hoveredSkill === skill) return true
       if (props.activeJob !== null) {
         const job = props.jobs[props.activeJob]
-        return job ? job.skills.includes(skill) : false
+        if (job && job.skills.includes(skill)) return true
+      }
+      if (props.activeEdu !== null) {
+        const edu = props.education[props.activeEdu]
+        if (edu && edu.skills.includes(skill)) return true
       }
       return false
     }

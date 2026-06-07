@@ -14,6 +14,8 @@
           :class="{
             'highlighted-edu': isSkillInEdu(edu, hoveredSkill),
           }"
+          @mouseenter="$emit('update-active', idx)"
+          @mouseleave="$emit('update-active', null)"
         >
           <div class="education-header">
             <div class="edu-title-group">
@@ -54,6 +56,8 @@
           :class="{
             'highlighted-edu': isSkillInEdu(edu, hoveredSkill),
           }"
+          @mouseenter="$emit('update-active', idx)"
+          @mouseleave="$emit('update-active', null)"
         >
           <div class="education-header">
             <div class="edu-title-group">
@@ -106,7 +110,12 @@ export default defineComponent({
       type: String as PropType<string | null>,
       default: null,
     },
+    activeEdu: {
+      type: Number as PropType<number | null>,
+      default: null,
+    },
   },
+  emits: ['update-active'],
   setup() {
     const isSkillInEdu = (edu: Education, skill: string | null): boolean => {
       if (!skill) return false

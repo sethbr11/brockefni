@@ -26,8 +26,7 @@
           <!-- Work Experience -->
           <section class="resume-section">
             <h2 class="section-title">
-              <BriefcaseIcon class="section-icon" /> Work &amp; Volunteer
-              Experience
+              <BriefcaseIcon class="section-icon" /> Work Experience
             </h2>
             <div class="timeline">
               <ResumeJobCard
@@ -47,7 +46,9 @@
           <!-- Education -->
           <ResumeEducation
             :education="education"
+            :active-edu="activeEdu"
             :hovered-skill="hoveredSkill"
+            @update-active="activeEdu = $event"
           />
 
           <!-- Achievements & Hobbies -->
@@ -64,6 +65,8 @@
           :hovered-skill="hoveredSkill"
           :active-job="activeJob"
           :jobs="jobs"
+          :active-edu="activeEdu"
+          :education="education"
           @update-hovered-skill="hoveredSkill = $event"
           @skill-click="handleSkillClick"
         />
@@ -167,6 +170,7 @@ export default defineComponent({
 
     const scrollProgress = ref(0)
     const activeJob = ref<number | null>(null)
+    const activeEdu = ref<number | null>(null)
     const expandedJob = ref<number | null>(null)
     const hoveredSkill = ref<string | null>(null)
     const activeNote = ref<string | null>(null)
@@ -223,6 +227,7 @@ export default defineComponent({
     return {
       scrollProgress,
       activeJob,
+      activeEdu,
       expandedJob,
       hoveredSkill,
       activeNote,
@@ -333,17 +338,6 @@ export default defineComponent({
   flex-direction: column;
   gap: 2rem;
   position: relative;
-  padding-left: 1rem;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--outline-color);
 }
 
 .main-column {
