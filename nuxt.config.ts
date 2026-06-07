@@ -19,6 +19,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: ['@nuxt/eslint', '@nuxt/icon'],
+  icon: {
+    clientBundle: {
+      scan: true,
+      sizeLimitKb: 512,
+    },
+  },
   runtimeConfig: {
     public: {
       BOTPOISON_PUBLIC_KEY: process.env.BOTPOISON_PUBLIC_KEY || '',
