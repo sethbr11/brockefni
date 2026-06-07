@@ -290,7 +290,7 @@ export const education: Education[] = [
     bullets: [
       "Completed through Timpview's concurrent enrollment and distance learning programs, as well as AP exam scores.",
     ],
-    skills: [],
+    skills: ['Productivity', 'Communication', 'Hardworking'],
     link: '/uvu',
     linkText: 'Click to view UVU detail page',
   },
