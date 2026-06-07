@@ -109,6 +109,23 @@
           </div>
           <span class="tooltip">Boy Scouts of America</span>
         </div>
+
+        <div class="credential-item">
+          <div class="icon-glow-wrapper">
+            <img :src="htbPng" alt="Hack the Box" class="credential-icon" />
+          </div>
+          <div class="credential-text">
+            <strong>10 HTB Badges</strong>
+          </div>
+          <span class="tooltip"
+            ><strong>Hack the Box Badges:</strong><br />1) The eye that sees
+            all<br />2) Your white belt training begins<br />3) Lurk in the
+            packets<br />4) Light in the dark<br />5) Panoptic<br />6)
+            Anticipate the next attack<br />7) SPL Witchcraft<br />8) Packet
+            carver<br />9) The packet protector<br />10) Chronicle
+            champion</span
+          >
+        </div>
       </div>
 
       <div class="interests-list">
@@ -143,6 +160,7 @@ import type { Interest } from '../../assets/data/resumeData'
 
 // @ts-ignore
 import bsaPng from '@/assets/icons/bsa.png'
+import htbPng from '@/assets/icons/htb.png'
 
 export default defineComponent({
   components: { AwardIcon },
@@ -161,6 +179,7 @@ export default defineComponent({
   setup() {
     return {
       bsaPng,
+      htbPng,
     }
   },
   methods: {
