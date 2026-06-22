@@ -2,10 +2,10 @@
   <div class="diagram-wrapper">
     <div class="vit-visual">
       <div class="patch-grid">
-        <div 
-          v-for="i in 16" 
-          :key="i" 
-          class="patch" 
+        <div
+          v-for="i in 16"
+          :key="i"
+          class="patch"
           :style="{ animationDelay: `${i * 0.1}s` }"
         ></div>
       </div>
@@ -50,14 +50,14 @@
 }
 
 @keyframes patchGlow {
-  0% { 
-    background: #333; 
-    border-color: #555; 
+  0% {
+    background: #333;
+    border-color: #555;
   }
-  100% { 
-    background: rgba(255, 128, 8, 0.6); 
-    border-color: #ff8008; 
-    box-shadow: 0 0 10px rgba(255, 128, 8, 0.4); 
+  100% {
+    background: rgba(255, 128, 8, 0.6);
+    border-color: #ff8008;
+    box-shadow: 0 0 10px rgba(255, 128, 8, 0.4);
   }
 }
 

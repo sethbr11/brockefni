@@ -154,9 +154,6 @@ export default defineComponent({
     // Rich SEO Meta Tags for Search Engines & Social Media Previewing
     useHead({
       title: 'AI & Deep Learning Projects | Seth Brock Portfolio',
-      htmlAttrs: {
-        lang: 'en'
-      },
       link: [
         { rel: 'canonical', href: 'https://brockefni.com/ai-projects' }
       ]

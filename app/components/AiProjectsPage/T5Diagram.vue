@@ -1,10 +1,10 @@
 <template>
   <div class="diagram-wrapper">
     <div class="t5-visual">
-      <div 
-        v-for="(pair, idx) in t5Examples" 
-        :key="idx" 
-        class="t5-pair" 
+      <div
+        v-for="(pair, idx) in t5Examples"
+        :key="idx"
+        class="t5-pair"
         :class="{ active: activeExample === idx }"
       >
         <div class="t5-bubble input-bubble">{{ pair.input }}</div>
@@ -14,12 +14,12 @@
         </div>
         <div class="t5-bubble output-bubble">{{ pair.output }}</div>
       </div>
-      
+
       <div class="t5-dots">
-        <button 
-          v-for="(_, idx) in t5Examples" 
-          :key="idx" 
-          class="t5-dot" 
+        <button
+          v-for="(_, idx) in t5Examples"
+          :key="idx"
+          class="t5-dot"
           :class="{ active: activeExample === idx }"
           @click="selectExample(idx)"
           aria-label="Select translation example"
@@ -35,16 +35,16 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const t5Examples = [
   {
     input: '"Love your enemies and do good to those who hate you."',
-    output: '"Love ye your enemies, and do good unto them which hate you."'
+    output: '"Love ye your enemies, and do good unto them which hate you."',
   },
   {
     input: '"He went to the store and bought bread."',
-    output: '"And he went unto the market, and purchased bread thereof."'
+    output: '"And he went unto the market, and purchased bread thereof."',
   },
   {
     input: '"Do not be afraid, for I am with you always."',
-    output: '"Fear not; for I am with thee alway, even unto the end."'
-  }
+    output: '"Fear not; for I am with thee alway, even unto the end."',
+  },
 ]
 
 const activeExample = ref(0)
@@ -128,7 +128,10 @@ onUnmounted(() => {
   text-align: center;
   max-width: 90%;
   line-height: 1.5;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  transition:
+    background 0.3s,
+    color 0.3s,
+    border-color 0.3s;
 }
 
 /* Light mode styles (default) */
@@ -191,13 +194,13 @@ onUnmounted(() => {
 }
 
 @keyframes expandPulse {
-  0% { 
-    transform: scale(1); 
-    opacity: 0.7; 
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
   }
-  100% { 
-    transform: scale(1.8); 
-    opacity: 0; 
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
   }
 }
 

@@ -103,7 +103,7 @@ export default defineComponent({
 .shared-project-section {
   padding: 6rem 2rem;
   background: var(--background-variant);
-  overflow: hidden;
+  overflow: visible;
   position: relative;
 }
 
@@ -166,6 +166,8 @@ export default defineComponent({
   transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
   width: 100%;
   min-width: 0;
+  position: relative;
+  z-index: 20;
 }
 
 .reverse-layout .visual-content {
