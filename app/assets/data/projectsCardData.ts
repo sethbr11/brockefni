@@ -176,18 +176,11 @@ const cardData: CardData[] = [
     actions: [defaultActions.github('https://github.com/sethbr11/brockefni')],
   },
   {
-    title: 'Translation Transformer',
+    title: 'AI & Deep Learning Projects',
     description:
-      'A transformer made in PyTorch to handle langauge translation. This project was for a BYU IS Masters-level class I took and was meant to be more educational than practical.',
-    badges: [b.python, b.pytorch],
-    link: createLink('https://github.com/sethbr11/PyTorch-Transformer'),
-    actions: [
-      defaultActions.github('https://github.com/sethbr11/PyTorch-Transformer'),
-      defaultActions.youtube(
-        'https://www.youtube.com/watch?v=ISNdQcPhsts',
-        'Tutorial'
-      ),
-    ],
+      'A collection of custom PyTorch models, fine-tuned transformers, and deep learning architectures built from the ground up, including Sequence-to-Sequence translation, Vision Transformers (ViT), T5 style transfer, and generative Diffusion models (U-Net).',
+    badges: [b.python, b.pytorch, b.huggingface, b.jupyter],
+    link: createLink('/ai-projects', 'Explore Showcase', false),
   },
   {
     title: 'CDK App',
@@ -238,56 +231,6 @@ const cardData: CardData[] = [
     badges: [b.swift, b.swiftui],
     link: createLink('https://github.com/sethbr11/UpSkrift'),
     actions: [defaultActions.github('https://github.com/sethbr11/UpSkrift')],
-  },
-  {
-    title: 'T5 Bible Styling',
-    description:
-      'A pre-trained Text-to-Text Transfer Transformer (T5) fine-tuned for the specific task of converting normal text into KJV-style English. This project was for a BYU IS Masters-level class I took and was meant to be more educational than practical.',
-    badges: [b.python, b.pytorch, b.huggingface, b.jupyter],
-    link: createLink('https://github.com/sethbr11/t5-bible-styling'),
-    actions: [
-      defaultActions.github('https://github.com/sethbr11/t5-bible-styling'),
-      createAction(
-        'Model',
-        '#FF9D00',
-        huggingfaceIcon,
-        'https://huggingface.co/docs/transformers/en/model_doc/t5'
-      ),
-    ],
-  },
-  {
-    title: 'Vision Transformer',
-    description:
-      'A project to learn building transformers for image classification. The model was improved from 10% (random) accuracy to over 80%. This was created for a BYU IS Masters-level class as an educational exercise.',
-    badges: [b.python, b.pytorch],
-    link: createLink('https://github.com/sethbr11/PyTorch-ImgClassification'),
-    actions: [
-      defaultActions.github(
-        'https://github.com/sethbr11/PyTorch-ImgClassification'
-      ),
-      createAction(
-        'Model',
-        '#434343ff',
-        pytorchIcon,
-        'https://docs.pytorch.org/vision/main/models/vision_transformer.html'
-      ),
-    ],
-  },
-  {
-    title: 'Diffusion Model',
-    description:
-      "An educational BYU IS project exploring diffusion models and Stable Diffusion. Includes a from‑scratch U‑Net and experiments with Hugging Face's UNet2DModel and VAE-based latent pipelines for text-to-image generation.",
-    badges: [b.python, b.pytorch, b.huggingface, b.jupyter],
-    link: createLink('https://github.com/sethbr11/DiffusionModel'),
-    actions: [
-      defaultActions.github('https://github.com/sethbr11/DiffusionModel'),
-      createAction(
-        'Model',
-        '#FF9D00',
-        huggingfaceIcon,
-        'https://huggingface.co/docs/diffusers/en/api/models/unet2d'
-      ),
-    ],
   },
 ]
 

@@ -150,9 +150,11 @@ useHead({
   --link-text-hover: #4f46e5;
 }
 
-body {
+body, html {
   margin: 0;
   padding: 0;
+  border: none !important;
+  outline: none !important;
 }
 
 .darkmode {
@@ -178,5 +180,7 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   min-height: 100vh;
+  border: none !important;
+  outline: none !important;
 }
 </style>
