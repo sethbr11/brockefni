@@ -3,9 +3,7 @@
     <div class="container">
       <h2 class="section-title">Featured Work</h2>
       <div class="portfolio-grid">
-        <a
-          href="https://chromewebstore.google.com/detail/lcr-tools/camjilfjkjmgcpmnheoeoomfndedpmbn"
-        >
+        <a href="/lcr">
           <div class="portfolio-item">
             <div class="portfolio-image">
               <img
@@ -41,18 +39,18 @@
             </div>
           </div>
         </a>
-        <a href="https://docsite.brockefni.com/">
+        <a href="/phishing-demo">
           <div class="portfolio-item">
             <div class="portfolio-image">
               <img
-                src="@/assets/images/docSiteThumbnail.png"
-                alt="DocSite"
+                src="@/assets/images/phishing_thumbnail.jpg"
+                alt="Phishing Demo"
                 class="portfolio-img"
               />
             </div>
             <div class="portfolio-overlay">
-              <h3>Docs Site Boilerplate</h3>
-              <p>Complete visual identity for tech startup</p>
+              <h3>Phishing Simulation</h3>
+              <p>An interactive, Python-based email phishing simulation environment for academic demonstrations</p>
             </div>
           </div>
         </a>
