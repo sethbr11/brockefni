@@ -19,6 +19,9 @@ import zshIcon from '@/assets/icons/zsh.png'
 import nodejsIcon from '@/assets/icons/nodejs.svg'
 import huggingfaceIcon from '@/assets/icons/huggingface.svg'
 import jupyternotebookIcon from '@/assets/icons/jupyter.png'
+import awsIcon from '@/assets/icons/aws.svg'
+import azureIcon from '@/assets/icons/azure.svg'
+import postgresqlIcon from '@/assets/icons/postgresql.svg'
 
 export interface Badge {
   name: string
@@ -132,5 +135,20 @@ export const b = {
     name: 'Jupyter Notebook',
     icon: jupyternotebookIcon,
     title: 'Jupyter Notebook',
+  },
+  aws: {
+    name: 'AWS',
+    icon: awsIcon,
+    title: 'AWS',
+  },
+  azure: {
+    name: 'Azure',
+    icon: azureIcon,
+    title: 'Azure',
+  },
+  postgresql: {
+    name: 'PostgreSQL',
+    icon: postgresqlIcon,
+    title: 'PostgreSQL',
   },
 }

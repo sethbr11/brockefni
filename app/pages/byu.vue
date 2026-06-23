@@ -172,7 +172,11 @@
                         class="project-link"
                         @click.stop
                       >
-                        <LinkIcon class="link-icon" /> View Product Page
+                        <LinkIcon class="link-icon" /> View
+                        {{
+                          proj.name === 'LCR Tools' ? 'Product' : 'Project'
+                        }}
+                        Page
                       </NuxtLink>
                       <a
                         v-else-if="proj.url"
@@ -376,31 +380,31 @@ export default defineComponent({
             name: 'AWS CDK Serverless App',
             description:
               'An automated serverless infrastructure deployment using the AWS Cloud Development Kit (CDK) to orchestrate API Gateway, Lambda, and DynamoDB.',
-            url: 'https://github.com/sethbr11/CdkExample',
+            url: '/cloud-infrastructure',
           },
           {
             name: 'Translation Transformer',
             description:
               'An AI sequence-to-sequence translator model built from the ground up using custom transformer architectures.',
-            url: 'https://github.com/sethbr11/PyTorch-Transformer',
+            url: '/ai-projects',
           },
           {
             name: 'T5 Bible Styling',
             description:
               'Fine-tuned Text-to-Text Transfer Transformer (T5) model to style texts into Biblical prose.',
-            url: 'https://github.com/sethbr11/t5-bible-styling',
+            url: '/ai-projects',
           },
           {
             name: 'Vision Transformer (ViT)',
             description:
               'An image classification model utilizing attention mechanisms and custom patch embedding layers.',
-            url: 'https://github.com/sethbr11/PyTorch-ImgClassification',
+            url: '/ai-projects',
           },
           {
             name: 'Diffusion Model',
             description:
               'Generative image network trained to synthesize images from noise inputs.',
-            url: 'https://github.com/sethbr11/DiffusionModel',
+            url: '/ai-projects',
           },
         ],
       },
@@ -422,7 +426,7 @@ export default defineComponent({
             name: 'Terraform AWS Fargate App',
             description:
               'An Infrastructure-as-Code deployment script using Terraform to provision containerized Fargate microservices.',
-            url: 'https://github.com/sethbr11/dotnet-serverless-example',
+            url: '/cloud-infrastructure',
           },
         ],
       },
@@ -436,9 +440,9 @@ export default defineComponent({
           'Explored core business communication methods, writing styles, and corporate presentations to maintain an accelerated graduation schedule.',
         projects: [
           {
-            name: 'Management Communication Article Portfolio',
+            name: 'A Startup Framework: Getting Started with Less Stress and More Efficiency',
             description:
-              'Authored business articles and presentation decks as part of corporate writing benchmarks.',
+              'A business strategy article written on managing stress and maximizing operational efficiency in early-stage software startups.',
             url: '/startup-article',
           },
         ],
@@ -456,6 +460,14 @@ export default defineComponent({
         ],
         description:
           'Deepened my application engineering skills with enterprise C# development and Scrum system design, and started applying data science skills to machine learning.',
+        projects: [
+          {
+            name: 'INTEX II: E-Commerce Store & Fraud Shield',
+            description:
+              'A complete C# ASP.NET MVC e-commerce platform integrated with a real-time ONNX machine learning fraud classifier and multi-factor security controls.',
+            url: '/intex#intex2',
+          },
+        ],
       },
       {
         term: 'Fall 2023',
@@ -473,6 +485,14 @@ export default defineComponent({
         ],
         description:
           'Returned from my 2-year volunteer mission and entered the intense IS Junior Core. It was a rigorous introduction to database systems, core business programming, cloud networking, and exploratory data analysis.',
+        projects: [
+          {
+            name: 'INTEX I: Social Media Mental Health Study',
+            description:
+              'A full-stack Node.js + PostgreSQL web survey and live Tableau dashboard analyzing the impacts of social media usage on mental health.',
+            url: '/intex#intex1',
+          },
+        ],
       },
       {
         term: 'Winter 2021',

@@ -129,6 +129,38 @@ const cardData: CardData[] = [
     ],
   },
   {
+    title: 'BYU INTEX I: Mental Health Study',
+    description:
+      'A full-stack Node.js Express survey web application deployed on AWS Elastic Beanstalk using PostgreSQL RDS (3NF normalized). Tracks citizen data origins (Provo vs. Plainsville) and features automated Certbot SSL triggers and embedded Tableau dashboards.',
+    badges: [b.nodejs, b.javascript, b.html, b.css, b.postgresql, b.aws],
+    link: createLink('/intex#intex1', 'Explore Project', false),
+    actions: [
+      defaultActions.github(
+        'https://github.com/prestonfitz/intex',
+        'Source Code'
+      ),
+    ],
+  },
+  {
+    title: 'BYU INTEX II: Lego E-Commerce & ML',
+    description:
+      'An enterprise C# ASP.NET Core MVC Lego storefront featuring collaborative filtering recommendations, Google Authenticator MFA, and real-time ONNX Gradient Boosting fraud checkpoints intercepting checkouts via soft flags.',
+    badges: [b.cs, b.python, b.jupyter, b.azure],
+    link: createLink('/intex#intex2', 'Explore Project', false),
+    actions: [
+      defaultActions.github(
+        'https://github.com/sethbr11/INTEXII',
+        'Source Code'
+      ),
+      createAction(
+        'Colab Notebook',
+        '#EDB50E',
+        colabIcon,
+        'https://colab.research.google.com/drive/1Fc9kKJJdrWyluxj0f64VFo47VpXozcip?usp=sharing'
+      ),
+    ],
+  },
+  {
     title: 'Diffusion Model',
     description:
       "An educational BYU IS project exploring diffusion models and Stable Diffusion. Includes a from‑scratch U‑Net and experiments with Hugging Face's UNet2DModel and VAE-based latent pipelines for text-to-image generation. Explore the generative model in the showcase!",

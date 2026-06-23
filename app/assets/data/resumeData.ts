@@ -237,6 +237,7 @@ export const education: Education[] = [
     bullets: [
       "Integrated Program (simultaneous completion of Bachelor's and Master's degrees).",
       'Web Development Emphasis, STEM-Certified Technical Program.',
+      'Completed intensive INTEX integration capstones and MISM year-long capstone.',
       'Leave of absence taken for voluntary LDS mission service (2021 - 2023).',
       'Brigham Young academic scholarship recipient (2020, 2023, 2024).',
       'Active Member — Association for Information Systems.',
