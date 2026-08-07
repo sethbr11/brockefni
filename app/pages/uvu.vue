@@ -259,19 +259,16 @@ export default defineComponent({
     const baSemesters = ref<Semester[]>([
       {
         term: 'Fall 2026',
-        focus: 'Literary History & Positionality',
+        focus: 'Literary History & Academic Writing',
         status: 'Upcoming',
         courses: [
           { code: 'ENGL 2600', name: 'Critical Introduction to Literature' },
-          { code: 'ENGL 2700G', name: 'Positionality and Methods' },
-          {
-            code: 'ENGL 2850',
-            name: 'Literary History 1 (British Isles to approx 1700)',
-          },
-          { code: 'ENGL 3760G', name: 'World Literature' },
+          { code: 'ENGL 2850', name: 'Literary History I' },
+          { code: 'ENGL 2870', name: 'Literary History II' },
+          { code: 'ENGL 3090', name: 'Academic Writing for English Majors' },
         ],
         description:
-          'Focusing on core literary studies, researching narrative methods and positionality, and covering British Isles literary history up to 1700 alongside world literature survey modules.',
+          'Focusing on core literary studies, developing academic writing skills tailored for English majors, and comprehensively exploring literary history through both sequential Literary History courses.',
       },
       {
         term: 'Summer 2026',
