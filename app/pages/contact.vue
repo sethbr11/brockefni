@@ -4,31 +4,33 @@
       <div class="container">
         <h1 class="page-title">Let's Work Together</h1>
         <p class="page-subtitle">
-          Have a project in mind? I'd love to discuss how we can bring your
-          vision to life.
+          I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Reach out through any of the channels below.
         </p>
       </div>
     </section>
+
     <section class="contact-content">
       <div class="container">
-        <div class="message-section" v-if="status">
-          <p
-            class="message"
-            :class="{
-              'message-success': status === 'success',
-              'message-error': status === 'error',
-            }"
-          >
-            {{ status === 'success' ? successMessage : errorMessage }}
-          </p>
-        </div>
-        <div class="contact-grid">
-          <div class="contact-info-section">
-            <ContactInfo />
-          </div>
-          <div class="contact-form-section">
-            <ContactForm />
-          </div>
+        <div class="cards-grid">
+          <!-- Email Card -->
+          <a href="mailto:seth@brockefni.com" class="contact-card glass-panel email-card">
+            <div class="card-icon-wrapper">
+              <MailIcon class="icon" />
+            </div>
+            <h2 class="card-title">Email Me</h2>
+            <p class="card-desc">Reach out directly to my inbox. I typically respond within 24 hours.</p>
+            <span class="card-link">seth@brockefni.com &rarr;</span>
+          </a>
+
+          <!-- LinkedIn Card -->
+          <a href="https://www.linkedin.com/in/sethbrock11/" target="_blank" rel="noopener" class="contact-card glass-panel linkedin-card">
+            <div class="card-icon-wrapper">
+              <LinkedinIcon class="icon" />
+            </div>
+            <h2 class="card-title">Connect on LinkedIn</h2>
+            <p class="card-desc">Check out my professional background and send me a direct message.</p>
+            <span class="card-link">linkedin.com/in/sethbrock11 &rarr;</span>
+          </a>
         </div>
       </div>
     </section>
@@ -37,34 +39,22 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useRoute } from 'vue-router'
-
-import ContactForm from '@/components/ContactPage/ContactForm.vue'
-import ContactInfo from '@/components/ContactPage/ContactInfo.vue'
 import { useHead } from '#app'
+import { MailIcon, LinkedinIcon } from 'lucide-vue-next'
 
 export default defineComponent({
   name: 'ContactPage',
   components: {
-    ContactForm,
-    ContactInfo,
+    MailIcon,
+    LinkedinIcon,
   },
   setup() {
-    const route = useRoute()
-    const status = route.query.status
-
-    const successMessage =
-      'Your message has been sent successfully. I will get back to you within 24 hours.'
-    const errorMessage =
-      'Something went wrong. Please try again or email me directly.'
-
     useHead({
       title: 'Contact',
       meta: [
         {
           name: 'description',
-          content:
-            'Get in touch with Seth Brock for web development, design, and consulting services. Available for new projects.',
+          content: 'Get in touch with Seth Brock for web development, design, and consulting services. Available for new projects.',
         },
         {
           name: 'author',
@@ -72,21 +62,10 @@ export default defineComponent({
         },
         {
           name: 'keywords',
-          content:
-            'Contact Seth Brock, web development, design, consulting, freelance projects',
-        },
-        {
-          name: 'viewport',
-          content: 'width=device-width, initial-scale=1.0',
-        },
+          content: 'Contact Seth Brock, web development, design, consulting, freelance projects',
+        }
       ],
     })
-
-    return {
-      status,
-      successMessage,
-      errorMessage,
-    }
   },
 })
 </script>
@@ -95,6 +74,7 @@ export default defineComponent({
 .contact-page {
   min-height: 100vh;
   background: var(--background-color);
+  padding-bottom: 4rem;
 }
 
 .contact-hero {
@@ -103,12 +83,12 @@ export default defineComponent({
     var(--background-color) 0%,
     var(--background-variant) 100%
   );
-  padding: 2rem 0 4rem;
+  padding: 4rem 0 3rem;
   text-align: center;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -132,64 +112,164 @@ export default defineComponent({
 }
 
 .contact-content {
-  padding: 2rem 0 6rem;
+  padding: 3rem 0;
 }
 
-.contact-grid {
+.cards-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: start;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  align-items: stretch;
 }
 
-.contact-info-section {
-  order: 1;
+.glass-panel {
+  background: var(--background-variant);
+  border: 1px solid var(--outline-color);
+  border-radius: 16px;
+  box-shadow: 0 8px 30px var(--shadow);
 }
 
-.contact-form-section {
-  order: 2;
-}
-
-.message-section {
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 2rem;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
   text-align: center;
+  align-items: center;
 }
 
-.message {
-  padding: 1rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
+.contact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
 }
 
-.message-success {
-  background-color: #d4edda;
-  color: #155724;
+.contact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary-color);
 }
 
-.message-error {
-  background-color: #f8d7da;
-  color: #721c24;
+.contact-card:hover::before {
+  opacity: 1;
+}
+
+.card-icon-wrapper {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.75rem;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.email-card .card-icon-wrapper {
+  background: rgba(216, 118, 40, 0.15);
+  color: #d87628;
+}
+
+.email-card:hover .card-icon-wrapper {
+  background: #d87628;
+  color: #ffffff;
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.linkedin-card .card-icon-wrapper {
+  background: rgba(10, 102, 194, 0.15);
+  color: #0a66c2;
+}
+
+.linkedin-card:hover .card-icon-wrapper {
+  background: #0a66c2;
+  color: #ffffff;
+  transform: scale(1.1) rotate(5deg);
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+}
+
+.card-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  z-index: 1;
+}
+
+.card-desc {
+  font-size: 1.05rem;
+  color: var(--text-color-muted);
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+  z-index: 1;
+}
+
+.card-link {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 1;
+  transition: gap 0.2s ease;
+}
+
+.email-card:hover .card-link {
+  color: #d87628;
+  gap: 0.75rem;
+}
+
+.linkedin-card:hover .card-link {
+  color: #0a66c2;
+  gap: 0.75rem;
+}
+
+.darkmode .email-card .card-icon-wrapper {
+  background: rgba(216, 118, 40, 0.2);
+}
+
+.darkmode .linkedin-card .card-icon-wrapper {
+  background: rgba(10, 102, 194, 0.2);
+  color: #3b82f6;
+}
+
+.darkmode .linkedin-card:hover .card-icon-wrapper {
+  color: #ffffff;
+}
+
+.darkmode .linkedin-card:hover .card-link {
+  color: #3b82f6;
 }
 
 @media (max-width: 768px) {
   .contact-hero {
-    padding: 4rem 0 2rem;
+    padding: 3rem 0 2rem;
   }
-
-  .contact-content {
-    padding: 2rem 0 4rem;
-  }
-
-  .contact-grid {
+  
+  .cards-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
   }
-
-  .contact-info-section {
-    order: 2;
-  }
-
-  .contact-form-section {
-    order: 1;
+  
+  .contact-card {
+    padding: 2rem 1.5rem;
   }
 }
 </style>
