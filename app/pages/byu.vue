@@ -443,7 +443,7 @@ export default defineComponent({
             name: 'A Startup Framework: Getting Started with Less Stress and More Efficiency',
             description:
               'A business strategy article written on managing stress and maximizing operational efficiency in early-stage software startups.',
-            url: '/startup-article',
+            url: 'https://pub-ec1ffa573fea49e58c444331188ff39c.r2.dev/startup-framework-article.pdf',
           },
         ],
       },

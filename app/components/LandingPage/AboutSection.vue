@@ -13,25 +13,20 @@
         <div class="about-text">
           <h2 class="section-title">About Me</h2>
           <p>
-            I'm a developer and designer who brings ideas to life through clean
-            code and thoughtful design. With a strong foundation in modern web
-            technologies, I build digital experiences that are both visually
-            appealing and high-performing. While my focus is on web development
-            and DevOps, I'm always eager to solve problems across any digital
-            medium you need.
+            I'm a DevOps engineer and software developer dedicated to building reliable, high-performance digital tools and cloud infrastructure. With a background in Information Systems (BYU MISM) and ongoing studies in English Literature (UVU BA), I bring together technical precision with clear communication, deep analytical reading, and creative problem solving.
           </p>
           <div class="stats">
             <div class="stat">
+              <span class="stat-number">400+</span>
+              <span class="stat-label">Repos &amp; Systems</span>
+            </div>
+            <div class="stat">
               <span class="stat-number">20+</span>
-              <span class="stat-label">Tools & Frameworks</span>
+              <span class="stat-label">Tools &amp; Languages</span>
             </div>
             <div class="stat">
-              <span class="stat-number">10+</span>
-              <span class="stat-label">AI/Data Tools</span>
-            </div>
-            <div class="stat">
-              <span class="stat-number">100%</span>
-              <span class="stat-label">Client Satisfaction</span>
+              <span class="stat-number">BA/MISM</span>
+              <span class="stat-label">Degrees &amp; Studies</span>
             </div>
           </div>
         </div>

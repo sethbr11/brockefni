@@ -4,34 +4,31 @@
       <h2 class="section-title">What I Do</h2>
       <div class="services-grid">
         <div class="service-card">
-          <div class="service-icon">🧮</div>
-          <h3>Data Analytics & AI</h3>
+          <div class="service-icon">⚙️</div>
+          <h3>DevOps &amp; Cloud</h3>
           <p>
-            Leveraging analytics and AI to extract insights, automate tasks, and
-            drive decisions
+            Architecting resilient cloud infrastructure, CI/CD automation, and developer observability tooling
           </p>
         </div>
         <div class="service-card">
           <div class="service-icon">🌐</div>
           <h3>Web Development</h3>
           <p>
-            Building responsive, performant websites using cutting-edge
-            technologies
+            Building high-performance full-stack web applications and custom browser extensions
           </p>
         </div>
         <div class="service-card">
           <div class="service-icon">🖥️</div>
-          <h3>Desktop Apps</h3>
+          <h3>Desktop &amp; SDKs</h3>
           <p>
-            Developing cross-platform or platform-specific desktop apps with
-            native performance
+            Developing cross-platform desktop applications, open-source SDKs, and CLI utilities
           </p>
         </div>
         <div class="service-card">
-          <div class="service-icon">🚀</div>
-          <h3>Freelance Work</h3>
+          <div class="service-icon">📚</div>
+          <h3>Humanities &amp; Writing</h3>
           <p>
-            Available for custom projects and consulting on digital solutions
+            Exploring English literature, creative writing, essays, and maintaining a digital reading garden
           </p>
         </div>
       </div>

@@ -122,6 +122,42 @@
                 <div class="detail-column desc-col">
                   <h4><SparklesIcon class="sub-icon" /> Semester Focus</h4>
                   <p class="description">{{ sem.description }}</p>
+
+                  <!-- Featured Works / Projects if applicable -->
+                  <div
+                    class="semester-projects-container"
+                    v-if="sem.projects && sem.projects.length"
+                  >
+                    <h5 class="projects-section-header">Featured Works &amp; Assignments</h5>
+                    <div
+                      class="semester-project"
+                      v-for="(proj, pIdx) in sem.projects"
+                      :key="pIdx"
+                    >
+                      <h6 class="project-title">
+                        <PenToolIcon class="proj-icon" />
+                        {{ proj.name }}
+                      </h6>
+                      <p class="project-desc">{{ proj.description }}</p>
+                      <NuxtLink
+                        v-if="proj.url && proj.url.startsWith('/')"
+                        :to="proj.url"
+                        class="project-link"
+                        @click.stop
+                      >
+                        <LinkIcon class="link-icon" /> Read Story
+                      </NuxtLink>
+                      <a
+                        v-else-if="proj.url"
+                        :href="proj.url"
+                        target="_blank"
+                        class="project-link"
+                        @click.stop
+                      >
+                        <ExternalLinkIcon class="link-icon" /> View Document
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -211,6 +247,9 @@ import {
   BookMarkedIcon,
   SparklesIcon,
   GraduationCapIcon,
+  PenToolIcon,
+  LinkIcon,
+  ExternalLinkIcon,
 } from 'lucide-vue-next'
 
 import { defineComponent, ref } from 'vue'
@@ -221,12 +260,19 @@ interface Course {
   name: string
 }
 
+interface Project {
+  name: string
+  description: string
+  url?: string
+}
+
 interface Semester {
   term: string
   focus: string
   status?: string
   courses: Course[]
   description: string
+  projects?: Project[]
 }
 
 export default defineComponent({
@@ -240,6 +286,9 @@ export default defineComponent({
     BookMarkedIcon,
     SparklesIcon,
     GraduationCapIcon,
+    PenToolIcon,
+    LinkIcon,
+    ExternalLinkIcon,
   },
   name: 'UvuExperiencePage',
   setup() {
@@ -273,10 +322,20 @@ export default defineComponent({
       {
         term: 'Summer 2026',
         focus: 'Introduction to the English Major',
-        status: 'Starting Jun 2026',
-        courses: [{ code: 'ENGL 2800', name: 'Intro to the English Major' }],
+        status: 'Completed / Active',
+        courses: [
+          { code: 'ENGL 2800', name: 'Intro to the English Major' },
+        ],
         description:
-          'Beginning my coursework in the Bachelor of Arts program, focusing exclusively on the foundational concepts, research methodologies, and career paths within the English discipline.',
+          'Beginning coursework in the Bachelor of Arts program, focusing on foundational concepts, research methodologies, and career paths within the English discipline.',
+        projects: [
+          {
+            name: "I'll Shave Tomorrow",
+            description:
+              'A reflective short story written for the Creative Writing assignment in ENGL 2800 exploring post-surgery recovery, physical limitation, routine, and procrastination.',
+            url: '/humanities/writing/ill-shave-tomorrow',
+          },
+        ],
       },
     ])
 
@@ -795,7 +854,85 @@ export default defineComponent({
   font-size: 1rem;
   line-height: 1.6;
   color: var(--text-color-muted);
-  margin: 0;
+  margin: 0 0 1.25rem 0;
+}
+
+.semester-projects-container {
+  border-top: 1px dashed var(--outline-color);
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.projects-section-header {
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-color-muted);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.semester-project {
+  background: var(--background-lighter-variant);
+  border: 1px solid var(--outline-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.semester-project:last-child {
+  margin-bottom: 0;
+}
+
+.project-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin: 0 0 0.4rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-color);
+}
+
+.proj-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--school-primary);
+}
+
+.darkmode .proj-icon {
+  color: #4fb992;
+}
+
+.project-desc {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--text-color-muted);
+  margin: 0 0 0.75rem 0;
+}
+
+.project-link {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--school-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.darkmode .project-link {
+  color: #4fb992;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
+.link-icon {
+  width: 14px;
+  height: 14px;
 }
 
 /* Animations */

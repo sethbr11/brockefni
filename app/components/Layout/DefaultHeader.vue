@@ -23,10 +23,10 @@
 
     <nav :class="{ 'mobile-open': isMobileMenuOpen }">
       <ul>
-        <li><a href="/projects" @click="closeMobileMenu">Projects</a></li>
-        <li><a href="/resume" @click="closeMobileMenu">Resume</a></li>
-
-        <li><a href="/contact" @click="closeMobileMenu">Contact</a></li>
+        <li><NuxtLink to="/projects" @click="closeMobileMenu">Projects</NuxtLink></li>
+        <li><NuxtLink to="/humanities" @click="closeMobileMenu">Humanities</NuxtLink></li>
+        <li><NuxtLink to="/resume" @click="closeMobileMenu">Resume</NuxtLink></li>
+        <li><NuxtLink to="/contact" @click="closeMobileMenu">Contact</NuxtLink></li>
       </ul>
     </nav>
     <DarkModeSwitch class="dark-mode-switch" />
@@ -79,6 +79,11 @@ nav ul li a {
   text-decoration: none;
   color: var(--text-color);
   font-weight: bold;
+  transition: color 0.2s ease;
+}
+nav ul li a:hover,
+nav ul li a.router-link-active {
+  color: var(--primary-color);
 }
 header {
   display: flex;

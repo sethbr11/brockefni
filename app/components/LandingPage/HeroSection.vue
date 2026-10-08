@@ -12,27 +12,26 @@
 
       <div class="hero-text">
         <h1 class="hero-title">
-          <span class="word word-1">CREATIVE</span>
-          <span class="word word-2">DEVELOPER</span>
-          <span class="word word-3">& DESIGNER</span>
+          <span class="word word-1">SOFTWARE</span>
+          <span class="word word-2">ENGINEER</span>
+          <span class="word word-3">&amp; DEVOPS</span>
         </h1>
         <p class="hero-subtitle">
-          Crafting exceptional digital experiences through innovative code and
-          compelling design
+          Building resilient systems and developer tools — with a passion for English literature, writing, and creative arts
         </p>
         <div class="hero-buttons">
-          <button
+          <NuxtLink
+            to="/projects"
             class="btn btn-primary"
-            @click="$emit('scroll-to-section', 'portfolio')"
           >
-            View My Work
-          </button>
-          <button
+            View Projects
+          </NuxtLink>
+          <NuxtLink
+            to="/humanities"
             class="btn btn-secondary"
-            @click="$emit('scroll-to-section', 'contact')"
           >
-            Let's Connect
-          </button>
+            Humanities &amp; Books
+          </NuxtLink>
         </div>
       </div>
     </div>
