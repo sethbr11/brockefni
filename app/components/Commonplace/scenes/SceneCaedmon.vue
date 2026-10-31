@@ -133,7 +133,9 @@ function build({
   tl.to(p('aura'), { rotation: 90, duration: 3, ease: 'none' }, 0.75)
   turn(p('visitor', 'arm-r'), 1.1, -110, 0.3, 'back.out(1.8)')
 
-  // he wakes
+  // he wakes: eyes open as he rises
+  tl.to(p('caedmon', 'eyes-closed'), { opacity: 0, duration: 0.1 }, 1.3)
+  tl.to(p('caedmon', 'eyes-open'), { opacity: 1, duration: 0.1 }, 1.3)
   tl.to(
     p('caedmon', 'pose'),
     { rotation: 0, y: 0, duration: 0.5, ease: 'back.out(1.4)' },

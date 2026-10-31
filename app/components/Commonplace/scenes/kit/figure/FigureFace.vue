@@ -1,14 +1,20 @@
 <template>
   <g :transform="`translate(${look * 10} -60)`">
     <g data-part="eyes" data-pivot>
+      <!-- closed eyes keep a hidden open pair, so a scene can wake the figure (crossfade the two) -->
       <template v-if="eyes === 'closed'">
         <path
+          data-part="eyes-closed"
           d="M -30 2 Q -20 8 -10 2 M 10 2 Q 20 8 30 2"
           fill="none"
           :stroke="eyeColor"
           stroke-width="5"
           stroke-linecap="round"
         />
+        <g data-part="eyes-open" style="opacity: 0">
+          <circle cx="-20" cy="0" r="7.5" :fill="eyeColor" />
+          <circle cx="20" cy="0" r="7.5" :fill="eyeColor" />
+        </g>
       </template>
       <template v-else>
         <circle cx="-20" cy="0" r="7.5" :fill="eyeColor" />
