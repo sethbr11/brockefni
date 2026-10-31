@@ -207,267 +207,48 @@
               />
             </g>
 
-            <!-- face -->
-            <g :transform="`translate(${look * 10} -60)`">
-              <g data-part="eyes" data-pivot>
-                <template v-if="eyes === 'closed'">
-                  <path
-                    d="M -30 2 Q -20 8 -10 2 M 10 2 Q 20 8 30 2"
-                    fill="none"
-                    :stroke="eyeColor"
-                    stroke-width="5"
-                    stroke-linecap="round"
-                  />
-                </template>
-                <template v-else>
-                  <circle cx="-20" cy="0" r="7.5" :fill="eyeColor" />
-                  <circle cx="20" cy="0" r="7.5" :fill="eyeColor" />
-                </template>
-              </g>
-              <!-- expression layer(s): `face` shows `mood`; `face-alt` (only when moodTo is set) starts hidden --
-                 a timeline crossfades the two (opacity) to change expression mid-scene -->
-              <template v-if="!silhouette">
-                <g
-                  v-for="f in faces"
-                  :key="f.part"
-                  :data-part="f.part"
-                  :style="f.hidden ? 'opacity:0' : undefined"
-                  fill="none"
-                  :stroke="c('ink')"
-                  stroke-width="5"
-                  stroke-linecap="round"
-                >
-                  <path
-                    v-if="f.mood === 'stern'"
-                    d="M -34 -22 L -10 -14 M 34 -22 L 10 -14"
-                  />
-                  <path
-                    v-if="f.mood === 'alarmed'"
-                    d="M -32 -22 Q -20 -32 -8 -24 M 32 -22 Q 20 -32 8 -24"
-                  />
-                  <path
-                    v-if="f.mood === 'sad'"
-                    d="M -32 -16 L -10 -24 M 32 -16 L 10 -24"
-                  />
-                  <path
-                    v-if="f.mood === 'happy' && !beard"
-                    d="M -14 24 Q 0 36 14 24"
-                  />
-                  <path
-                    v-if="f.mood === 'happy' && beard"
-                    d="M -12 34 Q 0 42 12 34"
-                    :stroke="c('highlight')"
-                  />
-                  <ellipse
-                    v-if="f.mood === 'alarmed'"
-                    cx="0"
-                    cy="30"
-                    rx="7"
-                    ry="9"
-                    :fill="c('ink')"
-                    stroke="none"
-                  />
-                  <path v-if="f.mood === 'sad'" d="M -12 32 Q 0 24 12 32" />
-                </g>
-              </template>
-            </g>
-
-            <!-- headwear -->
-            <g v-if="hat === 'crown'">
-              <path
-                d="M -46 -110 L -50 -158 L -26 -132 L 0 -168 L 26 -132 L 50 -158 L 46 -110 Z"
-                :fill="col(hatColor ?? 'gold')"
-              />
-              <rect
-                x="-48"
-                y="-118"
-                width="96"
-                height="14"
-                rx="3"
-                :fill="col(hatColor ?? 'gold')"
-              />
-              <path
-                d="M -48 -110 L 48 -110 L 48 -104 L -48 -104 Z"
-                :fill="col('ink')"
-                opacity="0.15"
-              />
-              <circle cx="0" cy="-122" r="7" :fill="col('red')" />
-              <circle
-                cx="-50"
-                cy="-160"
-                r="5"
-                :fill="col(hatColor ?? 'gold')"
-              />
-              <circle cx="50" cy="-160" r="5" :fill="col(hatColor ?? 'gold')" />
-              <circle cx="0" cy="-170" r="6" :fill="col(hatColor ?? 'gold')" />
-            </g>
-            <g v-if="hat === 'helmet'">
-              <path
-                d="M -66 -64 C -68 -128 -36 -140 0 -140 C 36 -140 68 -128 66 -64 Z"
-                :fill="col(hatColor ?? 'metal')"
-              />
-              <path
-                d="M 18 -138 C 50 -132 68 -112 66 -64 L 40 -64 C 44 -100 36 -124 18 -138 Z"
-                :fill="col('ink')"
-                opacity="0.12"
-              />
-              <rect
-                x="-5"
-                y="-140"
-                width="10"
-                height="76"
-                :fill="col('gold')"
-              />
-              <rect
-                x="-68"
-                y="-82"
-                width="136"
-                height="16"
-                rx="4"
-                :fill="col(hatColor ? hatColor : 'metal-2')"
-              />
-              <path
-                d="M -42 -82 Q -24 -96 -6 -82 M 42 -82 Q 24 -96 6 -82"
-                fill="none"
-                :stroke="col('gold')"
-                stroke-width="5"
-                stroke-linecap="round"
-              />
-              <rect
-                x="-6"
-                y="-80"
-                width="12"
-                height="44"
-                rx="4"
-                :fill="col('metal-2')"
-              />
-              <path
-                d="M -68 -70 L -50 -70 L -48 -22 Q -60 -24 -68 -34 Z M 68 -70 L 50 -70 L 48 -22 Q 60 -24 68 -34 Z"
-                :fill="col(hatColor ?? 'metal')"
-              />
-            </g>
-            <path
-              v-if="hat === 'hood'"
-              d="M -72 -46 C -76 -130 -38 -146 0 -146 C 38 -146 76 -130 72 -46 L 58 -54 C 58 -110 30 -124 0 -124 C -30 -124 -58 -110 -58 -54 Z"
-              :fill="col(hatColor ?? 'cloth-d')"
+            <FigureFace
+              :mood="mood"
+              :mood-to="moodTo"
+              :eyes="eyes"
+              :look="look"
+              :beard="beard"
+              :silhouette="silhouette"
             />
-            <g v-if="hat === 'hat'">
-              <path
-                d="M -42 -112 L -36 -196 Q -36 -204 -28 -204 L 28 -204 Q 36 -204 36 -196 L 42 -112 Z"
-                :fill="col(hatColor ?? 'ink')"
-              />
-              <rect
-                x="-42"
-                y="-136"
-                width="84"
-                height="16"
-                :fill="col('gold')"
-                opacity="0.9"
-              />
-              <ellipse
-                cx="0"
-                cy="-112"
-                rx="88"
-                ry="15"
-                :fill="col(hatColor ?? 'ink')"
-              />
-            </g>
-            <g v-if="hat === 'cap'">
-              <ellipse
-                cx="12"
-                cy="-118"
-                rx="74"
-                ry="28"
-                :fill="col(hatColor ?? 'cloth-a')"
-              />
-              <path
-                d="M -56 -104 Q 12 -88 82 -104 L 80 -96 Q 12 -80 -54 -96 Z"
-                :fill="col('ink')"
-                opacity="0.18"
-              />
-              <circle
-                cx="40"
-                cy="-144"
-                r="8"
-                :fill="col(hatColor ?? 'cloth-a')"
-              />
-            </g>
+
+            <FigureHeadwear
+              :hat="hat"
+              :hat-color="hatColor"
+              :silhouette="silhouette"
+            />
           </g>
         </g>
 
         <!-- arms -->
-        <g v-if="arms" transform="translate(-56 -190)">
-          <g
-            data-part="arm-l"
-            data-pivot
-            :transform="armL ? `rotate(${armL})` : undefined"
-          >
-            <rect
-              x="-16"
-              y="-14"
-              width="32"
-              height="104"
-              rx="16"
-              :fill="col(sleeve ?? robe)"
-            />
-            <rect
-              x="-16"
-              y="-14"
-              width="32"
-              height="104"
-              rx="16"
-              :fill="col('ink')"
-              opacity="0.1"
-            />
-            <rect
-              v-if="ornament"
-              x="-16"
-              y="66"
-              width="32"
-              height="8"
-              :fill="col(ornament)"
-            />
-            <g transform="translate(0 100)"><slot name="hand-l" /></g>
-            <circle cx="0" cy="100" r="16" :fill="col(skin)" />
-            <g transform="translate(0 100)"><slot name="held-l" /></g>
-          </g>
-        </g>
-        <g v-if="arms" transform="translate(56 -190)">
-          <g
-            data-part="arm-r"
-            data-pivot
-            :transform="armR ? `rotate(${armR})` : undefined"
-          >
-            <rect
-              x="-16"
-              y="-14"
-              width="32"
-              height="104"
-              rx="16"
-              :fill="col(sleeve ?? robe)"
-            />
-            <rect
-              x="-16"
-              y="-14"
-              width="32"
-              height="104"
-              rx="16"
-              :fill="col('ink')"
-              opacity="0.18"
-            />
-            <rect
-              v-if="ornament"
-              x="-16"
-              y="66"
-              width="32"
-              height="8"
-              :fill="col(ornament)"
-            />
-            <g transform="translate(0 100)"><slot name="hand-r" /></g>
-            <circle cx="0" cy="100" r="16" :fill="col(skin)" />
-            <g transform="translate(0 100)"><slot name="held-r" /></g>
-          </g>
-        </g>
+        <FigureArm
+          v-if="arms"
+          side="l"
+          :angle="armL"
+          :sleeve="sleeve ?? robe"
+          :skin="skin"
+          :ornament="ornament"
+          :silhouette="silhouette"
+        >
+          <template #hand><slot name="hand-l" /></template>
+          <template #held><slot name="held-l" /></template>
+        </FigureArm>
+        <FigureArm
+          v-if="arms"
+          side="r"
+          :angle="armR"
+          :sleeve="sleeve ?? robe"
+          :skin="skin"
+          :ornament="ornament"
+          :silhouette="silhouette"
+        >
+          <template #hand><slot name="hand-r" /></template>
+          <template #held><slot name="held-r" /></template>
+        </FigureArm>
       </g>
     </g>
   </KitPlace>
@@ -476,10 +257,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import KitPlace from './KitPlace.vue'
-import { c, place, type Placement } from './util'
-
-type Mood = 'neutral' | 'happy' | 'stern' | 'alarmed' | 'sad'
-type Hat = 'none' | 'crown' | 'helmet' | 'hood' | 'wimple' | 'hat' | 'cap'
+import FigureArm from './figure/FigureArm.vue'
+import FigureFace, { type Mood } from './figure/FigureFace.vue'
+import FigureHeadwear, { type Hat } from './figure/FigureHeadwear.vue'
+import { useCol } from './figure/useCol'
+import { place, type Placement } from './util'
 
 const props = withDefaults(
   defineProps<
@@ -562,16 +344,7 @@ const props = withDefaults(
   }
 )
 
-const col = (role: string) => (props.silhouette ? c('ink') : c(role))
-const faces = computed(() => [
-  { part: 'face', mood: props.mood, hidden: false },
-  ...[props.moodTo ?? []].flat().map((mood, i) => ({
-    part: i ? `face-alt-${i + 1}` : 'face-alt',
-    mood,
-    hidden: true,
-  })),
-])
-const eyeColor = computed(() => (props.silhouette ? c('glow') : c('ink')))
+const col = useCol(props)
 
 const bodyPath = computed(() =>
   props.body === 'tunic'

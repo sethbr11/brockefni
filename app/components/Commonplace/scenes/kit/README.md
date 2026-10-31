@@ -47,6 +47,8 @@ All import from `./kit`: `import { SceneStage, Backdrop, Figure, Sword, c, type 
 
 ### `Backdrop` — full-stage background, put it first
 
+(`Backdrop.vue` only dispatches; each variant lives in `backdrops/` — `MeadHall`, `CastleHall`, `Chapel`, `Study`, `Parchment`, and `Outdoor` for hills / night-sky / sea / forest / garden.)
+
 `variant`: `mead-hall` · `castle-hall` · `night-sky` · `hills` · `sea` · `forest` · `chapel` · `study` · `garden` · `parchment`.
 **`time`**: `'auto'` (default) · `'day'` · `'night'` — which sky the backdrop (and the windows / doorway / chapel glass in it) shows.
 `'auto'` draws **both** a sunny day and a moonlit night version and CSS shows one: day in light mode, night under
@@ -68,6 +70,8 @@ Pure CSS, no JS: `scene-tokens.css` hides `.cp-night` in light mode and `.cp-day
 - Pin the hour when the story needs it (`time="night"` for Beowulf, Dream of the Rood, Cædmon…), otherwise leave `auto`.
 
 ### `Figure` — a person (~320 tall at scale 1, anchor between the feet)
+
+(Headwear, face and arms are split out into `figure/`: `FigureHeadwear`, `FigureFace`, `FigureArm`.)
 
 - `body`: `robe` | `tunic` (shows `legs`). Colors: `skin` `skin2` (neck; set it when recolouring skin) `robe` `sleeve` `trim` `legs` `hairColor` `beardColor` `hatColor` `wingColor` `ornament` (gold-work down the front + cuffs).
 - `hair`: `short` | `long` | `bald` · `beard`: `true` | `'long'` · `hat`: `none` `crown` `helmet` `hood` `wimple` `hat` `cap`
