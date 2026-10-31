@@ -20,6 +20,24 @@ export const sceneRegistry: Record<string, () => Promise<Component>> = {
   'nuns-priests-tale': () =>
     import('./SceneNunsPriest.vue').then((m) => m.default),
   'julian-of-norwich': () => import('./SceneJulian.vue').then((m) => m.default),
+  // Early Modern & Restoration
+  'elizabethan-sonnet': () =>
+    import('./SceneElizabethanSonnet.vue').then((m) => m.default),
+  'shakespeare-sonnets': () =>
+    import('./SceneShakespeareSonnets.vue').then((m) => m.default),
+  'faerie-queene': () =>
+    import('./SceneFaerieQueene.vue').then((m) => m.default),
+  'doctor-faustus': () =>
+    import('./SceneDoctorFaustus.vue').then((m) => m.default),
+  'john-donne': () => import('./SceneDonne.vue').then((m) => m.default),
+  'easter-wings': () => import('./SceneEasterWings.vue').then((m) => m.default),
+  'the-altar': () => import('./SceneTheAltar.vue').then((m) => m.default),
+  'eves-apology': () => import('./SceneEvesApology.vue').then((m) => m.default),
+  'blazing-world': () =>
+    import('./SceneBlazingWorld.vue').then((m) => m.default),
+  'paradise-lost': () =>
+    import('./SceneParadiseLost.vue').then((m) => m.default),
+  oroonoko: () => import('./SceneOroonoko.vue').then((m) => m.default),
 }
 
 export const loadFallbackScene = (): Promise<Component> =>
