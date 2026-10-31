@@ -1,0 +1,10 @@
+/* Section label shared by the reader page body and its apparatus column. */
+.cp-root .cp-label {
+  margin: 0 0 0.55rem;
+  font-family: var(--cp-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.12em;
+  color: var(--cp-period);
+}

@@ -5,53 +5,13 @@
   >
     <div class="cp-reader__stage">
       <div class="cp-reader__grid">
-        <!-- Apparatus -->
-        <aside class="cp-app" aria-label="About this work">
-          <p class="cp-app__pos">
-            No. {{ position.index + 1 }} of {{ position.total }} ·
-            {{ sourceLabel }}
-          </p>
-          <h1 class="cp-app__title">{{ entry.title }}</h1>
-          <p class="cp-app__author">{{ entry.author }}</p>
-
-          <dl v-if="facts.length" class="cp-app__facts">
-            <template v-for="f in facts" :key="f.label">
-              <dt>{{ f.label }}</dt>
-              <dd>
-                <span
-                  v-if="f.label === 'Period'"
-                  class="cp-app__swatch"
-                  aria-hidden="true"
-                />{{ f.value }}
-              </dd>
-            </template>
-          </dl>
-
-          <div v-if="tagChips.length" class="cp-app__group">
-            <h2 class="cp-label">Themes</h2>
-            <ul class="cp-chips">
-              <li v-for="t in tagChips" :key="t.id">
-                <NuxtLink :to="t.to" class="cp-chip cp-chip--link">{{
-                  t.label
-                }}</NuxtLink>
-              </li>
-            </ul>
-          </div>
-
-          <div v-if="entry.devices?.length" class="cp-app__group">
-            <h2 class="cp-label">Devices</h2>
-            <ul class="cp-chips">
-              <li v-for="d in entry.devices" :key="d">
-                <span class="cp-chip">{{ d }}</span>
-              </li>
-            </ul>
-          </div>
-
-          <div v-if="entry.notes" class="cp-app__group">
-            <h2 class="cp-label">Notes</h2>
-            <p class="cp-app__notes">{{ entry.notes }}</p>
-          </div>
-        </aside>
+        <ReaderApparatus
+          :entry="entry"
+          :position="position"
+          :source-label="sourceLabel"
+          :facts="facts"
+          :tag-chips="tagChips"
+        />
 
         <!-- Passage & readings -->
         <article class="cp-page" :aria-label="`Passages from ${entry.title}`">
@@ -107,38 +67,12 @@
       />
     </div>
 
-    <nav class="cp-pager" aria-label="Works">
-      <NuxtLink
-        v-if="position.prev"
-        :to="readLink(position.prev.id)"
-        class="cp-pager__btn cp-pager__btn--prev"
-        rel="prev"
-      >
-        <span class="cp-pager__dir"
-          ><span aria-hidden="true">←</span> Previous</span
-        >
-        <span class="cp-pager__title">{{ position.prev.title }}</span>
-      </NuxtLink>
-      <span v-else class="cp-pager__spacer" />
-
-      <NuxtLink :to="backLink" class="cp-pager__back">
-        <span>{{ src.type === 'tag' ? 'Themes' : 'Contents' }}</span>
-        <kbd class="cp-pager__kbd">Esc</kbd>
-      </NuxtLink>
-
-      <NuxtLink
-        v-if="position.next"
-        :to="readLink(position.next.id)"
-        class="cp-pager__btn cp-pager__btn--next"
-        rel="next"
-      >
-        <span class="cp-pager__dir"
-          >Next <span aria-hidden="true">→</span></span
-        >
-        <span class="cp-pager__title">{{ position.next.title }}</span>
-      </NuxtLink>
-      <span v-else class="cp-pager__spacer" />
-    </nav>
+    <ReaderPager
+      :prev="pagerPrev"
+      :next="pagerNext"
+      :back-to="backLink"
+      :back-label="src.type === 'tag' ? 'Themes' : 'Contents'"
+    />
   </div>
 </template>
 
@@ -166,6 +100,9 @@ import {
 } from '@/assets/data/commonplaceData'
 import IlluminatedInitial from '@/components/Commonplace/IlluminatedInitial.vue'
 import PassageViewer from '@/components/Commonplace/PassageViewer.vue'
+import ReaderApparatus from '@/components/Commonplace/reader/ReaderApparatus.vue'
+import ReaderPager from '@/components/Commonplace/reader/ReaderPager.vue'
+import '@/components/Commonplace/reader/reader-shared.css'
 import SceneOverlay from '@/components/Commonplace/scenes/SceneOverlay.vue'
 import {
   useScenePref,
@@ -217,6 +154,11 @@ const backLink = computed(() =>
     ? '/commonplace/library?view=themes'
     : `/commonplace/library/${src.value.id}`
 )
+
+const pagerLink = (e?: { id: string; title: string }) =>
+  e && { title: e.title, to: readLink(e.id) }
+const pagerPrev = computed(() => pagerLink(position.value.prev))
+const pagerNext = computed(() => pagerLink(position.value.next))
 
 const facts = computed(() =>
   [
@@ -321,112 +263,6 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
   margin: 0 auto;
 }
 
-/* ── apparatus ── */
-.cp-app {
-  min-height: 0;
-  overflow-y: auto;
-  padding: 2.5rem 2rem 2rem 1.5rem;
-  border-right: 1px solid var(--cp-rule);
-}
-
-.cp-app__pos {
-  margin: 0 0 1.1rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  color: var(--cp-text-muted);
-}
-
-.cp-app__title {
-  margin: 0;
-  font-family: var(--cp-serif);
-  font-weight: 500;
-  font-size: clamp(1.8rem, 2.6vw, 2.35rem);
-  line-height: 1.1;
-  color: var(--cp-ink);
-  text-wrap: balance;
-}
-
-.cp-app__author {
-  margin: 0.5rem 0 0;
-  font-family: var(--cp-serif);
-  font-style: italic;
-  font-size: 1.1rem;
-  color: var(--cp-text-muted);
-}
-
-.cp-app__facts {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.45rem 1rem;
-  margin: 1.75rem 0 0;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--cp-rule);
-  font-size: 0.82rem;
-}
-.cp-app__facts dt {
-  color: var(--cp-text-muted);
-  font-variant-caps: all-small-caps;
-  letter-spacing: 0.08em;
-  font-size: 0.95rem;
-  line-height: 1.3;
-}
-.cp-app__facts dd {
-  margin: 0;
-  color: var(--cp-text);
-  line-height: 1.4;
-}
-.cp-app__swatch {
-  display: inline-block;
-  width: 0.55rem;
-  height: 0.55rem;
-  margin-right: 0.45rem;
-  border-radius: 50%;
-  background: var(--cp-period);
-}
-
-.cp-app__group {
-  margin-top: 1.5rem;
-}
-.cp-app__notes {
-  margin: 0;
-  font-size: 0.85rem;
-  line-height: 1.55;
-  color: var(--cp-text-muted);
-  white-space: pre-line;
-}
-
-.cp-label {
-  margin: 0 0 0.55rem;
-  font-family: var(--cp-sans);
-  font-size: 0.9rem;
-  font-weight: 600;
-  font-variant-caps: all-small-caps;
-  letter-spacing: 0.12em;
-  color: var(--cp-period);
-}
-
-.cp-chips {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-}
-.cp-chip {
-  display: inline-block;
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
-  background: var(--cp-chip-bg);
-  font-size: 0.75rem;
-  color: var(--cp-text);
-  text-decoration: none;
-}
-.cp-chip--link:hover {
-  color: var(--cp-accent-ink);
-  background: var(--cp-accent-soft);
-}
-
 /* ── page ── */
 .cp-page {
   min-height: 0;
@@ -479,78 +315,6 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
   text-align: left;
 }
 
-/* ── pager ── */
-.cp-pager {
-  flex: none;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.6rem 1.25rem;
-  border-top: 1px solid var(--cp-rule);
-  background: var(--cp-bg);
-}
-.cp-pager__btn {
-  display: grid;
-  gap: 0.1rem;
-  min-width: 0;
-  padding: 0.35rem 0.6rem;
-  border-radius: 4px;
-  color: inherit;
-  text-decoration: none;
-  transition: background-color var(--cp-dur) ease;
-}
-.cp-pager__btn:hover {
-  background: var(--cp-chip-bg);
-}
-.cp-pager__btn--prev {
-  justify-self: start;
-  text-align: left;
-}
-.cp-pager__btn--next {
-  justify-self: end;
-  text-align: right;
-}
-.cp-pager__dir {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--cp-text-muted);
-}
-.cp-pager__title {
-  font-family: var(--cp-serif);
-  font-size: 1rem;
-  color: var(--cp-ink);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 28ch;
-}
-.cp-pager__btn:hover .cp-pager__title {
-  color: var(--cp-accent-ink);
-}
-
-.cp-pager__back {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.78rem;
-  color: var(--cp-text-muted);
-  text-decoration: none;
-}
-.cp-pager__back:hover {
-  color: var(--cp-accent-ink);
-}
-.cp-pager__kbd {
-  font-family: var(--cp-sans);
-  font-size: 0.65rem;
-  padding: 0.05rem 0.35rem;
-  border: 1px solid var(--cp-rule-strong);
-  border-radius: 3px;
-  color: var(--cp-text-faint);
-}
-
 /* ── narrow: stack, let the shell scroll ── */
 @media (max-width: 820px) {
   .cp-reader__stage {
@@ -560,33 +324,12 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
   .cp-reader__grid {
     grid-template-columns: 1fr;
   }
-  .cp-app,
   .cp-page {
     overflow: visible;
-  }
-  .cp-app {
-    padding: 1.75rem 1.1rem 1.25rem;
-    border-right: 0;
-    border-bottom: 1px solid var(--cp-rule);
-  }
-  .cp-page {
     padding: 1.75rem 1.1rem 2.5rem;
   }
   .cp-blank {
     min-height: 18rem;
-  }
-  .cp-pager {
-    position: sticky;
-    bottom: 0;
-    padding: 0.5rem 0.75rem;
-    gap: 0.5rem;
-  }
-  .cp-pager__title {
-    max-width: 14ch;
-    font-size: 0.92rem;
-  }
-  .cp-pager__kbd {
-    display: none;
   }
 }
 </style>
