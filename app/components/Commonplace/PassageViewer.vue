@@ -68,9 +68,8 @@
             :key="showTranslation ? 't' : 'o'"
             class="cp-pv__text"
             :lang="showTranslation ? 'en' : undefined"
-          >
-            {{ showTranslation ? current.translation : current.text }}
-          </blockquote>
+            v-text="showTranslation ? current.translation : current.text"
+          />
         </Transition>
         <figcaption class="cp-pv__cite">{{ current.citation }}</figcaption>
         <p v-if="current.note" class="cp-pv__note">{{ current.note }}</p>
@@ -216,7 +215,8 @@ defineExpose({
   font-size: clamp(1.15rem, 1.6vw, 1.4rem);
   line-height: 1.62;
   color: var(--cp-ink);
-  white-space: pre-line;
+  /* keep line breaks and poetic spacing */
+  white-space: pre-wrap;
   hanging-punctuation: first;
 }
 
