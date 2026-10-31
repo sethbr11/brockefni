@@ -25,7 +25,7 @@
       <ul>
         <li><a href="/projects" @click="closeMobileMenu">Projects</a></li>
         <li><a href="/resume" @click="closeMobileMenu">Resume</a></li>
-
+        <li><a href="/commonplace" @click="closeMobileMenu">Commonplace</a></li>
         <li><a href="/contact" @click="closeMobileMenu">Contact</a></li>
       </ul>
     </nav>
