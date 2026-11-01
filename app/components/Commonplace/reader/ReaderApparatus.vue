@@ -33,10 +33,23 @@
     <div v-if="entry.devices?.length" class="cp-app__group">
       <h2 class="cp-label">Devices</h2>
       <ul class="cp-chips">
-        <li v-for="d in entry.devices" :key="d">
-          <span class="cp-chip">{{ d }}</span>
+        <li v-for="d in deviceChips" :key="d.name">
+          <button
+            type="button"
+            class="cp-chip cp-chip--link cp-chip--button"
+            aria-haspopup="dialog"
+            @click="openDevice(d.match)"
+          >
+            {{ d.name }}
+          </button>
         </li>
       </ul>
+      <DeviceModal
+        :device="openMatch?.device ?? null"
+        :detail="openMatch?.detail"
+        :current-entry-id="entry.id"
+        @close="openMatch = null"
+      />
     </div>
 
     <div v-if="entry.notes" class="cp-app__group">
@@ -47,8 +60,13 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref, watch } from 'vue'
 import type { Entry } from '@/assets/data/commonplaceData'
+import { findDevice } from '@/assets/data/commonplaceDevices'
+import DeviceModal from './DeviceModal.vue'
 import './reader-shared.css'
+
+type DeviceMatch = NonNullable<ReturnType<typeof findDevice>>
 
 export interface ReaderFact {
   label: string
@@ -61,13 +79,35 @@ export interface ReaderTagChip {
   to: string
 }
 
-defineProps<{
+const props = defineProps<{
   entry: Entry
   position: { index: number; total: number }
   sourceLabel: string
   facts: ReaderFact[]
   tagChips: ReaderTagChip[]
 }>()
+
+/** every device opens a card: its glossary entry, or a placeholder until one is added */
+const deviceChips = computed(() =>
+  (props.entry.devices ?? []).map((name) => ({
+    name,
+    match: findDevice(name) ?? {
+      device: {
+        id: '',
+        label: name.replace(/\s*\(.*\)\s*$/, ''),
+        definition: '',
+      },
+      detail: name.match(/\(([^)]*)\)\s*$/)?.[1]?.trim(),
+    },
+  }))
+)
+
+const openMatch = ref<DeviceMatch | null>(null)
+const openDevice = (m: DeviceMatch) => (openMatch.value = m)
+watch(
+  () => props.entry.id,
+  () => (openMatch.value = null)
+)
 </script>
 
 <style scoped>
@@ -161,12 +201,26 @@ defineProps<{
   color: var(--cp-text);
   text-decoration: none;
 }
-.cp-chip--link:hover {
-  color: var(--cp-accent-ink);
-  background: var(--cp-accent-soft);
+.cp-chip--button {
+  border: 0;
+  font: inherit;
+  font-size: 0.75rem;
+  line-height: inherit;
+  cursor: pointer;
+}
+.cp-chip--button:focus-visible {
+  outline: 2px solid var(--cp-focus);
+  outline-offset: 2px;
+}
+@media (hover: hover) {
+  .cp-chip--link:hover {
+    color: var(--cp-accent-ink);
+    background: var(--cp-accent-soft);
+  }
 }
 
-@media (max-width: 820px) {
+/* narrow or short (landscape phone) screens */
+@media (max-width: 820px), (max-height: 540px) {
   .cp-app {
     overflow: visible;
     padding: 1.75rem 1.1rem 1.25rem;
