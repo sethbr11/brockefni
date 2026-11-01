@@ -149,13 +149,13 @@ onUnmounted(() => {
 }
 
 /* Dark mode overrides (nested under html.darkmode) */
-:global(.darkmode) .input-bubble {
+.darkmode .input-bubble {
   background: rgba(255, 255, 255, 0.04);
   color: var(--secondary-text-color, #aaa);
   border: 1.5px dashed rgba(255, 255, 255, 0.25);
 }
 
-:global(.darkmode) .output-bubble {
+.darkmode .output-bubble {
   background: rgba(255, 128, 8, 0.08);
   color: #ffc837; /* Vibrant gold in dark mode */
   border: 1.5px solid rgba(255, 128, 8, 0.4);

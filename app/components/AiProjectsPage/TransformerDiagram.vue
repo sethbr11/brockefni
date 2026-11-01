@@ -771,7 +771,7 @@ const onStepClick = (id: number) => {
   transition: fill 0.3s ease;
 }
 
-:global(.darkmode) .svg-label {
+.darkmode .svg-label {
   fill: #e0e0e0;
 }
 
@@ -781,7 +781,7 @@ const onStepClick = (id: number) => {
   transition: fill 0.3s ease;
 }
 
-:global(.darkmode) .svg-label-sm {
+.darkmode .svg-label-sm {
   fill: #888;
 }
 
@@ -790,7 +790,7 @@ const onStepClick = (id: number) => {
   transition: stroke 0.3s ease;
 }
 
-:global(.darkmode) .dashed-boundary {
+.darkmode .dashed-boundary {
   stroke: rgba(255, 255, 255, 0.18);
 }
 
@@ -830,31 +830,31 @@ const onStepClick = (id: number) => {
   stroke: rgba(16, 185, 129, 0.5);
 }
 
-:global(.darkmode) .blk.embedding {
+.darkmode .blk.embedding {
   fill: rgba(251, 209, 215, 0.15);
   stroke: #fbd1d7;
 }
-:global(.darkmode) .blk.attention {
+.darkmode .blk.attention {
   fill: rgba(250, 209, 158, 0.15);
   stroke: #fad19e;
 }
-:global(.darkmode) .blk.attention.masked {
+.darkmode .blk.attention.masked {
   fill: rgba(250, 209, 158, 0.25);
   stroke: #fad19e;
 }
-:global(.darkmode) .blk.addnorm {
+.darkmode .blk.addnorm {
   fill: rgba(236, 236, 159, 0.12);
   stroke: #ecec9f;
 }
-:global(.darkmode) .blk.feedforward {
+.darkmode .blk.feedforward {
   fill: rgba(179, 222, 244, 0.15);
   stroke: #b3def4;
 }
-:global(.darkmode) .blk.linear-blk {
+.darkmode .blk.linear-blk {
   fill: rgba(209, 210, 235, 0.15);
   stroke: #d1d2eb;
 }
-:global(.darkmode) .blk.softmax-blk {
+.darkmode .blk.softmax-blk {
   fill: rgba(189, 224, 181, 0.15);
   stroke: #bde0b5;
 }
@@ -866,7 +866,7 @@ const onStepClick = (id: number) => {
   transition: fill 0.3s ease;
 }
 
-:global(.darkmode) .blk-txt {
+.darkmode .blk-txt {
   fill: #e0e0e0;
 }
 
@@ -876,7 +876,7 @@ const onStepClick = (id: number) => {
   transition: fill 0.3s ease;
 }
 
-:global(.darkmode) .pe-plus {
+.darkmode .pe-plus {
   fill: #e0e0e0;
 }
 
@@ -886,7 +886,7 @@ const onStepClick = (id: number) => {
   transition: fill 0.3s ease;
 }
 
-:global(.darkmode) .pe-label {
+.darkmode .pe-label {
   fill: #888;
 }
 
@@ -897,7 +897,7 @@ const onStepClick = (id: number) => {
   transition: fill 0.3s ease;
 }
 
-:global(.darkmode) .nx-label {
+.darkmode .nx-label {
   fill: #888;
 }
 
