@@ -16,6 +16,12 @@ export default defineNuxtConfig({
       include: ['@vue/devtools-core', '@vue/devtools-kit', 'gsap'],
     },
   },
+  nitro: {
+    prerender: {
+      // dev-only scene preview (404s in production), not part of the static site
+      ignore: ['/commonplace/_scenes'],
+    },
+  },
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: ['@nuxt/eslint'],

@@ -14,6 +14,7 @@
         :alt="describeCover(cover)"
         :title="describeCover(cover)"
         class="cp-cover__img"
+        :class="{ 'cp-cover__img--waiting': !ready }"
       />
       <span v-if="showBand && band && size !== 'sm'" class="cp-cover__band">{{
         band
@@ -33,7 +34,7 @@
 import { computed } from 'vue'
 import { describeCover, type Collection } from '@/assets/data/commonplaceData'
 import IlluminatedInitial from './IlluminatedInitial.vue'
-import { useCollectionCover } from './useCollectionCover'
+import { useCollectionCover, useCoversReady } from './useCollectionCover'
 
 const props = withDefaults(
   defineProps<{
@@ -50,6 +51,7 @@ const props = withDefaults(
 )
 
 const picked = useCollectionCover(props.collection)
+const ready = useCoversReady()
 const cover = computed(() =>
   props.coverIndex === undefined
     ? picked.value
@@ -90,6 +92,11 @@ const initialSize = computed(
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: opacity var(--cp-dur) ease;
+}
+/* static pages: hidden until the browser has picked this load's cover */
+.cp-cover__img--waiting {
+  opacity: 0;
 }
 
 /* duotone: ink takes the tint, parchment becomes paper (same in both themes) */
