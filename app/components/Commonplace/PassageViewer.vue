@@ -67,9 +67,26 @@
           <blockquote
             :key="showTranslation ? 't' : 'o'"
             class="cp-pv__text"
+            :class="{ 'cp-pv__text--numbered': current?.startLine != null }"
             :lang="showTranslation ? 'en' : undefined"
-            v-text="showTranslation ? current.translation : current.text"
-          />
+          >
+            <template v-if="current?.startLine != null">
+              <div
+                v-for="(line, i) in renderedLines"
+                :key="i"
+                class="cp-pv__line"
+              >
+                <span class="cp-pv__linenum" aria-hidden="true">{{
+                  line.number != null ? line.number : ''
+                }}</span>
+                <span class="cp-pv__linetext">{{ line.text || '\u200B' }}</span>
+              </div>
+            </template>
+            <span
+              v-else
+              v-text="showTranslation ? current.translation : current.text"
+            />
+          </blockquote>
         </Transition>
         <figcaption class="cp-pv__cite">{{ current.citation }}</figcaption>
         <p v-if="current.note" class="cp-pv__note">{{ current.note }}</p>
@@ -92,6 +109,38 @@ const current = computed(() => props.passages[index.value])
 const showTranslation = computed(
   () => !!current.value?.translation && !!translated.value[index.value]
 )
+
+interface FormattedLine {
+  text: string
+  number?: number
+}
+
+const renderedLines = computed<FormattedLine[]>(() => {
+  const p = current.value
+  if (!p) return []
+  const rawText = showTranslation.value ? p.translation : p.text
+  if (!rawText) return []
+  const lines = rawText.split('\n')
+  if (p.startLine == null) {
+    return lines.map((text) => ({ text }))
+  }
+
+  const start = p.startLine
+  const step = p.lineStep ?? 1
+  let lineCount = start
+
+  return lines.map((text) => {
+    if (text.trim() === '') {
+      return { text }
+    }
+    const currentNum = lineCount++
+    const show = step <= 1 || currentNum === start || currentNum % step === 0
+    return {
+      text,
+      number: show ? currentNum : undefined,
+    }
+  })
+})
 
 watch(
   () => props.passages,
@@ -170,9 +219,11 @@ defineExpose({
   line-height: 1;
   cursor: pointer;
 }
-.cp-pv__arrow:hover:not(:disabled) {
-  border-color: var(--cp-period);
-  color: var(--cp-period);
+@media (hover: hover) {
+  .cp-pv__arrow:hover:not(:disabled) {
+    border-color: var(--cp-period);
+    color: var(--cp-period);
+  }
 }
 .cp-pv__arrow:disabled {
   opacity: 0.35;
@@ -218,6 +269,48 @@ defineExpose({
   /* keep line breaks and poetic spacing */
   white-space: pre-wrap;
   hanging-punctuation: first;
+}
+
+.cp-pv__text--numbered {
+  white-space: normal;
+  padding-left: 0.75rem;
+}
+
+.cp-pv__line {
+  display: flex;
+  align-items: baseline;
+}
+
+.cp-pv__linenum {
+  flex: 0 0 auto;
+  min-width: 2.5ch;
+  margin-right: 1.25rem;
+  text-align: right;
+  font-family: var(--cp-sans);
+  font-size: 0.68em;
+  font-variant-numeric: tabular-nums;
+  color: var(--cp-text-faint);
+  user-select: none;
+  opacity: 0.7;
+  line-height: inherit;
+}
+
+.cp-pv__linetext {
+  flex: 1 1 0%;
+  min-width: 0;
+  white-space: pre-wrap;
+  /* a line that wraps continues indented, so it never reads as a new line */
+  padding-left: 1.5em;
+  text-indent: -1.5em;
+}
+
+@media (max-width: 640px) {
+  .cp-pv__text {
+    font-size: 1.04rem;
+  }
+  .cp-pv__linenum {
+    margin-right: 0.75rem;
+  }
 }
 
 .cp-pv__cite {

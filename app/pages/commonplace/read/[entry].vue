@@ -19,12 +19,12 @@
             <PassageViewer ref="viewer" :passages="entry.passages" />
 
             <section v-if="entry.summary" class="cp-page__section">
-              <h2 class="cp-label">Summary</h2>
-              <p class="cp-page__prose">{{ entry.summary }}</p>
+              <h2 class="cp-label cp-page__label">Summary</h2>
+              <RichText :text="entry.summary" />
             </section>
             <section v-if="entry.commentary" class="cp-page__section">
-              <h2 class="cp-label">Commentary</h2>
-              <p class="cp-page__prose">{{ entry.commentary }}</p>
+              <h2 class="cp-label cp-page__label">Commentary</h2>
+              <RichText :text="entry.commentary" />
             </section>
             <p
               v-if="!entry.summary && !entry.commentary"
@@ -45,12 +45,12 @@
             <p class="cp-blank__sub">This leaf of the book is still blank.</p>
 
             <section v-if="entry.summary" class="cp-page__section">
-              <h2 class="cp-label">Summary</h2>
-              <p class="cp-page__prose">{{ entry.summary }}</p>
+              <h2 class="cp-label cp-page__label">Summary</h2>
+              <RichText :text="entry.summary" />
             </section>
             <section v-if="entry.commentary" class="cp-page__section">
-              <h2 class="cp-label">Commentary</h2>
-              <p class="cp-page__prose">{{ entry.commentary }}</p>
+              <h2 class="cp-label cp-page__label">Commentary</h2>
+              <RichText :text="entry.commentary" />
             </section>
           </div>
         </article>
@@ -100,6 +100,7 @@ import {
 } from '@/assets/data/commonplaceData'
 import IlluminatedInitial from '@/components/Commonplace/IlluminatedInitial.vue'
 import PassageViewer from '@/components/Commonplace/PassageViewer.vue'
+import RichText from '@/components/Commonplace/RichText.vue'
 import ReaderApparatus from '@/components/Commonplace/reader/ReaderApparatus.vue'
 import ReaderPager from '@/components/Commonplace/reader/ReaderPager.vue'
 import '@/components/Commonplace/reader/reader-shared.css'
@@ -212,6 +213,8 @@ function onKey(e: KeyboardEvent) {
   const t = e.target as HTMLElement | null
   if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))
     return
+  // an open dialog (device glossary) owns the keyboard; Esc closes it natively
+  if (document.querySelector('dialog[open]')) return
 
   if (e.key === 'Escape') {
     e.preventDefault()
@@ -274,13 +277,10 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
   margin-top: 2.25rem;
   max-width: 62ch;
 }
-.cp-page__prose {
-  margin: 0;
-  font-family: var(--cp-serif);
-  font-size: 1.12rem;
-  line-height: 1.65;
-  color: var(--cp-ink);
-  white-space: pre-line;
+.cp-page__label {
+  margin-bottom: 0.85rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
 }
 .cp-page__tocome {
   margin: 2.25rem 0 0;
@@ -315,14 +315,22 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
   text-align: left;
 }
 
-/* ── narrow: stack, let the shell scroll ── */
-@media (max-width: 820px) {
+/* ── narrow or short (landscape phone): stack, let the shell scroll ── */
+@media (max-width: 820px), (max-height: 540px) {
+  /* Plain block flow when stacked. WebKit keeps stale grid-row heights inside
+     these flex containers after a rotation, so rows overlap or leave blank gaps
+     and the scroll length goes wrong; block layout always sizes from content. */
+  .cp-reader {
+    flex: 1 0 auto;
+    display: block;
+  }
   .cp-reader__stage {
-    flex: none;
+    display: block;
     min-height: 60vh;
+    min-height: 60svh;
   }
   .cp-reader__grid {
-    grid-template-columns: 1fr;
+    display: block;
   }
   .cp-page {
     overflow: visible;
