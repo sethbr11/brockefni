@@ -59,6 +59,9 @@
   /* generated-cover pattern */
   --cp-pattern-line: rgba(42, 37, 32, 0.06);
 
+  /* image covers: image colours, so the same in both themes */
+  --cp-cover-paper: #f4ecda; /* paper of a two-tone print */
+
   /* motion */
   --cp-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --cp-dur: 220ms;

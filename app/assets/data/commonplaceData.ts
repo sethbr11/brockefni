@@ -75,6 +75,18 @@ export interface TextLink {
   kind: 'free' | 'purchase'
 }
 
+/** A cover option for a collection. */
+export interface CoverImage {
+  src: string // imported image asset (or URL)
+  title: string // what the picture shows
+  artist?: string // who made it, if known
+  date?: string // e.g. 'c. 1000'
+  holder?: string // library or archive and shelfmark
+  license?: string // e.g. 'Public domain', 'CC BY 2.0'
+  source: string // page the image was downloaded from (the cover gallery links here)
+  tint?: string // CSS colour: render as a two-tone print in this colour (for black-ink pages)
+}
+
 export interface Collection {
   id: string
   title: string
@@ -83,7 +95,9 @@ export interface Collection {
   term?: string
   description: string
   initial: string // single letter for the generated cover
-  cover?: string
+  covers?: CoverImage[] // one is picked at random per page load; omit → generated cover
+  institution?: string // shown with the term on a band across image covers, e.g. 'UVU'
+  institutionColor?: string // CSS colour of that band (defaults to the cover's tint)
   entries: Entry[]
 }
 
@@ -120,6 +134,14 @@ export type SequenceSource = { type: 'collection' | 'tag'; id: string }
 
 export function getCollection(id: string): Collection | undefined {
   return collections.find((c) => c.id === id)
+}
+
+/** one line describing a cover: its alt text and tooltip */
+export function describeCover(cover: CoverImage): string {
+  const made = [cover.artist, cover.date].filter(Boolean).join(', ')
+  return [cover.title, made, cover.holder, cover.license]
+    .filter(Boolean)
+    .join(' · ')
 }
 
 export function allEntries(): Entry[] {

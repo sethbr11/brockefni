@@ -1,12 +1,24 @@
-<!-- Collection cover: the image if provided, otherwise a generated binding. -->
+<!-- Collection cover: one of its images (picked per page load), otherwise a generated binding. -->
 <template>
-  <div class="cp-cover" :class="`cp-cover--${size}`">
-    <img
-      v-if="collection.cover"
-      :src="collection.cover"
-      :alt="`Cover of ${collection.title}`"
-      class="cp-cover__img"
-    />
+  <div
+    class="cp-cover"
+    :class="[`cp-cover--${size}`, { 'cp-cover--tinted': tint }]"
+    :style="{
+      '--cp-tint': tint,
+      '--cp-band': collection.institutionColor ?? cover?.tint,
+    }"
+  >
+    <template v-if="cover">
+      <img
+        :src="cover.src"
+        :alt="describeCover(cover)"
+        :title="describeCover(cover)"
+        class="cp-cover__img"
+      />
+      <span v-if="band && size !== 'sm'" class="cp-cover__band">{{
+        band
+      }}</span>
+    </template>
     <div v-else class="cp-cover__gen">
       <span class="cp-cover__kind">{{
         collection.kind === 'course' ? 'Course' : 'Reading'
@@ -19,12 +31,21 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { Collection } from '@/assets/data/commonplaceData'
+import { describeCover, type Collection } from '@/assets/data/commonplaceData'
 import IlluminatedInitial from './IlluminatedInitial.vue'
+import { useCollectionCover } from './useCollectionCover'
 
 const props = withDefaults(
   defineProps<{ collection: Collection; size?: 'sm' | 'md' | 'lg' }>(),
   { size: 'md' }
+)
+
+const cover = useCollectionCover(props.collection)
+const tint = computed(() => cover.value?.tint)
+const band = computed(() =>
+  [props.collection.institution, props.collection.term]
+    .filter(Boolean)
+    .join(' · ')
 )
 
 const initialSize = computed(
@@ -55,6 +76,39 @@ const initialSize = computed(
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* duotone: ink takes the tint, parchment becomes paper (same in both themes) */
+.cp-cover--tinted {
+  background: var(--cp-cover-paper);
+}
+.cp-cover--tinted .cp-cover__img {
+  filter: grayscale(1) brightness(1.35) contrast(1.55);
+  mix-blend-mode: multiply;
+}
+.cp-cover--tinted::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--cp-tint);
+  mix-blend-mode: lighten;
+  pointer-events: none;
+}
+.cp-cover__band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 0.4rem 0.5rem;
+  background: var(--cp-band, var(--cp-ink));
+  color: var(--cp-cover-paper);
+  font-family: var(--cp-sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .cp-cover__gen {
