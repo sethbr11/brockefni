@@ -49,7 +49,7 @@ useHead({
 /* one hero-sized screen: viewport minus the site header */
 .cp-landing {
   min-height: calc(100vh - 58px);
-  min-height: calc(100dvh - 58px);
+  min-height: calc(100svh - 58px);
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -123,14 +123,18 @@ useHead({
     transform var(--cp-dur) var(--cp-ease),
     box-shadow var(--cp-dur) ease;
 }
-.cp-landing__enter:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--cp-shadow-lift);
+@media (hover: hover) {
+  .cp-landing__enter:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--cp-shadow-lift);
+  }
 }
 .cp-landing__enter span {
   transition: transform var(--cp-dur) var(--cp-ease);
 }
-.cp-landing__enter:hover span {
-  transform: translateX(3px);
+@media (hover: hover) {
+  .cp-landing__enter:hover span {
+    transform: translateX(3px);
+  }
 }
 </style>

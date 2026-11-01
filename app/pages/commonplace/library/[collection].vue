@@ -187,9 +187,11 @@ const groups = computed(() => {
   color: var(--cp-accent-ink);
   text-decoration: none;
 }
-.cp-contents__begin:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
+@media (hover: hover) {
+  .cp-contents__begin:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 }
 
 .cp-period {
@@ -232,8 +234,10 @@ const groups = computed(() => {
   text-decoration: none;
   transition: background-color var(--cp-dur) ease;
 }
-.cp-row:hover {
-  background: var(--cp-chip-bg);
+@media (hover: hover) {
+  .cp-row:hover {
+    background: var(--cp-chip-bg);
+  }
 }
 .cp-row__num {
   font-family: var(--cp-serif);
@@ -252,8 +256,10 @@ const groups = computed(() => {
   line-height: 1.3;
   color: var(--cp-ink);
 }
-.cp-row:hover .cp-row__title {
-  color: var(--cp-accent-ink);
+@media (hover: hover) {
+  .cp-row:hover .cp-row__title {
+    color: var(--cp-accent-ink);
+  }
 }
 .cp-row__author {
   font-size: 0.82rem;

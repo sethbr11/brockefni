@@ -70,7 +70,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRoute } from '#app'
+import { useHead, useRoute } from '#app'
 import DarkModeSwitch from '@/components/DarkModeSwitch.vue'
 import {
   useScenePref,
@@ -83,6 +83,9 @@ import {
   parseFrom,
 } from '@/assets/data/commonplaceData'
 import '@/components/Commonplace/commonplace-tokens.css'
+
+// iOS Safari turns date ranges like "650–1066" into tappable phone numbers
+useHead({ meta: [{ name: 'format-detection', content: 'telephone=no' }] })
 
 const route = useRoute()
 const scenes = useScenePref()
@@ -128,9 +131,11 @@ const back = computed<{ label: string; to: string }>(() => {
 </script>
 
 <style scoped>
+/* pinned to the visible viewport: on mobile, 100vh is taller than the screen
+   (toolbars included), which let the page behind scroll into view */
 .cp-shell {
-  height: 100vh;
-  height: 100dvh;
+  position: fixed;
+  inset: 0;
   display: flex;
   flex-direction: column;
   background: var(--cp-bg);
@@ -179,8 +184,10 @@ const back = computed<{ label: string; to: string }>(() => {
   border-right: 1px solid var(--cp-rule);
   white-space: nowrap;
 }
-.cp-bar__exit:hover {
-  color: var(--cp-accent-ink);
+@media (hover: hover) {
+  .cp-bar__exit:hover {
+    color: var(--cp-accent-ink);
+  }
 }
 
 .cp-crumbs {
@@ -219,10 +226,12 @@ const back = computed<{ label: string; to: string }>(() => {
   color: var(--cp-text-muted);
   text-decoration: none;
 }
-.cp-crumbs a:hover {
-  color: var(--cp-accent-ink);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+@media (hover: hover) {
+  .cp-crumbs a:hover {
+    color: var(--cp-accent-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 }
 
 .cp-bar__btn {
@@ -242,9 +251,11 @@ const back = computed<{ label: string; to: string }>(() => {
     border-color var(--cp-dur) ease,
     color var(--cp-dur) ease;
 }
-.cp-bar__btn:hover {
-  border-color: var(--cp-accent);
-  color: var(--cp-accent-ink);
+@media (hover: hover) {
+  .cp-bar__btn:hover {
+    border-color: var(--cp-accent);
+    color: var(--cp-accent-ink);
+  }
 }
 .cp-bar__btn--icon {
   width: 32px;

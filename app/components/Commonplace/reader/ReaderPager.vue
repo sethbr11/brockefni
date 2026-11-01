@@ -66,8 +66,10 @@ defineProps<{
   text-decoration: none;
   transition: background-color var(--cp-dur) ease;
 }
-.cp-pager__btn:hover {
-  background: var(--cp-chip-bg);
+@media (hover: hover) {
+  .cp-pager__btn:hover {
+    background: var(--cp-chip-bg);
+  }
 }
 .cp-pager__btn--prev {
   justify-self: start;
@@ -93,8 +95,10 @@ defineProps<{
   text-overflow: ellipsis;
   max-width: 28ch;
 }
-.cp-pager__btn:hover .cp-pager__title {
-  color: var(--cp-accent-ink);
+@media (hover: hover) {
+  .cp-pager__btn:hover .cp-pager__title {
+    color: var(--cp-accent-ink);
+  }
 }
 
 .cp-pager__back {
@@ -105,8 +109,10 @@ defineProps<{
   color: var(--cp-text-muted);
   text-decoration: none;
 }
-.cp-pager__back:hover {
-  color: var(--cp-accent-ink);
+@media (hover: hover) {
+  .cp-pager__back:hover {
+    color: var(--cp-accent-ink);
+  }
 }
 .cp-pager__kbd {
   font-family: var(--cp-sans);
@@ -117,7 +123,8 @@ defineProps<{
   color: var(--cp-text-faint);
 }
 
-@media (max-width: 820px) {
+/* narrow or short (landscape phone) screens */
+@media (max-width: 820px), (max-height: 540px) {
   .cp-pager {
     position: sticky;
     bottom: 0;

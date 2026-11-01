@@ -217,9 +217,13 @@ onBeforeUnmount(() => {
   opacity: 0.75;
   transition: opacity 0.15s ease;
 }
-.cp-scene-skip:hover,
 .cp-scene-skip:focus-visible {
   opacity: 1;
+}
+@media (hover: hover) {
+  .cp-scene-skip:hover {
+    opacity: 1;
+  }
 }
 .cp-scene-skip:focus-visible {
   outline: 2px solid var(--scene-gold);

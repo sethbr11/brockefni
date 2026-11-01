@@ -121,8 +121,10 @@ function step(d: number) {
     color var(--cp-dur) ease,
     box-shadow var(--cp-dur) ease;
 }
-.cp-seg__btn:hover {
-  color: var(--cp-text);
+@media (hover: hover) {
+  .cp-seg__btn:hover {
+    color: var(--cp-text);
+  }
 }
 .cp-seg__btn[aria-selected='true'] {
   background: var(--cp-control-active);

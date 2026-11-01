@@ -5,11 +5,28 @@
     aria-labelledby="cp-tab-index"
     class="cp-lib__panel"
   >
-    <nav class="cp-az" aria-label="Jump to letter">
+    <nav ref="topNav" class="cp-az" aria-label="Jump to letter">
       <a
         v-for="g in indexGroups"
         :key="g.letter"
         :href="`#cp-idx-${g.letter}`"
+        @click.prevent="jump(g.letter)"
+        >{{ g.letter }}</a
+      >
+    </nav>
+    <!-- once the top bar scrolls away, the letters follow as a rail on the left -->
+    <nav
+      class="cp-az-rail"
+      :class="{ 'is-shown': railShown }"
+      aria-label="Jump to letter"
+      :aria-hidden="!railShown"
+      :inert="!railShown || undefined"
+    >
+      <a
+        v-for="g in indexGroups"
+        :key="g.letter"
+        :href="`#cp-idx-${g.letter}`"
+        @click.prevent="jump(g.letter)"
         >{{ g.letter }}</a
       >
     </nav>
@@ -37,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import {
   collections,
   type Collection,
@@ -74,6 +91,27 @@ const indexGroups = computed(() => {
   }
   return groups
 })
+
+const topNav = ref<HTMLElement | null>(null)
+const railShown = ref(false)
+let observer: IntersectionObserver | null = null
+
+onMounted(() => {
+  if (!topNav.value) return
+  observer = new IntersectionObserver(([e]) => {
+    railShown.value = !!e && !e.isIntersecting
+  })
+  observer.observe(topNav.value)
+})
+onBeforeUnmount(() => observer?.disconnect())
+
+/** scroll to a letter without touching the URL (keeps ?view=index intact) */
+function jump(letter: string) {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  document
+    .getElementById(`cp-idx-${letter}`)
+    ?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
+}
 </script>
 
 <style scoped>
@@ -89,8 +127,55 @@ const indexGroups = computed(() => {
   color: var(--cp-text-muted);
   text-decoration: none;
 }
-.cp-az a:hover {
+@media (hover: hover) {
+  .cp-az a:hover {
+    color: var(--cp-accent-ink);
+  }
+}
+
+.cp-az-rail {
+  position: fixed;
+  top: 50%;
+  left: 0.75rem;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: calc(100dvh - 7rem);
+  overflow-y: auto;
+  padding: 0.4rem 0.2rem;
+  border: 1px solid var(--cp-rule);
+  border-radius: 999px;
+  background: var(--cp-surface);
+  box-shadow: var(--cp-shadow);
+  font-family: var(--cp-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-0.75rem, -50%);
+  transition:
+    opacity var(--cp-dur) var(--cp-ease),
+    transform var(--cp-dur) var(--cp-ease);
+}
+.cp-az-rail.is-shown {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(0, -50%);
+}
+.cp-az-rail a {
+  padding: 0.18rem 0.45rem;
+  line-height: 1.2;
+  color: var(--cp-text-muted);
+  text-decoration: none;
+}
+.cp-az-rail a:focus-visible {
   color: var(--cp-accent-ink);
+}
+@media (hover: hover) {
+  .cp-az-rail a:hover {
+    color: var(--cp-accent-ink);
+  }
 }
 
 .cp-idx {
@@ -128,8 +213,10 @@ const indexGroups = computed(() => {
   font-size: 1.1rem;
   color: var(--cp-ink);
 }
-.cp-idx__row:hover .cp-idx__title {
-  color: var(--cp-accent-ink);
+@media (hover: hover) {
+  .cp-idx__row:hover .cp-idx__title {
+    color: var(--cp-accent-ink);
+  }
 }
 .cp-idx__author {
   font-size: 0.85rem;
@@ -141,7 +228,21 @@ const indexGroups = computed(() => {
   text-align: right;
 }
 
+/* leave room for the rail wherever the centred column reaches the left edge */
+@media (max-width: 72rem) {
+  .cp-idx {
+    padding-left: 2.75rem;
+  }
+}
+
 @media (max-width: 640px) {
+  .cp-az-rail {
+    left: 0.35rem;
+  }
+  /* thumb-sized targets */
+  .cp-az-rail a {
+    padding: 0.32rem 0.6rem;
+  }
   .cp-idx {
     grid-template-columns: 1.75rem 1fr;
     gap: 0.6rem;

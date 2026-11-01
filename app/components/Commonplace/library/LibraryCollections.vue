@@ -56,9 +56,11 @@ import CollectionCover from '@/components/Commonplace/CollectionCover.vue'
     box-shadow var(--cp-dur) ease;
   box-shadow: var(--cp-shadow);
 }
-.cp-card:hover :deep(.cp-cover) {
-  transform: translateY(-3px);
-  box-shadow: var(--cp-shadow-lift);
+@media (hover: hover) {
+  .cp-card:hover :deep(.cp-cover) {
+    transform: translateY(-3px);
+    box-shadow: var(--cp-shadow-lift);
+  }
 }
 .cp-card__body {
   display: grid;
@@ -69,8 +71,10 @@ import CollectionCover from '@/components/Commonplace/CollectionCover.vue'
   font-size: 1.3rem;
   color: var(--cp-ink);
 }
-.cp-card:hover .cp-card__title {
-  color: var(--cp-accent-ink);
+@media (hover: hover) {
+  .cp-card:hover .cp-card__title {
+    color: var(--cp-accent-ink);
+  }
 }
 .cp-card__sub {
   font-size: 0.9rem;

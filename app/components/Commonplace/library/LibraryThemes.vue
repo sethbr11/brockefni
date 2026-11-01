@@ -7,15 +7,10 @@
   >
     <ul v-if="themeRows.length" class="cp-list">
       <li v-for="t in themeRows" :key="t.theme.id">
-        <component
-          :is="t.first ? NuxtLink : 'div'"
-          :to="
-            t.first
-              ? `/commonplace/read/${t.first.id}?from=tag:${t.theme.id}`
-              : undefined
-          "
+        <NuxtLink
+          v-if="t.first"
+          :to="`/commonplace/read/${t.first.id}?from=tag:${t.theme.id}`"
           class="cp-list__row"
-          :class="{ 'is-empty': !t.first }"
         >
           <span class="cp-list__main">
             <span class="cp-list__title">{{ t.theme.label }}</span>
@@ -26,7 +21,18 @@
           <span class="cp-list__count"
             >{{ t.count }} {{ t.count === 1 ? 'work' : 'works' }}</span
           >
-        </component>
+        </NuxtLink>
+        <div v-else class="cp-list__row is-empty">
+          <span class="cp-list__main">
+            <span class="cp-list__title">{{ t.theme.label }}</span>
+            <span v-if="t.theme.description" class="cp-list__desc">{{
+              t.theme.description
+            }}</span>
+          </span>
+          <span class="cp-list__count"
+            >{{ t.count }} {{ t.count === 1 ? 'work' : 'works' }}</span
+          >
+        </div>
       </li>
     </ul>
     <div v-else class="cp-empty">
@@ -77,8 +83,10 @@ const themeRows = computed(() =>
   color: inherit;
   text-decoration: none;
 }
-a.cp-list__row:hover .cp-list__title {
-  color: var(--cp-accent-ink);
+@media (hover: hover) {
+  a.cp-list__row:hover .cp-list__title {
+    color: var(--cp-accent-ink);
+  }
 }
 .cp-list__row.is-empty {
   opacity: 0.6;
