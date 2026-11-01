@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://www.gutenberg.org/ebooks/52958',
+    label: 'Project Gutenberg',
+    kind: 'free',
+  },
   scene: 'julian-of-norwich',
 } satisfies Entry

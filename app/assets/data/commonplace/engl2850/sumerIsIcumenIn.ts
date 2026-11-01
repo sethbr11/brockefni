@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://en.wikisource.org/wiki/Sumer_is_icumen_in',
+    label: 'Wikisource',
+    kind: 'free',
+  },
   scene: 'sumer-is-icumen-in',
 } satisfies Entry

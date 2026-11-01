@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://www.folger.edu/explore/shakespeares-works/shakespeares-sonnets/',
+    label: 'Folger Shakespeare Library',
+    kind: 'free',
+  },
   scene: 'shakespeare-sonnets',
 } satisfies Entry

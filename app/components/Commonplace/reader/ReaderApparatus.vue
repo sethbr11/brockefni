@@ -19,6 +19,21 @@
       </template>
     </dl>
 
+    <a
+      v-if="entry.link?.url"
+      :href="entry.link.url"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cp-app__textlink"
+    >
+      <span class="cp-app__textlink-action"
+        >{{ entry.link.kind === 'purchase' ? 'Buy a copy' : 'Read online'
+        }}<span aria-hidden="true"> ↗</span></span
+      >
+      <span class="cp-app__textlink-where"> · {{ entry.link.label }}</span>
+      <span class="cp-sr-only">(opens in a new tab)</span>
+    </a>
+
     <div v-if="tagChips.length" class="cp-app__group">
       <h2 class="cp-label">Themes</h2>
       <ul class="cp-chips">
@@ -163,6 +178,44 @@ watch(
   margin: 0;
   color: var(--cp-text);
   line-height: 1.4;
+}
+/* a quiet single line under the facts, not a button */
+.cp-app__textlink {
+  display: block;
+  margin-top: 0.9rem;
+  font-size: 0.74rem;
+  line-height: 1.4;
+  color: var(--cp-text-muted);
+  text-decoration: none;
+}
+.cp-app__textlink-action {
+  color: var(--cp-accent-ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 2px;
+  transition: text-decoration-color var(--cp-dur) ease;
+}
+.cp-app__textlink-where {
+  margin-left: 0.35em;
+}
+.cp-app__textlink:focus-visible {
+  outline: 2px solid var(--cp-focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+@media (hover: hover) {
+  .cp-app__textlink:hover .cp-app__textlink-action {
+    text-decoration-color: currentColor;
+  }
+}
+.cp-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 .cp-app__swatch {
   display: inline-block;

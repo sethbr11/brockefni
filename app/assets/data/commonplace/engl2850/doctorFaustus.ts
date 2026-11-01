@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://www.gutenberg.org/ebooks/779',
+    label: 'Project Gutenberg',
+    kind: 'free',
+  },
   scene: 'doctor-faustus',
 } satisfies Entry

@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://rpo.library.utoronto.ca/content/altar-2',
+    label: 'Representative Poetry Online',
+    kind: 'free',
+  },
   scene: 'the-altar',
 } satisfies Entry

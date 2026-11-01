@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://www.gutenberg.org/ebooks/16328',
+    label: 'Project Gutenberg · J. Lesslie Hall translation',
+    kind: 'free',
+  },
   scene: 'beowulf',
 } satisfies Entry

@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://www.asnc.cam.ac.uk/spokenword/i_pangur.php?d=tt',
+    label: 'ASNC, University of Cambridge',
+    kind: 'free',
+  },
   scene: 'pangur-ban',
 } satisfies Entry

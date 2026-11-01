@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://www.gutenberg.org/ebooks/22120',
+    label: 'Project Gutenberg · Middle English, ed. Skeat',
+    kind: 'free',
+  },
   scene: 'nuns-priests-tale',
 } satisfies Entry

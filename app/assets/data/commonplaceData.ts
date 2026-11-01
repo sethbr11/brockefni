@@ -65,7 +65,14 @@ export interface Entry {
   devices?: string[] // formal/poetic devices
   notes?: string // manuscript & form notes
   scene?: string // intro animation scene id; omit → fallback scene
-  cover?: string // optional image URL; omit → generated cover
+  link?: TextLink // where to read (or buy) the text
+}
+
+/** A link to the full text: a free online edition, or somewhere to buy it. */
+export interface TextLink {
+  url: string
+  label: string // where it goes, e.g. 'Project Gutenberg'
+  kind: 'free' | 'purchase'
 }
 
 export interface Collection {

@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://www.gutenberg.org/ebooks/14568',
+    label: 'Project Gutenberg · Middle English, ed. Morris',
+    kind: 'free',
+  },
   scene: 'sir-gawain',
 } satisfies Entry

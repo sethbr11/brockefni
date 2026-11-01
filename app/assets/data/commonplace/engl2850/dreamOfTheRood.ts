@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://en.wikisource.org/wiki/The_Dream_of_the_Rood',
+    label: 'Wikisource',
+    kind: 'free',
+  },
   scene: 'dream-of-the-rood',
 } satisfies Entry

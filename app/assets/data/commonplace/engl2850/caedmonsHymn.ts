@@ -66,5 +66,10 @@ export default {
   ],
   notes:
     'Preserved in the margins and Old English translation of Bede’s Historia ecclesiastica gentis Anglorum (completed 731). Composed orally in Northumbrian dialect during the abbacy of Hild at Whitby (657–680); preserved here in the standard West Saxon dialect.',
+  link: {
+    url: 'https://en.wikisource.org/wiki/C%C3%A6dmon%27s_Hymn',
+    label: 'Wikisource',
+    kind: 'free',
+  },
   scene: 'caedmons-hymn',
 } satisfies Entry

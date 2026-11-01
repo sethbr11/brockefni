@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://www.gutenberg.org/ebooks/29854',
+    label: 'Project Gutenberg · Works of Aphra Behn, Vol. V',
+    kind: 'free',
+  },
   scene: 'oroonoko',
 } satisfies Entry

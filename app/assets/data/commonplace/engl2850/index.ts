@@ -7,7 +7,8 @@ import { orderedEntries } from '../entries'
 //   summary:    a short plain-language summary of the work
 //   commentary: your own reading and thoughts
 //   tags:       theme ids from `themes` in ../../commonplaceData.ts
-// Optional: devices (formal/poetic devices), notes (manuscript & form), cover (image URL).
+// Optional: devices (formal/poetic devices), notes (manuscript & form),
+//   link: { url, label: 'Project Gutenberg', kind: 'free' | 'purchase' }.
 // An entry with empty passages is shown as "not yet filled in".
 // To add a work: create its file, then add its id to `order` below.
 

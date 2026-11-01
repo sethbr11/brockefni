@@ -12,5 +12,6 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: { url: '', label: '', kind: 'free' }, // free online text, or kind: 'purchase'
   scene: '', // ID coinciding with scene in app/components/Commonplace/scenes (or blank for default)
 } satisfies Entry

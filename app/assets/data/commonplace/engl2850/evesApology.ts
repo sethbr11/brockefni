@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://en.wikisource.org/wiki/Salve_Deus_Rex_Judaeorum',
+    label: 'Wikisource · Salve Deus Rex Judaeorum',
+    kind: 'free',
+  },
   scene: 'eves-apology',
 } satisfies Entry

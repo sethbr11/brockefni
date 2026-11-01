@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://www.gutenberg.org/ebooks/11417',
+    label: 'Project Gutenberg · Lays of Marie de France',
+    kind: 'free',
+  },
   scene: 'bisclavret',
 } satisfies Entry

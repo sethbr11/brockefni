@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://rpo.library.utoronto.ca/poets/donne-john',
+    label: 'Representative Poetry Online',
+    kind: 'free',
+  },
   scene: 'john-donne',
 } satisfies Entry

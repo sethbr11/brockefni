@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://rpo.library.utoronto.ca/content/paradise-lost-book-i',
+    label: 'Representative Poetry Online · Book I',
+    kind: 'free',
+  },
   scene: 'paradise-lost',
 } satisfies Entry

@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://www.gutenberg.org/ebooks/51783',
+    label: 'Project Gutenberg',
+    kind: 'free',
+  },
   scene: 'blazing-world',
 } satisfies Entry

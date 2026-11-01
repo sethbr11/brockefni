@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://rpo.library.utoronto.ca/content/faerie-queene-book-i-canto-i',
+    label: 'Representative Poetry Online · Book I',
+    kind: 'free',
+  },
   scene: 'faerie-queene',
 } satisfies Entry

@@ -13,5 +13,10 @@ export default {
   passages: [],
   summary: '',
   commentary: '',
+  link: {
+    url: 'https://rpo.library.utoronto.ca/content/easter-wings-2',
+    label: 'Representative Poetry Online',
+    kind: 'free',
+  },
   scene: 'easter-wings',
 } satisfies Entry
