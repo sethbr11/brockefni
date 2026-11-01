@@ -1,0 +1,17 @@
+import type { Entry } from '../../commonplaceData'
+
+export default {
+  id: 'name-of-work',
+  title: "Name of the Work",
+  author: '',
+  period: '', // See ../commonplaceData.ts:16
+  composed: 'c. ...',
+  language: '',
+  assigned: '... – ...',
+  tags: [],
+  passages: [],
+  summary: '',
+  commentary: '',
+  link: { url: '', label: '', kind: 'free' }, // free online text, or kind: 'purchase'
+  scene: '', // ID coinciding with scene in app/components/Commonplace/scenes (or blank for default)
+} satisfies Entry

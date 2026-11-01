@@ -622,7 +622,7 @@ const onStepClick = (id: number) => {
   transition: all 0.3s ease;
 }
 
-:global(.darkmode) .node-box {
+.darkmode .node-box {
   fill: rgba(20, 20, 20, 0.6);
   stroke: rgba(255, 255, 255, 0.3);
 }
@@ -632,7 +632,7 @@ const onStepClick = (id: number) => {
   transition: stroke 0.3s ease;
 }
 
-:global(.darkmode) .connection-line {
+.darkmode .connection-line {
   stroke: rgba(255, 255, 255, 0.35);
 }
 
@@ -641,7 +641,7 @@ const onStepClick = (id: number) => {
   transition: stroke 0.3s ease;
 }
 
-:global(.darkmode) .deploy-line {
+.darkmode .deploy-line {
   stroke: rgba(255, 255, 255, 0.25);
 }
 
@@ -651,7 +651,7 @@ const onStepClick = (id: number) => {
   transition: all 0.3s ease;
 }
 
-:global(.darkmode) .vpc-box {
+.darkmode .vpc-box {
   stroke: rgba(255, 255, 255, 0.25);
   fill: rgba(255, 255, 255, 0.01);
 }
@@ -662,7 +662,7 @@ const onStepClick = (id: number) => {
   transition: all 0.3s ease;
 }
 
-:global(.darkmode) .az-box {
+.darkmode .az-box {
   stroke: rgba(132, 79, 186, 0.3);
   fill: rgba(132, 79, 186, 0.02);
 }
@@ -699,7 +699,7 @@ const onStepClick = (id: number) => {
   transition: all 0.3s ease;
 }
 
-:global(.darkmode) .subnet-boundary {
+.darkmode .subnet-boundary {
   stroke: rgba(255, 255, 255, 0.25);
   fill: rgba(255, 255, 255, 0.01);
 }

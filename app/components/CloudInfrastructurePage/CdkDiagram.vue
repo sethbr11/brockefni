@@ -492,7 +492,7 @@ const onStepClick = (id: number) => {
   transition: all 0.3s ease;
 }
 
-:global(.darkmode) .node-box {
+.darkmode .node-box {
   fill: rgba(20, 20, 20, 0.6);
   stroke: rgba(255, 255, 255, 0.3);
 }
@@ -502,7 +502,7 @@ const onStepClick = (id: number) => {
   transition: stroke 0.3s ease;
 }
 
-:global(.darkmode) .connection-line {
+.darkmode .connection-line {
   stroke: rgba(255, 255, 255, 0.35);
 }
 
@@ -511,7 +511,7 @@ const onStepClick = (id: number) => {
   transition: stroke 0.3s ease;
 }
 
-:global(.darkmode) .vertical-connector-line {
+.darkmode .vertical-connector-line {
   stroke: #a78bfa;
 }
 

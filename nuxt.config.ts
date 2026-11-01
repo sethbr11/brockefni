@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   },
   vite: {
     optimizeDeps: {
-      include: ['@vue/devtools-core', '@vue/devtools-kit'],
+      include: ['@vue/devtools-core', '@vue/devtools-kit', 'gsap'],
     },
   },
   compatibilityDate: '2025-07-15',

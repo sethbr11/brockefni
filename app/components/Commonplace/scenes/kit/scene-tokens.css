@@ -1,0 +1,161 @@
+/*
+ * Commonplace scene palette. Every color a scene or kit primitive paints MUST come from
+ * one of these custom properties (fill="var(--scene-…)"); never write literal colors in
+ * scene/primitive code. Dark mode (html.darkmode) is a "night" version of the same palette.
+ */
+.cp-scene {
+  /* overlay chrome */
+  --scene-scrim: #f4eddf;
+  --scene-ui: #2b211c;
+  --scene-ui-text: #f6ecd6;
+  --scene-frame: #2b211c;
+
+  /* skies & light */
+  --scene-sky: #a9d3d3;
+  --scene-sky-2: #e4eedc;
+  --scene-night: #24325a;
+  --scene-night-2: #3a4c80;
+  --scene-moon: #f7eac6;
+  --scene-star: #fff7de;
+  --scene-sun: #f6c552;
+  --scene-glow: #ffd36e;
+  --scene-glow-2: #f08a2c;
+
+  /* landscape */
+  --scene-far: #94b8a6;
+  --scene-mid: #6b9b75;
+  --scene-near: #4c7d55;
+  --scene-ground: #b98c5a;
+  --scene-water: #4f95ae;
+  --scene-water-2: #7dbccb;
+  --scene-foam: #eaf5f1;
+
+  /* materials */
+  --scene-wood: #9b623a;
+  --scene-wood-2: #6d4126;
+  --scene-wood-3: #c4884f;
+  --scene-stone: #bdb2a2;
+  --scene-stone-2: #91877a;
+  --scene-stone-3: #d6cdbd;
+  --scene-metal: #b3bec6;
+  --scene-metal-2: #6f7d89;
+  --scene-gold: #e39a2b;
+  --scene-gold-2: #b8701c;
+
+  /* people & creatures */
+  --scene-ink: #2a201b;
+  --scene-skin: #f1c49b;
+  --scene-skin-2: #d99e72;
+  --scene-skin-3: #8f5a3a;
+  --scene-skin-4: #6a3f2a;
+  /* neck/shading tones for the deeper skins */
+  --scene-skin-3-shade: #774a2f;
+  --scene-skin-4-shade: #553220;
+  --scene-hair: #6b3e22;
+  --scene-cloth-a: #c4473a;
+  --scene-cloth-b: #2f6c9c;
+  --scene-cloth-c: #eadbb6;
+  --scene-cloth-d: #7d4e8c;
+  --scene-green: #4c9a4e;
+  --scene-green-2: #2f6c38;
+  /* extra greens so foliage, serpents and green figures stay distinct */
+  --scene-green-3: #8fbf4a;
+  --scene-green-4: #1f5a52;
+  --scene-green-5: #6b8f2e;
+  --scene-red: #cc3a2c;
+  --scene-highlight: #fffaf0;
+
+  /* paper & text */
+  --scene-paper: #f6eacd;
+  --scene-paper-2: #e2cc9f;
+  --scene-paper-ink: #2f241d;
+  --scene-text: #2f241d;
+
+  /* period tints (illuminated initials, parchment borders) */
+  --scene-period-old-english: #8f2b24;
+  --scene-period-middle-english: #2c4f93;
+  --scene-period-early-modern: #2b7a6a;
+  --scene-period-restoration: #b37a22;
+  --scene-period: var(--scene-period-old-english);
+}
+
+/*
+ * Time of day. Backdrop (time="auto") and Celestial draw a day version (.cp-day) and a night
+ * version (.cp-night) of every sky; pure CSS shows the one matching the site theme, so SSR,
+ * seek and reduced-motion all see the right one. Scenes can use these classes on any <g>.
+ */
+.cp-scene .cp-night {
+  display: none;
+}
+html.darkmode .cp-scene .cp-day {
+  display: none;
+}
+html.darkmode .cp-scene .cp-night {
+  display: inline;
+}
+
+html.darkmode .cp-scene {
+  --scene-scrim: #0f0d0c;
+  --scene-ui: #f1e4c8;
+  --scene-ui-text: #1b1512;
+  --scene-frame: #000;
+
+  --scene-sky: #3d6a94;
+  --scene-sky-2: #6f93a9;
+  --scene-night: #121a33;
+  --scene-night-2: #24325c;
+  --scene-moon: #fbe6ad;
+  --scene-star: #ffefc4;
+  --scene-sun: #ffbf4d;
+  --scene-glow: #ffbd52;
+  --scene-glow-2: #ff7c1f;
+
+  --scene-far: #34496a;
+  --scene-mid: #2b4d4c;
+  --scene-near: #213b36;
+  --scene-ground: #4d3c2b;
+  --scene-water: #1e4a68;
+  --scene-water-2: #2f6789;
+  --scene-foam: #a5c8d4;
+
+  --scene-wood: #6b4128;
+  --scene-wood-2: #432716;
+  --scene-wood-3: #93613a;
+  --scene-stone: #5a5662;
+  --scene-stone-2: #3f3c47;
+  --scene-stone-3: #706b78;
+  --scene-metal: #97a4b0;
+  --scene-metal-2: #5a6672;
+  --scene-gold: #f2a640;
+  --scene-gold-2: #c27620;
+
+  --scene-ink: #0e0a09;
+  --scene-skin: #dfae86;
+  --scene-skin-2: #b98462;
+  --scene-skin-3: #7a4a30;
+  --scene-skin-4: #5a3322;
+  --scene-skin-3-shade: #643c26;
+  --scene-skin-4-shade: #46291b;
+  --scene-hair: #4f2d18;
+  --scene-cloth-a: #b23f33;
+  --scene-cloth-b: #2f5f8f;
+  --scene-cloth-c: #c2b28f;
+  --scene-cloth-d: #6b4379;
+  --scene-green: #449048;
+  --scene-green-2: #285c30;
+  --scene-green-3: #7dab42;
+  --scene-green-4: #1b4d46;
+  --scene-green-5: #5c7d28;
+  --scene-red: #d8473a;
+  --scene-highlight: #f6eedc;
+
+  --scene-paper: #e3d1aa;
+  --scene-paper-2: #b9a079;
+  --scene-paper-ink: #261c16;
+  --scene-text: #261c16;
+
+  --scene-period-old-english: #a8382f;
+  --scene-period-middle-english: #3c63b3;
+  --scene-period-early-modern: #2f8f7b;
+  --scene-period-restoration: #c88c2c;
+}

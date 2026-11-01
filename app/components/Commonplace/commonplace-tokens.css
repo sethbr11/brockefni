@@ -1,0 +1,146 @@
+/*
+ * Commonplace Book design tokens.
+ * Every colour used in the commonplace section is defined here, once.
+ * Components reference only var(--cp-*). Dark overrides follow the site's
+ * `darkmode` class on <html>.
+ */
+
+.cp-root {
+  /* keep iOS from inflating text when a phone rotates to landscape */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+  /* type */
+  /* display face for titles and passages; matches the rest of the site */
+  --cp-serif: Avenir, 'Avenir Next', Helvetica, Arial, sans-serif;
+  --cp-sans: Avenir, 'Avenir Next', Helvetica, Arial, sans-serif;
+
+  /* surfaces: warm paper, harmonised with the site's light greys */
+  --cp-bg: #f6f3ee;
+  --cp-surface: #fffdf9;
+  --cp-surface-sunk: #efeae1;
+  --cp-overlay: rgba(246, 243, 238, 0.92);
+
+  /* text */
+  --cp-text: var(--text-color); /* UI text (site slate) */
+  --cp-text-muted: #5f6670;
+  --cp-text-faint: #8a8f96;
+  --cp-ink: #2a2520; /* literary text: warm iron-gall ink */
+
+  /* lines */
+  --cp-rule: rgba(42, 37, 32, 0.14);
+  --cp-rule-strong: rgba(42, 37, 32, 0.28);
+
+  /* site accent (orange) — fill vs. text-safe variants */
+  --cp-accent: var(--primary-color);
+  --cp-accent-ink: #a4501a; /* AA on paper */
+  --cp-accent-soft: rgba(216, 118, 40, 0.1);
+  --cp-on-accent: #ffffff;
+  --cp-focus: #a4501a;
+
+  /* chips & controls */
+  --cp-chip-bg: rgba(42, 37, 32, 0.05);
+  --cp-control-bg: rgba(42, 37, 32, 0.06);
+  --cp-control-active: #fffdf9;
+  --cp-shadow:
+    0 1px 2px rgba(42, 37, 32, 0.06), 0 6px 20px rgba(42, 37, 32, 0.06);
+  --cp-shadow-lift:
+    0 2px 4px rgba(42, 37, 32, 0.06), 0 14px 34px rgba(42, 37, 32, 0.1);
+
+  /* period accents — manuscript pigments */
+  --cp-period-old-english: #8e2b23; /* vermilion / deep red */
+  --cp-period-middle-english: #2d4f8b; /* lapis */
+  --cp-period-early-modern: #33705c; /* verdigris */
+  --cp-period-restoration: #8f6418; /* ochre */
+
+  /* default period for anything without one */
+  --cp-period: var(--cp-accent-ink);
+
+  /* generated-cover pattern */
+  --cp-pattern-line: rgba(42, 37, 32, 0.06);
+
+  /* image covers: image colours, so the same in both themes */
+  --cp-cover-paper: #f4ecda; /* paper of a two-tone print */
+  --cp-cover-scrim: rgba(20, 18, 14, 0.62); /* dark pill over cover images */
+  --cp-lightbox: rgba(14, 12, 10, 0.95); /* full-page image overlay */
+
+  /* motion */
+  --cp-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --cp-dur: 220ms;
+}
+
+html.darkmode .cp-root {
+  --cp-bg: #1f2b38;
+  --cp-surface: #263545;
+  --cp-surface-sunk: #1a2430;
+  --cp-overlay: rgba(31, 43, 56, 0.92);
+
+  --cp-text: var(--text-color);
+  --cp-text-muted: #c3cad3;
+  --cp-text-faint: #8f9aa7;
+  --cp-ink: #eee7da; /* warm vellum */
+
+  --cp-rule: rgba(238, 231, 218, 0.13);
+  --cp-rule-strong: rgba(238, 231, 218, 0.26);
+
+  --cp-accent: var(--primary-color);
+  --cp-accent-ink: #f2a05e;
+  --cp-accent-soft: rgba(216, 118, 40, 0.16);
+  --cp-on-accent: #ffffff;
+  --cp-focus: #f2a05e;
+
+  --cp-chip-bg: rgba(238, 231, 218, 0.07);
+  --cp-control-bg: rgba(238, 231, 218, 0.07);
+  --cp-control-active: #34475b;
+  --cp-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.18);
+  --cp-shadow-lift:
+    0 2px 4px rgba(0, 0, 0, 0.22), 0 14px 34px rgba(0, 0, 0, 0.28);
+
+  --cp-period-old-english: #e58e82;
+  --cp-period-middle-english: #94b4ea;
+  --cp-period-early-modern: #86c4aa;
+  --cp-period-restoration: #dcb460;
+
+  --cp-pattern-line: rgba(238, 231, 218, 0.06);
+}
+
+.cp-root {
+  font-family: var(--cp-sans);
+  color: var(--cp-text);
+  text-align: left;
+}
+
+.cp-root :focus-visible {
+  outline: 2px solid var(--cp-focus);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-root {
+    --cp-dur: 0ms;
+  }
+}
+
+/* thin, theme-coloured scrollbars for every scroll area in the section */
+.cp-root,
+.cp-root * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cp-rule-strong) transparent;
+}
+.cp-root ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.cp-root ::-webkit-scrollbar-track {
+  background: transparent;
+}
+.cp-root ::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: var(--cp-rule-strong);
+  background-clip: padding-box;
+}
+.cp-root ::-webkit-scrollbar-thumb:hover {
+  background-color: var(--cp-text-faint);
+}

@@ -84,7 +84,7 @@ const isDark = useState<boolean>('isDark', () => false)
     box-shadow 0.3s ease;
 }
 
-:global(.darkmode) .shared-tooltip-box {
+.darkmode .shared-tooltip-box {
   background: var(--background-variant, #23303e);
   border: 1px solid var(--outline-color, #56626f);
   color: var(--text-color, white);
@@ -120,7 +120,7 @@ const isDark = useState<boolean>('isDark', () => false)
   color: var(--secondary-text-color, #6b7280);
 }
 
-:global(.darkmode) .tooltip-text {
+.darkmode .tooltip-text {
   color: var(--secondary-text-color, #e2e2e2);
 }
 
