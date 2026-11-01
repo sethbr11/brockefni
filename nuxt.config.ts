@@ -22,6 +22,12 @@ export default defineNuxtConfig({
       ignore: ['/commonplace/_scenes'],
     },
   },
+  features: {
+    // link CSS files rather than inlining styles into server-rendered HTML:
+    // the static 404/200 fallback pages aren't server-rendered, and with
+    // inlining they shipped no styles at all
+    inlineStyles: false,
+  },
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: ['@nuxt/eslint'],
