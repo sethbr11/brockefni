@@ -96,7 +96,13 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { createError, definePageMeta, useHead, useRoute } from '#imports'
+import {
+  createError,
+  definePageMeta,
+  prerenderRoutes,
+  useHead,
+  useRoute,
+} from '#imports'
 import {
   getCollection,
   isFilled,
@@ -119,6 +125,10 @@ if (!found) {
   })
 }
 const collection = found
+
+// reader links carry ?from=, which the static export skips: list each work
+// so every reader page gets its own HTML (for refreshes and shared links)
+prerenderRoutes(collection.entries.map((e) => `/commonplace/read/${e.id}`))
 const coverCount = collection.covers?.length ?? 0
 const galleryOpen = ref(false)
 
