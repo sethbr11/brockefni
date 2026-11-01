@@ -1,10 +1,33 @@
 <template>
   <div class="cp-contents">
     <header class="cp-contents__head">
+      <button
+        v-if="coverCount > 1"
+        type="button"
+        class="cp-contents__figure cp-contents__coverbtn"
+        aria-haspopup="dialog"
+        :aria-label="`See all ${coverCount} covers`"
+        @click="galleryOpen = true"
+      >
+        <CollectionCover
+          :collection="collection"
+          size="lg"
+          class="cp-contents__cover"
+        />
+        <span class="cp-contents__covercount" aria-hidden="true"
+          >{{ coverCount }} covers</span
+        >
+      </button>
       <CollectionCover
+        v-else
         :collection="collection"
         size="lg"
-        class="cp-contents__cover"
+        class="cp-contents__figure cp-contents__cover"
+      />
+      <CoverGallery
+        v-if="coverCount > 1"
+        v-model:open="galleryOpen"
+        :collection="collection"
       />
       <div class="cp-contents__intro">
         <p class="cp-contents__eyebrow">
@@ -72,7 +95,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { createError, definePageMeta, useHead, useRoute } from '#imports'
 import {
   getCollection,
@@ -82,6 +105,7 @@ import {
   type Period,
 } from '@/assets/data/commonplaceData'
 import CollectionCover from '@/components/Commonplace/CollectionCover.vue'
+import CoverGallery from '@/components/Commonplace/CoverGallery.vue'
 
 definePageMeta({ layout: 'commonplace' })
 
@@ -95,6 +119,8 @@ if (!found) {
   })
 }
 const collection = found
+const coverCount = collection.covers?.length ?? 0
+const galleryOpen = ref(false)
 
 useHead({
   title: `${collection.title}: ${collection.subtitle} | Commonplace Book`,
@@ -136,9 +162,46 @@ const groups = computed(() => {
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--cp-rule);
 }
+.cp-contents__figure {
+  flex: none;
+}
+.cp-contents__coverbtn {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+.cp-contents__coverbtn:focus-visible {
+  outline: 2px solid var(--cp-focus);
+  outline-offset: 3px;
+}
+/* quiet hint that there are more covers; always shown on touch screens */
+.cp-contents__covercount {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  z-index: 2;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: var(--cp-cover-scrim);
+  color: var(--cp-cover-paper);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+@media (hover: hover) {
+  .cp-contents__covercount {
+    opacity: 0;
+    transition: opacity var(--cp-dur) ease;
+  }
+  .cp-contents__coverbtn:hover .cp-contents__covercount,
+  .cp-contents__coverbtn:focus-visible .cp-contents__covercount {
+    opacity: 1;
+  }
+}
 .cp-contents__cover {
   box-shadow: var(--cp-shadow);
-  flex: none;
 }
 .cp-contents__intro {
   min-width: 0;

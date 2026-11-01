@@ -61,6 +61,8 @@
 
   /* image covers: image colours, so the same in both themes */
   --cp-cover-paper: #f4ecda; /* paper of a two-tone print */
+  --cp-cover-scrim: rgba(20, 18, 14, 0.62); /* dark pill over cover images */
+  --cp-lightbox: rgba(14, 12, 10, 0.95); /* full-page image overlay */
 
   /* motion */
   --cp-ease: cubic-bezier(0.22, 1, 0.36, 1);

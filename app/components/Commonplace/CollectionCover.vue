@@ -15,7 +15,7 @@
         :title="describeCover(cover)"
         class="cp-cover__img"
       />
-      <span v-if="band && size !== 'sm'" class="cp-cover__band">{{
+      <span v-if="showBand && band && size !== 'sm'" class="cp-cover__band">{{
         band
       }}</span>
     </template>
@@ -36,12 +36,26 @@ import IlluminatedInitial from './IlluminatedInitial.vue'
 import { useCollectionCover } from './useCollectionCover'
 
 const props = withDefaults(
-  defineProps<{ collection: Collection; size?: 'sm' | 'md' | 'lg' }>(),
-  { size: 'md' }
+  defineProps<{
+    collection: Collection
+    size?: 'sm' | 'md' | 'lg'
+    /** show this one of the collection's covers instead of the page's pick */
+    coverIndex?: number
+    /** show the institution/term band across image covers */
+    showBand?: boolean
+    /** print black-ink covers in their tint colour (off shows the original) */
+    showTint?: boolean
+  }>(),
+  { size: 'md', coverIndex: undefined, showBand: true, showTint: true }
 )
 
-const cover = useCollectionCover(props.collection)
-const tint = computed(() => cover.value?.tint)
+const picked = useCollectionCover(props.collection)
+const cover = computed(() =>
+  props.coverIndex === undefined
+    ? picked.value
+    : props.collection.covers?.[props.coverIndex]
+)
+const tint = computed(() => (props.showTint ? cover.value?.tint : undefined))
 const band = computed(() =>
   [props.collection.institution, props.collection.term]
     .filter(Boolean)
