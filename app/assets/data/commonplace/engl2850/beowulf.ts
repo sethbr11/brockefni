@@ -1,0 +1,17 @@
+import type { Entry } from '../../commonplaceData'
+
+export default {
+  id: 'beowulf',
+  title: 'Beowulf',
+  author: 'Anonymous',
+  period: 'old-english',
+  composed: 'c. 1000',
+  language: 'Old English',
+  assigned: 'Aug 27 – Sept 1',
+  tags: [],
+  // TODO: your passages, summary, commentary
+  passages: [],
+  summary: '',
+  commentary: '',
+  scene: 'beowulf',
+} satisfies Entry

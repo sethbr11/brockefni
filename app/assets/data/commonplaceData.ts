@@ -46,6 +46,8 @@ export interface Passage {
   translation?: string // optional modern translation; enables a toggle in the UI
   note?: string // optional short gloss for this passage
   tags?: string[] // optional theme ids specific to this passage
+  startLine?: number // optional starting line number; enables dynamic line numbering
+  lineStep?: number // optional line numbering step/interval (default 1: every line; e.g. 5 for every 5th)
 }
 
 export interface Entry {
@@ -85,8 +87,24 @@ export interface Theme {
 }
 
 export const themes: Theme[] = [
-  // Your loci communes — add headings here, then reference their ids in entry/passage tags.
-  // { id: 'courtly-love', label: 'Courtly Love', description: '...' },
+  {
+    id: 'creation-and-art',
+    label: 'Creation & Poetic Craft',
+    description:
+      'Divine creation, cosmic architecture, and the craft or authority of the maker.',
+  },
+  {
+    id: 'divine-authority',
+    label: 'Divine & Secular Authority',
+    description:
+      'Sovereignty, kingship, religious devotion, and the hierarchy between heavenly and earthly power.',
+  },
+  {
+    id: 'courtly-love',
+    label: 'Courtly Love & Desire',
+    description:
+      'Romance conventions, chivalric devotion, and desire across medieval and Renaissance verse.',
+  },
 ]
 
 export const collections: Collection[] = [engl2850]
