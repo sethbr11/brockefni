@@ -1,10 +1,10 @@
 <!--
-  Caedmon's Hymn — the cowherd sleeps in the stable beside an ox; a glowing figure appears in
+  Caedmon's Hymn — having slipped away from the feast, the cowherd sleeps in the stable beside an ox; a glowing figure appears in
   his dream; he wakes and sings, and the song rises as notes of light.
 -->
 <template>
   <SceneStage :build="build">
-    <Backdrop variant="study" time="night" />
+    <Backdrop variant="stable" time="night" />
 
     <!-- straw bed + sleeping cowherd -->
     <ellipse :cx="520" :cy="780" rx="300" ry="34" :fill="c('gold-2')" />

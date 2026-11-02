@@ -49,7 +49,7 @@ All import from `./kit`: `import { SceneStage, Backdrop, Figure, Sword, c, type 
 
 (`Backdrop.vue` only dispatches; each variant lives in `backdrops/` — `MeadHall`, `CastleHall`, `Chapel`, `Study`, `Parchment`, and `Outdoor` for hills / night-sky / sea / forest / garden.)
 
-`variant`: `mead-hall` · `castle-hall` · `night-sky` · `hills` · `sea` · `forest` · `chapel` · `study` · `garden` · `parchment`.
+`variant`: `mead-hall` · `castle-hall` · `night-sky` · `hills` · `sea` · `forest` · `chapel` · `study` · `stable` · `garden` · `parchment`.
 **`time`**: `'auto'` (default) · `'day'` · `'night'` — which sky the backdrop (and the windows / doorway / chapel glass in it) shows.
 `'auto'` draws **both** a sunny day and a moonlit night version and CSS shows one: day in light mode, night under
 `html.darkmode` (see "Time of day" below). `'day'` / `'night'` pin it for stories that need a specific hour

@@ -4,7 +4,23 @@
 -->
 <template>
   <SceneStage :build="build">
-    <Backdrop variant="night-sky" time="night" />
+    <!-- Hell: "no light, but rather darkness visible" — a smoky vault lit from the lake below -->
+    <defs>
+      <linearGradient :id="glowId" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0.2" :stop-color="c('red')" stop-opacity="0" />
+        <stop offset="0.55" :stop-color="c('red')" stop-opacity="0.22" />
+        <stop offset="0.75" :stop-color="c('glow-2')" stop-opacity="0.4" />
+      </linearGradient>
+    </defs>
+    <rect width="1600" height="900" :fill="c('ink')" />
+    <rect width="1600" height="900" :fill="`url(#${glowId})`" />
+    <path
+      v-for="(d, i) in smoke"
+      :key="i"
+      :d="d"
+      :fill="c('stone-2')"
+      opacity="0.12"
+    />
 
     <!-- heaven's light, top-left -->
     <KitPlace part="heaven" :x="200" :y="60">
@@ -71,8 +87,8 @@
 </template>
 
 <script setup lang="ts">
+import { useId } from 'vue'
 import {
-  Backdrop,
   Burst,
   Figure,
   KitPlace,
@@ -84,7 +100,14 @@ import {
 } from './kit'
 
 defineProps<{ period: string; title: string; initial?: string }>()
+const glowId = `cp-hell-glow-${useId()}`
 const flames = [80, 260, 440, 880, 1060, 1240, 1440]
+/** drifting smoke under the vault */
+const smoke = [
+  'M -60 220 C 80 150 260 170 360 230 C 470 190 640 210 700 280 C 520 320 160 310 -60 290 Z',
+  'M 760 140 C 900 80 1080 100 1180 160 C 1300 130 1500 150 1660 210 C 1420 260 1000 250 760 210 Z',
+  'M 300 440 C 460 390 640 400 740 450 C 860 420 1040 430 1120 480 C 880 520 500 510 300 490 Z',
+]
 
 function build({ tl, p, establish, flicker, shake, pop, turn }: SceneApi) {
   tl.set(p('splash'), { scale: 0, opacity: 0 }, 0)
